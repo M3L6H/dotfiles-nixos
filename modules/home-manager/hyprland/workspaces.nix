@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   config = lib.mkIf config.hyprland.enable {
     wayland.windowManager.hyprland.settings = {
       "workspace" = [
@@ -8,10 +9,15 @@
       ];
 
       "windowrule" = [
+        # Workspace rules
+        "workspace 1, class:Godot"
         "workspace 2, class:.*tty"
         "workspace 3, class:vivaldi.*"
+
+        # Godot rules
+        "maximize, class:Godot"
+        "tile, class:Godot"
       ];
     };
   };
 }
-
