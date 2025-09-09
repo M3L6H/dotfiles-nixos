@@ -101,6 +101,9 @@
     keyMap = "us";
   };
 
+  # Fix download buffer warnings
+  # https://github.com/NixOS/nix/issues/11728
+  nix.settings.download-buffer-size = 524288000;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
