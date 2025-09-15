@@ -4,7 +4,29 @@ My personal nixos configuration.
 
 ## installation
 
-Boot into NixOS installer.
+The following provides an outline of the exact steps needed to install this system.
+
+### boot media
+
+Download [rufus](https://rufus.ie/en).
+
+Download [the NixOS graphical ISO image](https://nixos.org/download).
+
+Insert USB drive to create ISO on. ⚠️**IT WILL BE WIPED**⚠️
+
+Open Rufus.
+
+Select the USB under `Device`.
+
+Select the NixOS ISO under `Boot selection`.
+
+Click `START` to format the USB. ⚠️**THIS WILL DELETE _EVERYTHING_ ON THE USB**⚠️
+
+Shutdown the computer when Rufus is finished.
+
+### installer
+
+Boot into NixOS installer (might have to press a button to boot into BIOS first, then select USB from boot options).
 
 Close the installer.
 
@@ -13,7 +35,7 @@ Open a terminal and run the following:
 ```sh
 sudo su
 nix-shell -p git
-git clone https://github.com/m3l6h/nixos.git
+git clone https://github.com/m3l6h/dotfiles-nixos.git nixos
 cd nixos
 ls /dev/disk/by-id # Identify the disk to install NixOS on
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix --arg device '"/dev/disk/by-id/<disk from previous step>"'
