@@ -28,6 +28,12 @@ Shutdown the computer when Rufus is finished.
 
 Boot into NixOS installer (might have to press a button to boot into BIOS first, then select USB from boot options).
 
+Select Plasma (or Gnome if preferred).
+
+Connect to WIFI (or wired connection if available).
+
+If prompted, select blowfish encryption for wallet & set a basic password.
+
 Close the installer.
 
 Open a terminal and run the following:
