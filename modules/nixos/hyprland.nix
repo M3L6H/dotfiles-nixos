@@ -38,7 +38,7 @@
       swww
 
       # App launcher
-      rofi-wayland
+      rofi
 
       # Authentication
       kdePackages.polkit-kde-agent-1
