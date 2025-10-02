@@ -35,8 +35,17 @@
       url = "github:nix-community/impermanence";
     };
 
-    m3l6h-neovim.url = "github:m3l6h/dotfiles-neovim";
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    m3l6h-neovim = {
+      url = "github:m3l6h/dotfiles-neovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    m3l6h-zsh = {
+      url = "github:m3l6h/dotfiles-zsh";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.impermanence.follows = "impermanence";
+    };
 
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
   };
