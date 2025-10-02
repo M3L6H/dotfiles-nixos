@@ -43,8 +43,20 @@ sudo su
 nix-shell -p git
 git clone https://github.com/m3l6h/dotfiles-nixos.git nixos
 cd nixos
+```
+
+Make a copy of `disko.nix` & edit the `swap.swapfile.size` to match the amount of RAM you have.
+
+You can get the amount of RAM you have available with `free -h`.
+
+Run the following to select your boot disk & format it.
+
+```sh
 ls /dev/disk/by-id # Identify the disk to install NixOS on
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix --arg device '"/dev/disk/by-id/<disk from previous step>"'
+```
+
+```sh
 cd ..
 mkdir /mnt/etc
 mv nixos /mnt/etc/

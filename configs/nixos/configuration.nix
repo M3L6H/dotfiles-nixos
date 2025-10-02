@@ -101,6 +101,27 @@
     keyMap = "us";
   };
 
+  # Mounts
+  fileSystems."/mnt/files" = {
+    device = "/dev/disk/by-uuid/13fc2c6d-1aa9-48c6-980c-8717bf3871ed";
+    fsType = "ext4";
+    options = [
+      "rw"
+      "users" # Allow any user to mount and unmount
+      "nofail" # Prevent the system from failing if the drive does not exist
+      "exec" # Users implies noexec, so explicitly set exec
+    ];
+  };
+
+  fileSystems."/home/${username}/files" = {
+    device = "/mnt/files";
+    options = [
+      "bind"
+      "rw"
+      "nofail"
+    ];
+  };
+
   # Fix download buffer warnings
   # https://github.com/NixOS/nix/issues/11728
   nix.settings.download-buffer-size = 524288000;
@@ -148,9 +169,6 @@
   security.sudo.extraConfig = ''
     Defaults lecture = never
   '';
-
-  # Enable disk mounts
-  mounts.enable = true;
 
   # Enable nvidia module
   nvidia.enable = true;
