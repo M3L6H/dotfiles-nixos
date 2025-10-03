@@ -32,7 +32,7 @@ in
       allowOther = false;
     };
 
-    m3l6h-neovim = {
+    m3l6h.neovim = {
       enable = true;
 
       categoryDefinitions.merge =

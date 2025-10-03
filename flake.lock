@@ -663,11 +663,11 @@
         "yuckls": "yuckls"
       },
       "locked": {
-        "lastModified": 1759241620,
-        "narHash": "sha256-vfK3WReYGtEG1z80UXZyL9A+mHy0ku5+2IXihjHjpcU=",
+        "lastModified": 1759504790,
+        "narHash": "sha256-2JFKhczTVk1cKIvtVJf+8iKAxLBOgcJGl18Fj1fKAvk=",
         "owner": "m3l6h",
         "repo": "dotfiles-neovim",
-        "rev": "c8c7fddbd70a3787739da01b353186ee6a8d9798",
+        "rev": "7eeb0081045c78e90d60c5280459a76f3e4ac6c0",
         "type": "github"
       },
       "original": {
