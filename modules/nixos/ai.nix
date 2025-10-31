@@ -15,5 +15,9 @@
 
   config = lib.mkIf config.ai.enable {
     m3l6h.ai.enable = true;
+
+    environment.shellAliases = {
+      comfyui = "xdg-open http://localhost:8188";
+    };
   };
 }
