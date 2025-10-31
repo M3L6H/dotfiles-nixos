@@ -35,6 +35,11 @@
       url = "github:nix-community/impermanence";
     };
 
+    m3l6h-ai = {
+      url = "/home/m3l6h/files/dev/m3l6h/dotfiles-ai";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     m3l6h-neovim = {
       url = "github:m3l6h/dotfiles-neovim";
       inputs.nixpkgs.follows = "nixpkgs";

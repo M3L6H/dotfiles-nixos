@@ -170,6 +170,9 @@
     Defaults lecture = never
   '';
 
+  # Enable ai module
+  ai.enable = true;
+
   # Enable nvidia module
   nvidia.enable = true;
 

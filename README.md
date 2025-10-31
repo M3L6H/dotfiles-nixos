@@ -217,6 +217,8 @@ Breakdown of the included modules.
 - [services](modules/nixos/services) - Systemd services submodule
   - [clean-old-generations](modules/nixos/services/clean-old-generations.nix) - Systemd service to clean old nixos generations
     - services.clean-old-generations.enable `boolean` - Enables the module
+- [ai](modules/nixos/ai.nix) - Enables ai stuff
+  - ai.enable `boolean` - Enables the module
 - [hyprland](modules/nixos/hyprland.nix) - Enables hyprland window manager
   - hyprland.enable `boolean` - Enables the module
 - [neovim](modules/nixos/impermanence.nix) - Enables impermanence at system level
