@@ -127,11 +127,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760948891,
-        "narHash": "sha256-TmWcdiUUaWk8J4lpjzu4gCGxWY6/Ok7mOK4fIFfBuU4=",
+        "lastModified": 1762040540,
+        "narHash": "sha256-z5PlZ47j50VNF3R+IMS9LmzI5fYRGY/Z5O5tol1c9I4=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "864599284fc7c0ba6357ed89ed5e2cd5040f0c04",
+        "rev": "0010412d62a25d959151790968765a70c436598b",
         "type": "github"
       },
       "original": {
@@ -391,11 +391,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761878381,
-        "narHash": "sha256-lCRaipHgszaFZ1Cs8fdGJguVycCisBAf2HEFgip5+xU=",
+        "lastModified": 1762286824,
+        "narHash": "sha256-xwfiYyn210aNIE/JKc6qmU7qd0619JaYMOGuFKNm9oc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4ac96eb21c101a3e5b77ba105febc5641a8959aa",
+        "rev": "1c75dd70229171f47ff10f4ed184101af7c7a392",
         "type": "github"
       },
       "original": {
@@ -772,8 +772,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1761940334,
-        "narHash": "sha256-dw3jz7sJLGPu1NIIywaTw2xaLOQbxkf9P5u8BW8zSL4=",
+        "lastModified": 1762380924,
+        "narHash": "sha256-sAM4eV6qaqXohicMR6zfTSb6V9qefkl6hm4KD1y68uM=",
         "path": "/home/m3l6h/files/dev/m3l6h/dotfiles-ai",
         "type": "path"
       },
@@ -897,16 +897,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1761469061,
-        "narHash": "sha256-JeYQuRLnMJkO+i1J2Zx80r+zjA1C59vJvuRlBUjAIqM=",
-        "owner": "nixified-ai",
-        "repo": "flake",
-        "rev": "b35ad969edb807534c22e428044b30762aa0dc08",
+        "lastModified": 1762285857,
+        "narHash": "sha256-lCuydfwDYrQB64dlUdpeFn3WzqLUt4FIZo3Oci/zdgI=",
+        "owner": "M3L6H",
+        "repo": "nixified-ai-flake",
+        "rev": "a2a97a4dcba272ce88d122d78b6d7656900ac803",
         "type": "github"
       },
       "original": {
-        "owner": "nixified-ai",
-        "repo": "flake",
+        "owner": "M3L6H",
+        "repo": "nixified-ai-flake",
         "type": "github"
       }
     },

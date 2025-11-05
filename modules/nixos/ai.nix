@@ -18,6 +18,11 @@
 
     environment.shellAliases = {
       comfyui = "xdg-open http://localhost:8188";
+      update-ai = "nix flake update m3l6h-ai";
     };
+
+    environment.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      "/var/lib/private/comfyui"
+    ];
   };
 }
