@@ -149,6 +149,13 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 128 * 1024; # 128GB
+    }
+  ];
+
   services.printing.enable = true;
 
   services.pulseaudio.enable = false;

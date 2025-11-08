@@ -127,11 +127,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762040540,
-        "narHash": "sha256-z5PlZ47j50VNF3R+IMS9LmzI5fYRGY/Z5O5tol1c9I4=",
+        "lastModified": 1762440070,
+        "narHash": "sha256-xxdepIcb39UJ94+YydGP221rjnpkDZUlykKuF54PsqI=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "0010412d62a25d959151790968765a70c436598b",
+        "rev": "26d05891e14c88eb4a5d5bee659c0db5afb609d8",
         "type": "github"
       },
       "original": {
@@ -375,27 +375,6 @@
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "004753ae6b04c4b18aa07192c1106800aaacf6c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
-      "inputs": {
-        "nixpkgs": [
-          "m3l6h-ai",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762286824,
-        "narHash": "sha256-xwfiYyn210aNIE/JKc6qmU7qd0619JaYMOGuFKNm9oc=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "1c75dd70229171f47ff10f4ed184101af7c7a392",
         "type": "github"
       },
       "original": {
@@ -765,15 +744,14 @@
     "m3l6h-ai": {
       "inputs": {
         "flake-parts": "flake-parts_2",
-        "home-manager": "home-manager_2",
         "nixified-ai": "nixified-ai",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1762380924,
-        "narHash": "sha256-sAM4eV6qaqXohicMR6zfTSb6V9qefkl6hm4KD1y68uM=",
+        "lastModified": 1762536028,
+        "narHash": "sha256-0AkS3hW8ua+NWUUinm16QOX3s6qti0/KnOC3RFr8g4w=",
         "path": "/home/m3l6h/files/dev/m3l6h/dotfiles-ai",
         "type": "path"
       },
@@ -897,11 +875,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762285857,
-        "narHash": "sha256-lCuydfwDYrQB64dlUdpeFn3WzqLUt4FIZo3Oci/zdgI=",
+        "lastModified": 1762529387,
+        "narHash": "sha256-MH0vTa+p171mTPTjniaX6v/Abp2z82Ev612TNyYb0cU=",
         "owner": "M3L6H",
         "repo": "nixified-ai-flake",
-        "rev": "a2a97a4dcba272ce88d122d78b6d7656900ac803",
+        "rev": "bdc5f4ec3a6cdf76ec6d11a9f25521c13dc90402",
         "type": "github"
       },
       "original": {
