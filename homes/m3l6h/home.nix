@@ -61,6 +61,9 @@
   # Enable obs
   software.obs.enable = true;
 
+  # Enable obs
+  software.prusa-slicer.enable = true;
+
   # Enable vivaldi
   software.vivaldi.enable = true;
 

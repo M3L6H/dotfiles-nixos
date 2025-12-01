@@ -120,6 +120,8 @@ Breakdown of the included modules.
     - software.krita.enable `boolean` - Enables the module
   - [obs](modules/home-manager/software/obs.nix) - Enables obs studio
     - software.obs.enable `boolean` - Enables the module
+  - [prusa-slicer](modules/home-manager/software/prusa-slicer.nix) - Enables prusa-slicer
+    - software.prusa-slicer.enable `boolean` - Enables the module
   - [vivaldi](modules/home-manager/software/vivaldi.nix) - Enables vivaldi browser
     - software.vivaldi.enable `boolean` - Enables the module
 - [toolchains](modules/home-manager/toolchains) - Toolchains submodule
