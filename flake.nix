@@ -19,16 +19,12 @@
 
     hyprcursor = {
       url = "git+https://github.com/hyprwm/hyprcursor?ref=refs%2Fheads%2Fmain";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?ref=refs%2Fheads%2Fmain&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprcursor.follows = "hyprcursor";
     };
     hyprland-plugins = {
       url = "git+https://github.com/hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
     };
 
     impermanence = {
