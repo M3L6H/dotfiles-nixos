@@ -89,29 +89,15 @@
             set-option -g status-position top
 
             # Plugins
-            set -g @kanagawa-plugins "playerctl cpu-usage gpu-usage ram-usage weather"
-            set -g @kanagawa-military-time true
+            set -g @kanagawa-plugins ""
+            set -g @kanagawa-military-time false
             set -g @kanagawa-left-icon "󱚝  #S"
-            set -g @kanagawa-show-fahrenheit true
+            set -g @kanagawa-show-fahrenheit false
             set -g @kanagawa-show-location false
             set -g @kanagawa-show-timezone false
             set -g @kanagawa-show-empty-plugins false
             set -g @kanagawa-show-left-sep 
             set -g @kanagawa-show-right-sep 
-
-            set -g @kanagawa-cpu-usage-label " "
-            set -g @kanagawa-gpu-usage-label "󰢮 "
-            set -g @kanagawa-ram-usage-label " "
-
-            set -g @kanagawa-playerctl-format "  [ {{ trunc(artist, 24) }} ][ {{ trunc(title, 36) }} ][ {{ duration(position) }} ]  "
-
-            # Colors
-            set -g @kanagawa-playerctl-colors "dark_purple white"
-            set -g @kanagawa-cpu-usage-colors "dark_gray white"
-            set -g @kanagawa-gpu-usage-colors "dark_purple white"
-            set -g @kanagawa-ram-usage-colors "dark_gray white"
-            set -g @kanagawa-weather-colors "dark_purple white"
-            set -g @kanagawa-time-colors "dark_gray white"
           '';
         }
         sensible

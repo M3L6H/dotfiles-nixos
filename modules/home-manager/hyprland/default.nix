@@ -63,6 +63,7 @@
           dim_strength = "0.2";
 
           blur = {
+            enabled = "true";
             size = "16";
             passes = "2";
           };

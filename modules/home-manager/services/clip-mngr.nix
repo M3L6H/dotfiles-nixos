@@ -40,8 +40,8 @@
       ];
 
       windowrule = [
-        "float, class:(com.example.clipse)"
-        "size 622 652, class:(com.example.clipse)"
+        "match:class com.example.clipse, float on"
+        "match:class com.example.clipse, size 622 652"
       ];
     };
 

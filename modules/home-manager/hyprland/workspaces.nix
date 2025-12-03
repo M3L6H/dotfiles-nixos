@@ -10,13 +10,13 @@
 
       "windowrule" = [
         # Workspace rules
-        "workspace 1, class:Godot"
-        "workspace 2, class:.*tty"
-        "workspace 3, class:vivaldi.*"
+        "match:class Godot, workspace 1"
+        "match:class .*tty, workspace 2"
+        "match:class vivaldi.*, workspace 3"
 
         # Godot rules
-        "maximize, class:Godot"
-        "tile, class:Godot"
+        "match:class Godot, maximize on"
+        "match:class Godot, tile on"
       ];
     };
   };

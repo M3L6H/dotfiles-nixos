@@ -1,4 +1,11 @@
-{ config, inputs, lib, pkgs, ... }: {
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options = {
     tmux.sessionx.enable = lib.mkEnableOption "enables tmux-sessionx plugin";
   };
@@ -10,7 +17,7 @@
 
     programs.tmux.plugins = [
       {
-        plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
+        plugin = inputs.tmux-sessionx.packages.${pkgs.stdenv.hostPlatform.system}.default;
         extraConfig = ''
           set -g @sessionx-bind "o"
           set -g @sessionx-bind-tmuxinator-list "ctrl-t"
@@ -22,4 +29,3 @@
     ];
   };
 }
-
