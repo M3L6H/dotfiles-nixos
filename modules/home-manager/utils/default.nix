@@ -9,7 +9,7 @@
     ./fzf.nix
     ./gh.nix
     ./ghostscript.nix
-    ./glxinfo.nix
+    ./mesa-demos.nix
     ./image-magick.nix
     ./iw.nix
     ./jq.nix
@@ -38,7 +38,7 @@
   utils.fzf.enable = lib.mkDefault false;
   utils.gh.enable = lib.mkDefault false;
   utils.ghostscript.enable = lib.mkDefault false;
-  utils.glxinfo.enable = lib.mkDefault false;
+  utils.mesa-demos.enable = lib.mkDefault false;
   utils.image-magick.enable = lib.mkDefault false;
   utils.iw.enable = lib.mkDefault false;
   utils.jq.enable = lib.mkDefault false;

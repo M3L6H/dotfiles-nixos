@@ -154,8 +154,6 @@ Breakdown of the included modules.
     - utils.gh.enable `boolean` - Enables the module
   - [ghostscript](modules/home-manager/utils/ghostscript.nix) - Install ghostscript
     - utils.ghostscript.enable `boolean` - Enables the module
-  - [glxinfo](modules/home-manager/utils/glxinfo.nix) - Install glxinfo
-    - utils.glxinfo.enable `boolean` - Enables the module
   - [image-magick](modules/home-manager/utils/image-magick.nix) - Install the image-magick suite
     - utils.image-magick.enable `boolean` - Enables the module
   - [iw](modules/home-manager/utils/iw.nix) - Install iw
@@ -168,6 +166,8 @@ Breakdown of the included modules.
     - utils.lsof.enable `boolean` - Enables the module
   - [mermaid-cli](modules/home-manager/utils/mermaid-cli.nix) - Install mermaid-cli
     - utils.mermaid-cli.enable `boolean` - Enables the module
+  - [mesa-demos](modules/home-manager/utils/mesa-demos.nix) - Install mesa-demos
+    - utils.mesa-demos.enable `boolean` - Enables the module
   - [ripgrep](modules/home-manager/utils/ripgrep.nix) - Install ripgrep
     - utils.ripgrep.enable `boolean` - Enables the module
   - [parted](modules/home-manager/utils/parted.nix) - Install parted

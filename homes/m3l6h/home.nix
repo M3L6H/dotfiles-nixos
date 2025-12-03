@@ -79,14 +79,14 @@
   # Enable file util
   utils.file.enable = true;
 
-  # Enable glxinfo util
-  utils.glxinfo.enable = true;
-
   # Enable gh util
   utils.gh.enable = true;
 
   # Enable lsof util
   utils.lsof.enable = true;
+
+  # Enable mesa-demos util
+  utils.mesa-demos.enable = true;
 
   # Enable neovim-remote
   utils.nvr.enable = true;
