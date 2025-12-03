@@ -34,6 +34,7 @@ $dragonYellow: #c4b28a;
 
 /* Base styles for bar modules */
 .bar-module,
+.music,
 .time {
   background-color: $dragonBlackTrans0;
   border-radius: 10px;
@@ -55,6 +56,11 @@ $dragonYellow: #c4b28a;
 /* Hover effect for inactive buttons */
 .ws-inactive:hover {
   color: $dragonGreen2;
+}
+
+/* Music styling */
+.music {
+  color: $dragonGreen;
 }
 
 /* Time styling */

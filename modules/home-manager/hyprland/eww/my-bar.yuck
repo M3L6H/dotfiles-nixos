@@ -82,16 +82,24 @@
       (literal
         :class "bar-module"
         :content workspace-2))
-    (label ;; Placeholder
-      :text ""
-      :justify "center")
+    (music)
     (box
       :hexpand false
       :space-evenly false
       :orientation "h"
       (box :hexpand true)
-      (label ;; Placeholder
+      (label
         :text "  ${formattime(EWW_TIME, "%a %m/%y %H:%M:%S")}"
         :class "time"
         :xalign 1
         :justify "right"))))
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? "  ${music}  " : ""}))
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} | {{ title }} | {{ duration(position) }}/{{ duration(mpris:length) }}' || true")
