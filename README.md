@@ -53,7 +53,7 @@ Run the following to select your boot disk & format it.
 
 ```sh
 lsblk -o NAME,SIZE,TYPE,ID-LINK # Identify the disk to install NixOS on
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix --arg device '"/dev/disk/by-id/<disk from previous step>"'
+nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko <name of your disko file> --arg device '"/dev/disk/by-id/<disk from previous step>"'
 ```
 
 ```sh
