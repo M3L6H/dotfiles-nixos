@@ -40,7 +40,13 @@
             content = {
               type = "luks";
               name = "root"; # Mapper name
-              askPassword = true; # Use encryption password. TODO: Use FIDO2 in future
+              askPassword = true;
+              settings = {
+                crypttabExtraOpts = [
+                  "fido2-device=auto"
+                  "token-timeout=60"
+                ];
+              };
               content = {
                 type = "btrfs";
                 extraArgs = [

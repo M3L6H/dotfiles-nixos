@@ -53,7 +53,28 @@ Run the following to select your boot disk & format it.
 
 ```sh
 lsblk -o NAME,SIZE,TYPE,ID-LINK # Identify the disk to install NixOS on
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko <name of your disko file> --arg device '"/dev/disk/by-id/<disk from previous step>"'
+nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --arg device '"/dev/disk/by-id/<disk from previous step>"' <name of your disko file>
+```
+
+After partitioning your disk, run the following to register a recovery key & any YubiKeys:
+
+```sh
+nix-shell -p yubikey-manager fido2luks libfido2
+
+# Identify your luks device
+lsblk
+
+# Register recovery key
+sudo systemd-cryptenroll --recovery-key <luks device>
+
+# For each YubiKey that you don't have a PIN for
+ykman fido access change-pin
+
+# For each YubiKey
+sudo systemd-cryptenroll <luks device> --fido2-device=auto --fido2-with-client-pin=no
+
+# List slots
+sudo systemd-cryptenroll <luks device>
 ```
 
 ```sh
@@ -233,6 +254,8 @@ Breakdown of the included modules.
   - nvidia.enable `boolean` - Enables the module
 - [partition-manager](modules/nixos/partition-manager.nix) - Install partition-manager
   - partition-manager.enable `boolean` - Enables the module
+- [pcscd](modules/nixos/pcscd.nix) - Enable the PCSC-Lite daemon
+  - pcscd.enable `boolean` - Enables the module
 - [sddm](modules/nixos/sddm.nix) - Enables sddm window manager
   - sddm.enable `boolean` - Enables the module
 - [users](modules/nixos/users.nix) - Create default user
