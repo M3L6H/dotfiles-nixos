@@ -52,7 +52,7 @@ You can get the amount of RAM you have available with `free -h`.
 Run the following to select your boot disk & format it.
 
 ```sh
-ls /dev/disk/by-id # Identify the disk to install NixOS on
+lsblk -o NAME,SIZE,TYPE,ID-LINK # Identify the disk to install NixOS on
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix --arg device '"/dev/disk/by-id/<disk from previous step>"'
 ```
 
