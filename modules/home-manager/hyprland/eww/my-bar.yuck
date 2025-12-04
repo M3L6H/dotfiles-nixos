@@ -95,11 +95,14 @@
         :justify "right"))))
 
 (defwidget music []
-  (box :class "music"
-       :orientation "h"
-       :space-evenly false
-       :halign "center"
-    {music != "" ? "  ${music}  " : ""}))
+  (button
+    :onclick "playerctl play-pause"
+    (box
+      :class "music"
+      :orientation "h"
+      :space-evenly false
+      :halign "center"
+      {music != "" ? "${music}" : ""})))
 
 (deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} | {{ title }} | {{ duration(position) }}/{{ duration(mpris:length) }}' || true")
+  "playerctl --follow metadata --format '{{ status }} {{ artist }} | {{ title }} | {{ duration(position) }}/{{ duration(mpris:length) }} {{ status }}' | sed -u 's/Playing/ /g' | sed -u 's/Paused//g' || true")
