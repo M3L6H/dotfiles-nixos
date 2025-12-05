@@ -42,6 +42,7 @@ Open a terminal and run the following:
 sudo su
 nix-shell -p git
 git clone https://github.com/m3l6h/dotfiles-nixos.git nixos
+exit
 cd nixos
 ```
 
