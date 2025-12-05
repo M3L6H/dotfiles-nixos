@@ -39,22 +39,27 @@ Close the installer.
 Open a terminal and run the following:
 
 ```sh
-sudo su
 nix-shell -p git
 git clone https://github.com/m3l6h/dotfiles-nixos.git nixos
 exit
 cd nixos
 ```
 
-Make a copy of `disko.nix` & edit the `swap.swapfile.size` to match the amount of RAM you have.
+Make a copy of `disko.nix` & edit the `swap.swapfile.size` to match the amount of RAM you have. Update the device(s) to match with your system's drives.
 
-You can get the amount of RAM you have available with `free -h`.
-
-Run the following to select your boot disk & format it.
+You can use the following to helo identify your drives:
 
 ```sh
 lsblk -o NAME,SIZE,TYPE,ID-LINK # Identify the disk to install NixOS on
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --arg device '"/dev/disk/by-id/<disk from previous step>"' <name of your disko file>
+```
+
+You can get the amount of RAM you have available with `free -h`.
+
+Run the following to format your disk(s).
+
+```sh
+sudo su
+nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko <name of your disko file>
 ```
 
 After partitioning your disk, run the following to register a recovery key & any YubiKeys:
