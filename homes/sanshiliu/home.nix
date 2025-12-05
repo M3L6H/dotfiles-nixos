@@ -17,7 +17,7 @@
   gpg.enable = true;
 
   # Enable management of hyprland through home-manager
-  hyprland.enable = true;
+  hyprland.enable = false;
 
   # Enable custom neovim flake
   neovim.enable = true;
@@ -35,7 +35,7 @@
   wallpaper.mpvpaper.enable = false;
 
   # Enable swww wallpaper
-  wallpaper.swww.enable = true;
+  wallpaper.swww.enable = false;
 
   # Enable zsh
   zsh.enable = true;
