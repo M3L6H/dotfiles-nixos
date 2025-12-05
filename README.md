@@ -39,21 +39,29 @@ Close the installer.
 Open a terminal and run the following:
 
 ```sh
-nix-shell -p git
 git clone https://github.com/m3l6h/dotfiles-nixos.git nixos
-exit
 cd nixos
 ```
 
 Make a copy of `disko.nix` & edit the `swap.swapfile.size` to match the amount of RAM you have. Update the device(s) to match with your system's drives.
 
-You can use the following to helo identify your drives:
+If needed, use `fdisk` to delete any existing partitions first.
+
+You can use the following to help identify your drives:
 
 ```sh
 lsblk -o NAME,SIZE,TYPE,ID-LINK # Identify the disk to install NixOS on
 ```
 
 You can get the amount of RAM you have available with `free -h`.
+
+If setting up multiple drives, you will want to use a keyfile:
+
+```sh
+dd if=/dev/urandom of=keyfile bs=1024 count=20
+sudo mkdir /mnt/root
+sudo mv keyfile /mnt/root
+```
 
 Run the following to format your disk(s).
 
@@ -77,7 +85,7 @@ sudo systemd-cryptenroll --recovery-key <luks device>
 ykman fido access change-pin
 
 # For each YubiKey
-sudo systemd-cryptenroll <luks device> --fido2-device=auto --fido2-with-client-pin=no
+sudo systemd-cryptenroll --fido2-device=auto --fido2-with-client-pin=no <luks device>
 
 # List slots
 sudo systemd-cryptenroll <luks device>
@@ -85,9 +93,14 @@ sudo systemd-cryptenroll <luks device>
 
 ```sh
 cd ..
+sudo su
 mkdir /mnt/etc
 mv nixos /mnt/etc/
-nixos-install --root /mnt --flake /mnt/etc/nixos#nixos
+nixos-generate-config --no-filesystems --root /
+mnt
+# Move/copy configs accordingly & update flake.lock
+git add .
+nixos-install --root /mnt --flake /mnt/etc/nixos#<flake>
 reboot
 ```
 
