@@ -25,6 +25,7 @@
     };
     hyprland-plugins = {
       url = "git+https://github.com/hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
 
     impermanence = {
@@ -111,6 +112,25 @@
               inputs.impermanence.nixosModules.impermanence
             ];
           };
+          laptop = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit
+                device
+                inputs
+                ;
+              hostname = "laptop";
+              username = "sanshiliu";
+            };
+            modules = [
+              inputs.disko.nixosModules.default
+              (import ./laptop-disko.nix { inherit device; })
+
+              ./configs/laptop/configuration.nix
+
+              inputs.home-manager.nixosModules.default
+              inputs.impermanence.nixosModules.impermanence
+            ];
+          };
         };
 
         # Standalone home-manager configuration entrypoint
@@ -123,6 +143,17 @@
             };
             modules = [
               ./homes/${username}/home.nix
+            ];
+          };
+          sanshiliu = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit inputs;
+              hostname = "laptop";
+              username = "sanshiliu";
+            };
+            modules = [
+              ./homes/sanshiliu/home.nix
             ];
           };
         };
