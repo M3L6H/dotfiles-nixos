@@ -60,7 +60,7 @@ If setting up multiple drives, you will want to use a keyfile:
 ```sh
 dd if=/dev/urandom of=keyfile bs=1024 count=20
 sudo mkdir /mnt/root
-sudo mv keyfile /mnt/root
+sudo cp keyfile /mnt/root
 ```
 
 Run the following to format your disk(s).
@@ -68,6 +68,9 @@ Run the following to format your disk(s).
 ```sh
 sudo su
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko <name of your disko file>
+# If you generated a keyfile, you need to copy it to the persist mount
+mkdir /mnt/persist/root
+cp keyfile /mnt/persist/root
 ```
 
 After partitioning your disk, run the following to register a recovery key & any YubiKeys:
