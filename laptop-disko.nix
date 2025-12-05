@@ -135,11 +135,13 @@
                 type = "luks";
                 name = "files"; # Mapper name
                 initrdUnlock = false;
-                preOpenCommands = ''
-                  mkdir /mnt
-                  mount /dev/mapper/root /mnt
-                '';
-                settings.keyFile = "/mnt/root/keyfile";
+                settings = {
+                  preOpenCommands = ''
+                    mkdir /mnt
+                    mount /dev/mapper/root /mnt
+                  '';
+                  keyFile = "/mnt/@/root/keyfile";
+                };
                 content = {
                   type = "btrfs";
                   extraArgs = [
