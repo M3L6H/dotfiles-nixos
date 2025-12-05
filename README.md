@@ -58,9 +58,12 @@ You can get the amount of RAM you have available with `free -h`.
 If setting up multiple drives, you will want to use a keyfile:
 
 ```sh
-dd if=/dev/urandom of=keyfile bs=1024 count=20
-sudo mkdir /mnt/root
-sudo cp keyfile /mnt/root
+sudo su
+tr -dc '[:alnum:]' </dev/urandom | head -c256 >keyfile
+mkdir /mnt/root
+cp keyfile /mnt/root
+chmod 400 /mnt/root/keyfile
+exit
 ```
 
 Run the following to format your disk(s).

@@ -161,6 +161,6 @@
     };
   };
   environment.etc.crypttab.text = ''
-    files UUID=d3e1a431-a750-4fc6-9155-37bf410ac235 /mnt/root/keyfile luks
+    files UUID=d3e1a431-a750-4fc6-9155-37bf410ac235 /mnt-root/root/keyfile luks
   '';
 }
