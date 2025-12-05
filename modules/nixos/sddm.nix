@@ -5,13 +5,14 @@
   };
 
   config = lib.mkIf config.sddm.enable {
-    programs.uwsm.enable = true;
-
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
     };
 
-    services.displayManager.defaultSession = "hyprland-uwsm";
+    services.desktopManager.plasma6.enable = !config.hyprland.enable;
+
+    services.displayManager.defaultSession =
+      if config.hyprland.enable then "hyprland-uwsm" else "plasma";
   };
 }

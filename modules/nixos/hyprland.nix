@@ -11,6 +11,8 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
+    programs.uwsm.enable = true;
+
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
