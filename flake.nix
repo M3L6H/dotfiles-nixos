@@ -115,15 +115,15 @@
           laptop = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit
-                device
                 inputs
                 ;
+              device = "/dev/disk/by-id/wwn-0x5002538700000000";
               hostname = "laptop";
               username = "sanshiliu";
             };
             modules = [
               inputs.disko.nixosModules.default
-              (import ./laptop-disko.nix { inherit device; })
+              (import ./laptop-disko.nix { })
 
               ./configs/laptop/configuration.nix
 
