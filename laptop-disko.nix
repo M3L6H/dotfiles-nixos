@@ -42,6 +42,7 @@
                 name = "root"; # Mapper name
                 askPassword = true;
                 settings = {
+                  allowDiscards = true; # For SSDs and NVMEs
                   crypttabExtraOpts = [
                     "fido2-device=auto"
                     "token-timeout=60"
