@@ -135,7 +135,11 @@
               content = {
                 type = "luks";
                 name = "files"; # Mapper name
-                settings.keyFile = "/root/keyfile";
+								initrdUnlock = false;
+                settings = {
+									crypttabExtraOpts = [ "nofail" ];
+                  keyFile = "/root/keyfile";
+                };
                 content = {
                   type = "btrfs";
                   extraArgs = [
