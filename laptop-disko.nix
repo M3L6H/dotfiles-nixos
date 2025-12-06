@@ -134,14 +134,7 @@
               content = {
                 type = "luks";
                 name = "files"; # Mapper name
-                initrdUnlock = false;
-                settings = {
-                  preOpenCommands = ''
-                    mkdir /mnt
-                    mount /dev/mapper/root /mnt
-                  '';
-                  keyFile = "/mnt/@/root/keyfile";
-                };
+                settings.keyFile = "/root/keyfile";
                 content = {
                   type = "btrfs";
                   extraArgs = [
@@ -166,7 +159,4 @@
       };
     };
   };
-  environment.etc.crypttab.text = ''
-    files UUID=d3e1a431-a750-4fc6-9155-37bf410ac235 /mnt/@/root/keyfile luks
-  '';
 }
