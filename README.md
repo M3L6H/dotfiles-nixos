@@ -159,6 +159,8 @@ Breakdown of the included modules.
     - software.digikam.enable `boolean` - Enables the module
   - [firefox](modules/home-manager/software/firefox.nix) - Enables firefox browser
     - software.firefox.enable `boolean` - Enables the module
+  - [freecad](modules/home-manager/software/freecad.nix) - Enables freecad parametric 3D modeler
+    - software.freecad.enable `boolean` - Enables the module
   - [krita](modules/home-manager/software/krita.nix) - Enables krita
     - software.krita.enable `boolean` - Enables the module
   - [obs](modules/home-manager/software/obs.nix) - Enables obs studio

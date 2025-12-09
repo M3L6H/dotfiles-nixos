@@ -55,6 +55,9 @@
   # Enable digikam
   software.digikam.enable = false;
 
+  # Enable freecad
+  software.freecad.enable = true;
+
   # Enable krita
   software.krita.enable = false;
 

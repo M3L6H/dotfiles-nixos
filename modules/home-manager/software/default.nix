@@ -4,6 +4,7 @@
     ./digikam
     ./bazecor.nix
     ./firefox.nix
+    ./freecad.nix
     ./krita.nix
     ./obs.nix
     ./prusa-slicer.nix
@@ -13,6 +14,7 @@
   software.digikam.enable = lib.mkDefault false;
   software.bazecor.enable = lib.mkDefault false;
   software.firefox.enable = lib.mkDefault false;
+  software.freecad.enable = lib.mkDefault false;
   software.krita.enable = lib.mkDefault false;
   software.obs.enable = lib.mkDefault false;
   software.prusa-slicer.enable = lib.mkDefault false;
