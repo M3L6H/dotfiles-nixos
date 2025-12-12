@@ -27,9 +27,24 @@ $dragonTeal: #949fb5;
 $dragonYellow: #c4b28a;
 
 * {
-  all: unset;
   font-family: 'VictorMono Nerd Font', monospace;
   background-color: transparent;
+}
+
+box,
+button,
+label,
+stack,
+widget {
+  all: unset;
+}
+
+progress {
+  border-color: $dragonOrange;
+}
+
+trough {
+  border-color: $dragonBlack0;
 }
 
 /* Base styles for bar modules */
@@ -59,13 +74,18 @@ $dragonYellow: #c4b28a;
 }
 
 /* Music styling */
-.music {
-  color: $dragonGreen;
-}
-
 .music-button:hover>.music {
   border: 1px solid $dragonWhite;
   padding: 2px 7px;
+}
+
+.music-details {
+  color: $dragonGreen;
+  font-style: italic;
+}
+
+.music-icon {
+  color: $dragonOrange;
 }
 
 /* Time styling */
