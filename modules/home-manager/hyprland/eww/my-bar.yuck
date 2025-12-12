@@ -102,7 +102,7 @@
       :orientation "h"
       :space-evenly false
       :halign "center"
-      {music != "" ? "${music}" : ""})))
+      {music != "" ? "${music}" : " "})))
 
 (deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ status }} {{ artist }} | {{ title }} | {{ duration(position) }}/{{ duration(mpris:length) }} {{ status }}' | sed -u 's/Playing/ /g' | sed -u 's/Paused//g' || true")
+  "playerctl --follow metadata --format '{{ status }} {{ artist }} | {{ title }} | {{ duration(position) }}/{{ duration(mpris:length) }} {{ status }}' | sed -u 's/Playing/ /g' | sed -u 's/Paused//g' || true")
