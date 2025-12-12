@@ -48,6 +48,11 @@
       inputs.impermanence.follows = "impermanence";
     };
 
+    phinger = {
+      url = "github:Jappie3/hyprcursor-phinger";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
   };
 

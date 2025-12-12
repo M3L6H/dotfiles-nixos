@@ -96,6 +96,7 @@
 
 (defwidget music []
   (button
+    :class "music-button"
     :onclick "playerctl play-pause"
     (box
       :class "music"

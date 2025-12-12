@@ -63,6 +63,11 @@ $dragonYellow: #c4b28a;
   color: $dragonGreen;
 }
 
+.music-button:hover>.music {
+  border: 1px solid $dragonWhite;
+  padding: 2px 7px;
+}
+
 /* Time styling */
 .time {
   color: $dragonGreen;

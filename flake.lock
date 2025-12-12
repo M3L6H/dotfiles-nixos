@@ -1185,6 +1185,26 @@
         "type": "github"
       }
     },
+    "phinger": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763845612,
+        "narHash": "sha256-78zH5GrYa35bEkzeVnl8uXFbZ/zsiSHayjxZlNt+Xe8=",
+        "owner": "Jappie3",
+        "repo": "hyprcursor-phinger",
+        "rev": "1207a845501a28e0e00d4a8e935ee0c9cab30650",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Jappie3",
+        "repo": "hyprcursor-phinger",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1244,6 +1264,7 @@
         "m3l6h-neovim": "m3l6h-neovim",
         "m3l6h-zsh": "m3l6h-zsh",
         "nixpkgs": "nixpkgs_5",
+        "phinger": "phinger",
         "stable": "stable",
         "tmux-sessionx": "tmux-sessionx"
       }

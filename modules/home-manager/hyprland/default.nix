@@ -8,6 +8,7 @@
     ./rofi
     ./binds.nix
     ./eww.nix
+    ./hyprcursor.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprshot.nix
