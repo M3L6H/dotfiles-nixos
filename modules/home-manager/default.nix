@@ -6,7 +6,6 @@
     ./scripts
     ./services
     ./software
-    ./tmux
     ./toolchains
     ./utils
 
@@ -16,6 +15,7 @@
     ./neovim.nix
     ./user-dirs.nix
     ./terminal.nix
+    ./tmux.nix
     ./zsh.nix
   ];
 
