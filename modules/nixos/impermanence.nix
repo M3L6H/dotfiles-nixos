@@ -26,11 +26,11 @@
             mode = "0755";
           }
           "/var/lib/nixos" # NixOS state
+          "/root/.cache/nix" # NixOS cache
         ];
 
         files = [
           "/etc/machine-id" # Machine ID for journalctl
-          "/root/.cache/nix/binary-cache-v7.sqlite" # Negative lookup cache
         ];
       };
     };
