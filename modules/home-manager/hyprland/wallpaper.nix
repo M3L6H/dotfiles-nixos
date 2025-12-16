@@ -25,6 +25,10 @@ in
         ".cache/swww"
       ];
 
+      files = [
+        ".config/wallpaper"
+      ];
+
       allowOther = false;
     };
 
@@ -42,12 +46,12 @@ in
         ExecStart = "${pkgs.writeShellScript "swww-init-wallpaper" ''
           #!/run/current-system/sw/bin/bash
 
-          ${pkgs.swww}/bin/swww img -t fade -o DP-1 ${image}
+          sleep 2 # Delay to ensure Wayland is ready
+          ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper")"
           sleep 1
-          ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 ${image}
-          ${pkgs.swww}/bin/swww img -t fade -o DP-2 ${image}
+          ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper")"
           sleep 1
-          ${pkgs.swww}/bin/swww img -t fade -o DP-2 ${image}
+          ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper")"
         ''}";
         Restart = "on-failure";
         RestartSec = 1;
@@ -184,6 +188,7 @@ in
             swww img -o HDMI-A-1 "${dir}/$selection"
             sleep 1
             swww img -o DP-2 "${dir}/$selection"
+            echo "${dir}/$selection" > "''${HOME}/.config/wallpaper"
           fi
         # Otherwise toggle between video and image wallpaper
         elif ! systemctl is-active --quiet --user mpvpaper.service; then
