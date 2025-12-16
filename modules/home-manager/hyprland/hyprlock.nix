@@ -13,7 +13,7 @@
         monitor-3 = "HDMI-A-1";
 
         dir = "/home/${username}/files/images/wallpaper";
-        image = "${dir}/wallpaper.jpg";
+        image = "${dir}/lockscreen.jpg";
       in
       {
         text = ''
