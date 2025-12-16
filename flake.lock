@@ -250,6 +250,27 @@
     },
     "flake-parts_7": {
       "inputs": {
+        "nixpkgs-lib": [
+          "tagstudio",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763759067,
+        "narHash": "sha256-LlLt2Jo/gMNYAwOgdRQBrsRoOz7BPRkzvNaI/fzXi2Q=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "2cccadc7357c0ba201788ae99c4dfa90728ef5e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_8": {
+      "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
@@ -1406,6 +1427,7 @@
         "nixpkgs": "nixpkgs_6",
         "phinger": "phinger",
         "stable": "stable",
+        "tagstudio": "tagstudio",
         "tmux-sessionx": "tmux-sessionx"
       }
     },
@@ -1470,9 +1492,47 @@
         "type": "github"
       }
     },
-    "tmux-sessionx": {
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "tagstudio": {
       "inputs": {
         "flake-parts": "flake-parts_7",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1765896458,
+        "narHash": "sha256-ltrF7SzXsV9+vvFzjIk+fguo51nArnA7QbONloMj9Dc=",
+        "owner": "Ambossmann",
+        "repo": "TagStudio",
+        "rev": "7e761650e86cc5119e5a13745c15c2e12ecfab37",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ambossmann",
+        "repo": "TagStudio",
+        "rev": "7e761650e86cc5119e5a13745c15c2e12ecfab37",
+        "type": "github"
+      }
+    },
+    "tmux-sessionx": {
+      "inputs": {
+        "flake-parts": "flake-parts_8",
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {

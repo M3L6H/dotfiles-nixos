@@ -53,6 +53,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tagstudio = {
+      url = "github:Ambossmann/TagStudio/7e761650e86cc5119e5a13745c15c2e12ecfab37";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
   };
 

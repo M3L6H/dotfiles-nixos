@@ -167,6 +167,8 @@ Breakdown of the included modules.
     - software.obs.enable `boolean` - Enables the module
   - [prusa-slicer](modules/home-manager/software/prusa-slicer.nix) - Enables prusa-slicer
     - software.prusa-slicer.enable `boolean` - Enables the module
+  - [tag-studio](modules/home-manager/software/tag-studio.nix) - Enables Tag Studio
+    - software.tag-studio.enable `boolean` - Enables the module
   - [vivaldi](modules/home-manager/software/vivaldi.nix) - Enables vivaldi browser
     - software.vivaldi.enable `boolean` - Enables the module
 - [toolchains](modules/home-manager/toolchains) - Toolchains submodule

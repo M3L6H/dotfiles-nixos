@@ -8,6 +8,7 @@
     ./krita.nix
     ./obs.nix
     ./prusa-slicer.nix
+    ./tag-studio.nix
     ./vivaldi.nix
   ];
 
@@ -18,5 +19,6 @@
   software.krita.enable = lib.mkDefault false;
   software.obs.enable = lib.mkDefault false;
   software.prusa-slicer.enable = lib.mkDefault false;
+  software.tag-studio.enable = lib.mkDefault false;
   software.vivaldi.enable = lib.mkDefault false;
 }

@@ -1,4 +1,10 @@
-{ config, lib, username, ... }: {
+{
+  config,
+  lib,
+  username,
+  ...
+}:
+{
   options = {
     impermanence.enable = lib.mkEnableOption "enables impermanence module";
   };
@@ -24,9 +30,9 @@
 
         files = [
           "/etc/machine-id" # Machine ID for journalctl
+          "/root/.cache/nix/binary-cache-v7.sqlite" # Negative lookup cache
         ];
       };
     };
   };
 }
-
