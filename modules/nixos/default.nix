@@ -4,6 +4,7 @@
     ./services
 
     ./ai.nix
+    ./caches.nix
     ./fonts.nix
     ./hyprland.nix
     ./impermanence.nix

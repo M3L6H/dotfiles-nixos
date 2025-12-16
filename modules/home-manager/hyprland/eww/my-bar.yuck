@@ -117,7 +117,7 @@
 
 (defwidget music-icon []
   (label
-    :text {music-icon != "" ? "${music-icon}" : "  "}
+    :text {music-icon != "" ? "${music-icon}" : " "}
     :unindent false
     :class "music-icon"
     :xalign 0.5

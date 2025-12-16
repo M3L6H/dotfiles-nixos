@@ -8,7 +8,7 @@ touch "$HOME/.local/state/no-lock"
 # Don't suspend while I'm trying to rebuild
 touch "$HOME/.local/state/no-suspend"
 
-nixos-rebuild-ng switch --sudo --flake /etc/nixos#nixos "$@"
+nixos-rebuild switch --sudo --flake "$@"
 
 if ! "$INSOMNIA"; then
   rm -f "$HOME/.local/state/no-suspend"
