@@ -204,7 +204,7 @@
   '';
 
   # Enable ai module
-  # ai.enable = true;
+  ai.enable = true;
 
   # Enable nvidia module
   nvidia.enable = true;

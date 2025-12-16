@@ -3,6 +3,7 @@
   imports = [
     ./services
 
+    ./ai.nix
     ./fonts.nix
     ./hyprland.nix
     ./impermanence.nix
@@ -16,7 +17,7 @@
     ./vcs.nix
   ];
 
-  # config.ai.enable = lib.mkDefault false;
+  config.ai.enable = lib.mkDefault false;
   config.hyprland.enable = lib.mkDefault true;
   config.impermanence.enable = lib.mkDefault true;
   config.nix-ld.enable = lib.mkDefault true;
