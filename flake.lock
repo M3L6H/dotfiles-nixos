@@ -1172,11 +1172,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765927724,
-        "narHash": "sha256-fUq//LiSkwUNji8iauIni6dmD44rxVwb0b7tRr+CTZ0=",
+        "lastModified": 1765990709,
+        "narHash": "sha256-2Vol8K7s5ghW0V0YtApCBJbkRtiG6UHHjjEH5jo+MDk=",
         "owner": "m3l6h",
         "repo": "dotfiles-tmux",
-        "rev": "7dab841b27a0871de317e3ecf102c79734eba27e",
+        "rev": "ade9cdc7ff74c760dfecc814c27545b90fb3349b",
         "type": "github"
       },
       "original": {
@@ -1597,17 +1597,16 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1765896458,
-        "narHash": "sha256-ltrF7SzXsV9+vvFzjIk+fguo51nArnA7QbONloMj9Dc=",
-        "owner": "Ambossmann",
+        "lastModified": 1765996571,
+        "narHash": "sha256-6UhnzW56n89yWDtNnsf2h15d4nDhM+LeOGr+uvAsdlY=",
+        "owner": "TagStudioDev",
         "repo": "TagStudio",
-        "rev": "7e761650e86cc5119e5a13745c15c2e12ecfab37",
+        "rev": "86274efeef6f07328f34bb26c3e54d448ddec822",
         "type": "github"
       },
       "original": {
-        "owner": "Ambossmann",
+        "owner": "TagStudioDev",
         "repo": "TagStudio",
-        "rev": "7e761650e86cc5119e5a13745c15c2e12ecfab37",
         "type": "github"
       }
     },
