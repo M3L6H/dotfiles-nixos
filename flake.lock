@@ -1172,11 +1172,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765990709,
-        "narHash": "sha256-2Vol8K7s5ghW0V0YtApCBJbkRtiG6UHHjjEH5jo+MDk=",
+        "lastModified": 1766186554,
+        "narHash": "sha256-/VKvssNoZR5xIiCIVw6w68Sobl6Ui2RDHq0XzsUb9Qs=",
         "owner": "m3l6h",
         "repo": "dotfiles-tmux",
-        "rev": "ade9cdc7ff74c760dfecc814c27545b90fb3349b",
+        "rev": "0323ea0516113528d516e58d96d3c79f3184b2cc",
         "type": "github"
       },
       "original": {
