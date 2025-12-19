@@ -1130,8 +1130,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1765911195,
-        "narHash": "sha256-M3re+4THry/RplRtYHwDPPMpH3pfw70RLshXvlFJfaY=",
+        "lastModified": 1766186847,
+        "narHash": "sha256-sn1g7hKYCMno9kplm0VO9wfHYaFsMIUHzberJWpdJrI=",
         "path": "/home/m3l6h/files/dev/m3l6h/dotfiles-ai",
         "type": "path"
       },
@@ -1270,14 +1270,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1765911101,
-        "narHash": "sha256-zU328OjKxKaJ63DfjFG/LIxzloCn0W7mLXOwbhsr3NM=",
-        "path": "/home/m3l6h/files/dev/nixified-ai/flake",
-        "type": "path"
+        "lastModified": 1766166582,
+        "narHash": "sha256-zJR8MfTUaHpgXIyss76fWzNot+XmD8kYd7t4+wF2mTw=",
+        "owner": "nixified-ai",
+        "repo": "flake",
+        "rev": "8dca7a316173989d386954b4bb162bd80ef36f10",
+        "type": "github"
       },
       "original": {
-        "path": "/home/m3l6h/files/dev/nixified-ai/flake",
-        "type": "path"
+        "owner": "nixified-ai",
+        "repo": "flake",
+        "type": "github"
       }
     },
     "nixpkgs": {
