@@ -136,7 +136,7 @@
                 name = "files"; # Mapper name
                 initrdUnlock = false;
                 settings = {
-		  crypttabExtraOpts = [ "nofail" ];
+                  crypttabExtraOpts = [ "nofail" ];
                   keyFile = "/root/keyfile";
                 };
                 content = {
@@ -148,11 +148,10 @@
 
                   subvolumes = {
                     "/files" = {
-                      mountpoint = "/home/sanshiliu/files";
+                      mountpoint = "/mnt/files";
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
-			"nofail"
                         "users" # Allow any user to mount and unmount
                         "nofail" # Prevent the system from failing if the drive does not exist
                         "exec" # Users implies noexec, so explicitly set exec

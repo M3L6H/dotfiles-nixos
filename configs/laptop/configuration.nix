@@ -109,25 +109,14 @@
   };
 
   # Mounts
-  # fileSystems."/mnt/files" = {
-  #   device = "/dev/disk/by-id/wwn-0x50004cf211e992f7";
-  #   fsType = "gpt";
-  #   options = [
-  #     "rw"
-  #     "users" # Allow any user to mount and unmount
-  #     "nofail" # Prevent the system from failing if the drive does not exist
-  #     "exec" # Users implies noexec, so explicitly set exec
-  #   ];
-  # };
-
-  # fileSystems."/home/${username}/files" = {
-  #   device = "/mnt/files";
-  #   options = [
-  #     "bind"
-  #     "rw"
-  #     "nofail"
-  #   ];
-  # };
+  fileSystems."/home/${username}/files" = {
+    device = "/mnt/files";
+    options = [
+      "bind"
+      "rw"
+      "nofail"
+    ];
+  };
 
   nix.settings = {
     # Fix download buffer warnings
