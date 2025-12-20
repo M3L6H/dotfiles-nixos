@@ -101,6 +101,13 @@
     keyMap = "us";
   };
 
+  environment.etc.crypttab = {
+    enable = true;
+    text = ''
+      files /dev/disk/by-uuid/b942d945-b599-48e1-8b9b-71235b725032 /root/keyfile luks
+    '';
+  };
+
   # Mounts
   # fileSystems."/mnt/files" = {
   #   device = "/dev/disk/by-id/wwn-0x50004cf211e992f7";

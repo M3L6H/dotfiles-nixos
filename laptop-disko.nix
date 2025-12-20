@@ -131,7 +131,6 @@
             luks = {
               size = "100%";
               name = "files";
-              uuid = "d3e1a431-a750-4fc6-9155-37bf410ac235";
               content = {
                 type = "luks";
                 name = "files"; # Mapper name
@@ -153,6 +152,7 @@
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
+			"nofail"
                       ];
                     };
                   };

@@ -6,7 +6,7 @@ VOLUME="${1:-/mnt/@}"
 SAVE_DIFF="${2:-false}"
 WITH_TIMESTAMPS="${3:-false}"
 
-SKIP_DIRS='/home/m3l6h/.cache'
+SKIP_DIRS="${HOME}/.cache"
 
 OLD_TRANSID="$(btrfs subvolume find-new "${VOLUME}-blank" 9999999)"
 OLD_TRANSID="${OLD_TRANSID#transid marker was }"
