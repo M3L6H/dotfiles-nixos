@@ -8,7 +8,7 @@ touch "$HOME/.local/state/no-lock"
 # Don't suspend while I'm trying to rebuild
 touch "$HOME/.local/state/no-suspend"
 
-2>&1 unbuffer home-manager switch "$@" | tee /tmp/home-manager.log
+2>&1 unbuffer home-manager switch --flake "$@" | tee /tmp/home-manager.log
 
 if ! "$INSOMNIA"; then
   rm -f "$HOME/.local/state/no-suspend"
