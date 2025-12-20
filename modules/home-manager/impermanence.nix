@@ -23,15 +23,11 @@
           method = "symlink";
         }
 
-        # firefox
-        ".mozilla/firefox"
-
         # ssh files
         ".ssh"
       ];
 
       files = [
-        # .gitconfig
         ".gitconfig"
       ];
 

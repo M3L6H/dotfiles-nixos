@@ -28,7 +28,7 @@
       ];
     };
 
-    home.persistence."/persist/home/${username}/.config/obs-studio" =
+    home.persistence."/persist/home/${username}" =
       lib.mkIf config.impermanence.enable
         {
           directories = [

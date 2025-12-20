@@ -10,7 +10,9 @@
     software.firefox.enable = lib.mkEnableOption "enables firefox module";
   };
 
-  config = lib.mkIf config.software.firefox.enable {
+  config = let
+    enable = config.software.firefox.enable;
+  in lib.mkIf enable {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-esr;
