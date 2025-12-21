@@ -13,7 +13,6 @@
     ./hyprlock.nix
     ./hyprshot.nix
     ./layer-rules.nix
-    ./monitors.nix
     ./wallpaper.nix
     ./workspaces.nix
   ];
