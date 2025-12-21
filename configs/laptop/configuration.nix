@@ -187,7 +187,7 @@
   hyprland.enable = false;
 
   # Enable nvidia module
-  nvidia.enable = false;
+  nvidia.enable = true;
 
   # Impermanence
   environment.persistence."/persist" = {
