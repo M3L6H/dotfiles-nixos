@@ -1,4 +1,4 @@
-{ username, ... }:
+{ pkgs, username, ... }:
 {
   imports = [
     ../../modules/home-manager/default.nix
@@ -40,6 +40,18 @@
 
   # Enable swww wallpaper
   wallpaper.swww.enable = true;
+
+  # Wallpaper init script
+  wallpaper.initScript = "${pkgs.writeShellScript "swww-init-wallpaper" ''
+    #!/run/current-system/sw/bin/bash
+
+    sleep 2 # Delay to ensure Wayland is ready
+    ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper")"
+    sleep 1
+    ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper")"
+    sleep 1
+    ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper")"
+  ''}";
 
   # Enable zsh
   zsh.enable = true;
@@ -116,6 +128,11 @@
       "DP-1, 1920x1080, 0x0, 1"
       "DP-2, 3840x2160, 1920x0, 2"
       "HDMI-A-1, 1920x1080, 3840x0, 1"
+    ];
+    "workspace" = [
+      "1, monitor:DP-1"
+      "2, monitor:DP-2"
+      "3, monitor:HDMI-A-1"
     ];
   };
 }

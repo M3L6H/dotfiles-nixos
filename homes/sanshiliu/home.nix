@@ -21,7 +21,7 @@
   gpg.enable = true;
 
   # Enable management of hyprland through home-manager
-  hyprland.enable = false;
+  hyprland.enable = true;
 
   # Enable custom neovim flake
   neovim.enable = true;

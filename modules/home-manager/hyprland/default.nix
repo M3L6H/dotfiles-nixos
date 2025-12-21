@@ -73,6 +73,10 @@
           focus_on_activate = "false";
         };
 
+        monitor = [
+          ", preferred, auto, 1"
+        ];
+
         cursor = {
           # 0 - use hw cursors if possible
           # 1 - don't use hw cursors

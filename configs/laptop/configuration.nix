@@ -184,7 +184,7 @@
   # ai.enable = true;
 
   # Enable hyprland module
-  hyprland.enable = false;
+  hyprland.enable = true;
 
   # Enable nvidia module
   nvidia.enable = true;

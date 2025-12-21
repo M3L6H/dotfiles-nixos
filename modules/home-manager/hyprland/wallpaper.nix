@@ -7,13 +7,16 @@
 }:
 let
   dir = "/home/${username}/files/images/wallpaper";
-  image = "${dir}/wallpaper.jpg";
   video = "${dir}/wallpaper.mp4";
 in
 {
   options = {
     wallpaper.mpvpaper.enable = lib.mkEnableOption "enables mpvpaper wallpaper";
     wallpaper.swww.enable = lib.mkEnableOption "enables swww wallpaper";
+
+    wallpaper.initScript = lib.mkOption {
+      description = "Script to run on boot to initialize the wallpapers";
+    };
   };
 
   config = {
@@ -43,16 +46,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.writeShellScript "swww-init-wallpaper" ''
-          #!/run/current-system/sw/bin/bash
-
-          sleep 2 # Delay to ensure Wayland is ready
-          ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper")"
-          sleep 1
-          ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper")"
-          sleep 1
-          ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper")"
-        ''}";
+        ExecStart = config.wallpaper.initScript;
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
