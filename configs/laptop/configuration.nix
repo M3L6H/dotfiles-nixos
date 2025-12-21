@@ -194,6 +194,9 @@
     "/root/keyfile"
   ];
 
+  # Sops
+  sops.defaultSopsFile = ./secrets.yaml;
+
   # Home manager
   home-manager = {
     extraSpecialArgs = { inherit hostname inputs username; };

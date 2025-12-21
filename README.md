@@ -110,6 +110,18 @@ nixos-install --root /mnt --flake /mnt/etc/nixos#<flake>
 reboot
 ```
 
+Once in the machine, do some basic setup:
+
+```sh
+# Generate machine ssh keys
+sudo ssh-keygen -a
+persist /etc/ssh
+
+# Create a password & update sops
+mkpasswd
+nix run nixpkgs#sops configs/ <host >/secrets.yaml
+```
+
 ## [modules](modules)
 
 Breakdown of the included modules.
@@ -287,6 +299,8 @@ Breakdown of the included modules.
   - pcscd.enable `boolean` - Enables the module
 - [sddm](modules/nixos/sddm.nix) - Enables sddm window manager
   - sddm.enable `boolean` - Enables the module
+- [sops](modules/nixos/sops.nix) - Enables sops-nix
+  - sops.enable `boolean` - Enables the module
 - [users](modules/nixos/users.nix) - Create default user
   - users.enable `boolean` - Enables the module
   - users.zsh.enable `boolean` - Enables zsh as the default shell (must be done at the system level)
@@ -378,3 +392,4 @@ In no particular order.
 ### articles
 
 - [Impermanent NixOS: on a VM + tmpfs root + flakes + LUKS | Will Bush](https://willbush.dev/blog/impermanent-nixos/)
+- [Secret Managment with Sops Nix](https://michael.stapelberg.ch/posts/2025-08-24-secret-management-with-sops-nix/)

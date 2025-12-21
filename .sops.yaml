@@ -1,0 +1,18 @@
+keys:
+  - &users '':
+      - &m3l6h 38B60A41D64140C18F4594E18863817A610C6B26!
+  - &hosts '':
+      - &laptop age1azews403uk79n9zrk2rvpvtawvdwawehxcf75zfk5jt9djcan9pq7lrt32
+creation_rules:
+  - path_regex: configs/laptop/secrets\.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *laptop
+        pgp:
+          - *m3l6h
+  - path_regex: configs/laptop/secrets\.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *laptop
+        pgp:
+          - *m3l6h

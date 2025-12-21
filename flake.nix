@@ -59,6 +59,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tagstudio = {
       url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +90,13 @@
 
         config.allowUnfree = true;
       };
+
+      modules = [
+        inputs.disko.nixosModules.default
+        inputs.home-manager.nixosModules.default
+        inputs.impermanence.nixosModules.impermanence
+        inputs.sops-nix.nixosModules.sops
+      ];
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ system ];
@@ -102,14 +114,9 @@
                 username
                 ;
             };
-            modules = [
-              inputs.disko.nixosModules.default
+            modules = modules ++ [
               (import ./disko.nix { inherit device; })
-
               ./configs/nixos/configuration.nix
-
-              inputs.home-manager.nixosModules.default
-              inputs.impermanence.nixosModules.impermanence
             ];
           };
           laptop = nixpkgs.lib.nixosSystem {
@@ -121,14 +128,9 @@
               hostname = "laptop";
               username = "sanshiliu";
             };
-            modules = [
-              inputs.disko.nixosModules.default
+            modules = modules ++ [
               (import ./laptop-disko.nix { })
-
               ./configs/laptop/configuration.nix
-
-              inputs.home-manager.nixosModules.default
-              inputs.impermanence.nixosModules.impermanence
             ];
           };
         };
