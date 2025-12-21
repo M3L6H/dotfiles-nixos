@@ -189,10 +189,16 @@
   # Enable nvidia module
   nvidia.enable = false;
 
-  # Impermanence for keyfile
-  environment.persistence."/persist".files = [
-    "/root/keyfile"
-  ];
+  # Impermanence
+  environment.persistence."/persist" = {
+    directories = [
+      "/etc/NetworkManager"
+      "/var/lib/NetworkManager"
+    ];
+    files = [
+      "/root/keyfile"
+    ];
+  };
 
   # Sops
   sops.defaultSopsFile = ./secrets.yaml;
