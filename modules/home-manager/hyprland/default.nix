@@ -69,6 +69,12 @@
           };
         };
 
+        input = {
+          kb_options = [
+            "caps:swapescape"
+          ];
+        };
+
         misc = {
           focus_on_activate = "false";
         };
