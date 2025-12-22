@@ -35,10 +35,10 @@
             # Screen on when activity is detected after timeout has fired
             on-resume = "hyprctl dispatch dpms on";
           }
-          {
-            timeout = "1800";
-            on-timeout = "$HOME/.local/bin/conditional-suspend"; # suspend pc
-          }
+          # {
+          #   timeout = "1800";
+          #   on-timeout = "$HOME/.local/bin/conditional-suspend"; # suspend pc
+          # }
         ];
       };
     };
