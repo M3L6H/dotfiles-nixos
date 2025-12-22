@@ -123,6 +123,9 @@
   utils.wget.enable = true;
 
   # Hyprland stuff
+  wayland.windowManager.hyprland.settings.exec-once = [
+    "eww open-many my-bar-0 my-bar-1 main-bar"
+  ];
   wayland.windowManager.hyprland.settings = {
     "monitor" = [
       "DP-1, 1920x1080, 0x0, 1"

@@ -61,8 +61,8 @@
       :text ""
       :justify "center")))
 
-(defwindow my-bar-2
-  :monitor 2
+(defwindow main-bar
+  :monitor '[2, 0]'
   :namespace "eww-bar"
   :geometry (geometry
               :x "0%"
