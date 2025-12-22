@@ -91,4 +91,11 @@
 
   # Enable wget
   utils.wget.enable = true;
+
+  # Hyprland stuff
+  wayland.windowManager.hyprland.settings = {
+    "monitor" = [
+      "eDP-1, 3840x2160, 0x0, 2"
+    ];
+  };
 }
