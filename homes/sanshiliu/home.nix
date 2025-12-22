@@ -35,6 +35,11 @@
   # Enable managed user dirs
   user-dirs.enable = true;
 
+  # Lockscreen options
+  lockscreen = {
+    monitor-1 = "eDP-1";
+  };
+
   # Still having memory issues :(
   wallpaper.mpvpaper.enable = false;
 

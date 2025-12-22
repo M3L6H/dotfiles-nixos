@@ -35,6 +35,12 @@
   # Enable managed user dirs
   user-dirs.enable = true;
 
+  lockscreen = {
+    monitor-1 = "DP-2";
+    monitor-2 = "DP-1";
+    monitor-3 = "HDMI-A-1";
+  };
+
   # Still having memory issues :(
   wallpaper.mpvpaper.enable = false;
 
