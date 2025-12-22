@@ -23,6 +23,9 @@
           method = "symlink";
         }
 
+        # keyrings
+        ".local/share/keyrings"
+
         # ssh files
         ".ssh"
       ];

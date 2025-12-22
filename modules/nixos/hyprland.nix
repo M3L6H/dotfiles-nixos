@@ -43,14 +43,20 @@
       rofi
 
       # Authentication
-      kdePackages.polkit-kde-agent-1
+      hyprpolkitagent
+
+      # Networking
+      networkmanagerapplet
     ];
 
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
+    services = {
+      gnome.gnome-keyring.enable = true;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+      };
     };
 
     # Hyprland in nixos by default will use xdg-desktop-portal-hyprland for its
@@ -61,20 +67,9 @@
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 
-    security.polkit.enable = true;
-
-    systemd.user.services.polkit-kde-authentication-agent-1 = {
-      description = "polkit-kde-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
+    security = {
+      pam.services.hyprland.enableGnomeKeyring = true;
+      polkit.enable = true;
     };
 
     systemd.user.services.swww-daemon = {
