@@ -71,7 +71,7 @@
 
         input = {
           kb_options = [
-            "caps:swapescape"
+            "caps:escape"
           ];
         };
 
