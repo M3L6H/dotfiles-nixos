@@ -143,5 +143,8 @@
     security.sudo.extraConfig = ''
       Defaults lecture = never
     '';
+
+    sops.secrets.hfToken.sopsFile = ./secrets.yaml;
+    sops.secrets.civitToken.sopsFile = ./secrets.yaml;
   };
 }

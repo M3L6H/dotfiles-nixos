@@ -9,6 +9,7 @@ creation_rules:
     key_groups:
       - age:
           - *laptop
+          - *nixos
         pgp:
           - *m3l6h
   - path_regex: configs/laptop/secrets\.(ya?ml|json|env|ini)$
