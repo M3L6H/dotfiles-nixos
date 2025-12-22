@@ -102,8 +102,8 @@ cd ..
 sudo su
 mkdir /mnt/etc
 mv nixos /mnt/etc/
-nixos-generate-config --no-filesystems --root /
-mnt
+nixos-generate-config --no-filesystems --root '/mnt'
+
 # Move/copy configs accordingly & update flake.lock
 git add .
 nixos-install --root /mnt --flake /mnt/etc/nixos#<flake>
@@ -114,12 +114,17 @@ Once in the machine, do some basic setup:
 
 ```sh
 # Generate machine ssh keys
-sudo ssh-keygen -a
+sudo ssh-keygen -A
 persist /etc/ssh
 
+# Generate age key
+cat /etc/ssh/ssh_host_ed25519_key.pub | nix run nixpkgs#ssh-to-age | wl-copy
+
 # Create a password & update sops
+nix-shell -p mkpasswd # Needed to avoid expect#mkpasswd messing with things
 mkpasswd
-nix run nixpkgs#sops configs/ <host >/secrets.yaml
+nix run nixpkgs#sops configs/HOST/secrets.yaml
+# add passwordHash: hash
 ```
 
 ## [modules](modules)

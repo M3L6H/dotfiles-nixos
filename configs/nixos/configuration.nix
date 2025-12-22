@@ -59,6 +59,9 @@
   # Enable nvidia module
   nvidia.enable = true;
 
+  # Sops
+  sops.defaultSopsFile = ./secrets.yaml;
+
   # Home manager
   home-manager = {
     extraSpecialArgs = { inherit hostname inputs username; };
