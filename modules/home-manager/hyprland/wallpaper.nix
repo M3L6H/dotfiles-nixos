@@ -17,6 +17,10 @@ in
     wallpaper.initScript = lib.mkOption {
       description = "Script to run on boot to initialize the wallpapers";
     };
+
+    wallpaper.monitors = lib.mkOption {
+      description = "Space-delimited list of monitors to run wallpapers on";
+    };
   };
 
   config = {
@@ -177,11 +181,10 @@ in
             systemctl --user start mpvpaper.service
           # Otherwise use swww
           else
-            swww img -o DP-1 "${dir}/$selection"
-            sleep 1
-            swww img -o HDMI-A-1 "${dir}/$selection"
-            sleep 1
-            swww img -o DP-2 "${dir}/$selection"
+            for monitor in ${config.wallpaper.monitors}; do
+              swww img -o "$monitor" "${dir}/$selection"
+              sleep 1
+            done
             echo "${dir}/$selection" > "''${HOME}/.config/wallpaper"
             rm "${dir}/lockscreen.jpg"
             ln -s "${dir}/$selection" "${dir}/lockscreen.jpg"

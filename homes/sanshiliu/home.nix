@@ -1,4 +1,4 @@
-{ username, ... }:
+{ pkgs, username, ... }:
 {
   imports = [
     ../../modules/home-manager/default.nix
@@ -39,7 +39,17 @@
   wallpaper.mpvpaper.enable = false;
 
   # Enable swww wallpaper
-  wallpaper.swww.enable = false;
+  wallpaper.swww.enable = true;
+
+  # Wallpaper init script
+  wallpaper.initScript = "${pkgs.writeShellScript "swww-init-wallpaper" ''
+    #!/run/current-system/sw/bin/bash
+
+    sleep 2 # Delay to ensure Wayland is ready
+    ${pkgs.swww}/bin/swww img -t fade -o eDP-1 "$(cat "''${HOME}/.config/wallpaper")"
+  ''}";
+
+  wallpaper.monitors = "eDP-1";
 
   # Enable zsh
   zsh.enable = true;

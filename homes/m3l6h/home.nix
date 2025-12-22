@@ -53,6 +53,8 @@
     ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper")"
   ''}";
 
+  wallpaper.monitors = "DP-1 HDMI-A-1 DP-2";
+
   # Enable zsh
   zsh.enable = true;
 
