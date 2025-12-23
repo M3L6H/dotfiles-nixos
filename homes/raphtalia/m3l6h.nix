@@ -51,7 +51,7 @@
     #!/run/current-system/sw/bin/bash
 
     sleep 2 # Delay to ensure Wayland is ready
-    ${pkgs.swww}/bin/swww img -t fade -o eDP-1 "$(cat "''${HOME}/.config/wallpaper")"
+    ${pkgs.swww}/bin/swww img -t fade -o eDP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
   ''}";
 
   wallpaper.monitors = "eDP-1";

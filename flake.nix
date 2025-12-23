@@ -98,7 +98,7 @@
       my-systems = [
         {
           inherit inputs;
-          hostname = "hanekewa";
+          hostname = "hanekawa";
           device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_4TB_S757NS0X302547W";
           username = "m3l6h";
         }

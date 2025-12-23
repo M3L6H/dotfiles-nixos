@@ -22,7 +22,7 @@
   config = lib.mkIf config.hyprland.enable {
     home.file.".config/hypr/hyprlock.conf" =
       let
-        image = "/home/${username}/.config/lockscreen";
+        image = "/home/${username}/.config/wallpaper/lockscreen";
       in
       {
         text = ''

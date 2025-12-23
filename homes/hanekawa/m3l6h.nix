@@ -48,11 +48,11 @@
     #!/run/current-system/sw/bin/bash
 
     sleep 2 # Delay to ensure Wayland is ready
-    ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper")"
+    ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
     sleep 1
-    ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper")"
+    ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
     sleep 1
-    ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper")"
+    ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
   ''}";
 
   wallpaper.monitors = "DP-1 HDMI-A-1 DP-2";

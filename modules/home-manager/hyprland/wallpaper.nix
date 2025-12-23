@@ -30,9 +30,6 @@ in
     home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
       directories = [
         ".cache/swww"
-      ];
-
-      files = [
         ".config/wallpaper"
       ];
 
@@ -185,9 +182,9 @@ in
               swww img -o "$monitor" "${dir}/$selection"
               sleep 1
             done
-            echo "${dir}/$selection" > "''${HOME}/.config/wallpaper"
-            rm "''${HOME}/.config/lockscreen"
-            ln -s "${dir}/$selection" "''${HOME}/.config/lockscreen"
+            echo "${dir}/$selection" > "''${HOME}/.config/wallpaper/wallpaper"
+            rm "''${HOME}/.config/wallpaper/lockscreen"
+            ln -s "${dir}/$selection" "''${HOME}/.config/wallpaper/lockscreen"
           fi
         # Otherwise toggle between video and image wallpaper
         elif ! systemctl is-active --quiet --user mpvpaper.service; then
