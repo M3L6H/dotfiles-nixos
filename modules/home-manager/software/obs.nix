@@ -5,12 +5,13 @@
   username,
   ...
 }:
+with lib;
 {
   options = {
     software.obs.enable = lib.mkEnableOption "enables obs module";
   };
 
-  config = lib.mkIf config.software.obs.enable {
+  config = mkIf config.software.obs.enable {
     programs.obs-studio = {
       enable = true;
 
@@ -28,14 +29,16 @@
       ];
     };
 
-    home.persistence."/persist/home/${username}" =
-      lib.mkIf config.impermanence.enable
-        {
-          directories = [
-            ".config/obs-studio"
-          ];
+    home.persistence."/persist/home/${username}" = mkIf config.impermanence.enable {
+      directories = [
+        ".config/obs-studio"
+      ];
 
-          allowOther = false;
-        };
+      allowOther = false;
+    };
+
+    wayland.windowManager.hyprland.settings.windowrule = mkIf config.hyprland.enable [
+      "match:class com.obsproject.Studio, workspace 7"
+    ];
   };
 }
