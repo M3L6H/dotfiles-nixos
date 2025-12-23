@@ -805,13 +805,13 @@
         ]
       },
       "locked": {
-        "lastModified": 1766186946,
-        "narHash": "sha256-mkl+er+uKw2jMC9AKTOGiBXx3q19a1LnUNo0guNLVnM=",
-        "path": "/home/m3l6h/files/dev/m3l6h/dotfiles-ai",
+        "lastModified": 1766459013,
+        "narHash": "sha256-YTgafSfN9Zd4DHj+34KDkQJaBCrzoHyE69f4vJM+1RU=",
+        "path": "/home/sanshiliu/files/dev/m3l6h/dotfiles-ai",
         "type": "path"
       },
       "original": {
-        "path": "/home/m3l6h/files/dev/m3l6h/dotfiles-ai",
+        "path": "/home/sanshiliu/files/dev/m3l6h/dotfiles-ai",
         "type": "path"
       }
     },

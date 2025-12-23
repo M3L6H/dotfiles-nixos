@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   config = {
     boot = {
@@ -144,7 +144,11 @@
       Defaults lecture = never
     '';
 
-    sops.secrets.hfToken.sopsFile = ./secrets.yaml;
-    sops.secrets.civitToken.sopsFile = ./secrets.yaml;
+    sops.secrets.ai = {
+      format = "dotenv";
+      sopsFile = ./secrets/ai.env;
+      key = "";
+    };
+    m3l6h.ai.environmentPath = config.sops.secrets.ai.path;
   };
 }
