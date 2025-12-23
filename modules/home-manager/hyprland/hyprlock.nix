@@ -96,7 +96,7 @@
 
           input-field {
             monitor = ${config.lockscreen.monitor-1}
-            size = 250, 60
+            size = 600, 60
             outline_thickness = 2
             dots_size = 0.2
             dots_spacing = 0.35
