@@ -1,0 +1,26 @@
+keys:
+  - &users '':
+      - &m3l6h 38B60A41D64140C18F4594E18863817A610C6B26!
+  - &hosts '':
+      - &hanekawa age1vgzm44xe935uq2769hr2xcxvqzhz0rlzwsl9p03lkwz7t4dqy32q3azzkz
+      - &raphtalia age1azews403uk79n9zrk2rvpvtawvdwawehxcf75zfk5jt9djcan9pq7lrt32
+creation_rules:
+  - path_regex: configs/common/secrets(/.+)?\.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *hanekawa
+          - *raphtalia
+        pgp:
+          - *m3l6h
+  - path_regex: configs/raphtalia/secrets(/.+)?\.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *raohtalia
+        pgp:
+          - *m3l6h
+  - path_regex: configs/hanekawa/secrets(/.+)?\.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *hanekawa
+        pgp:
+          - *m3l6h

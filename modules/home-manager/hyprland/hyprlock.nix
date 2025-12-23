@@ -5,15 +5,24 @@
   ...
 }:
 {
+  options = {
+    lockscreen.monitor-1 = lib.mkOption {
+      description = "Monitor to display password entry";
+    };
+    lockscreen.monitor-2 = lib.mkOption {
+      default = null;
+      description = "Monitor to display greeter";
+    };
+    lockscreen.monitor-3 = lib.mkOption {
+      default = null;
+      description = "Monitor to display time";
+    };
+  };
+
   config = lib.mkIf config.hyprland.enable {
     home.file.".config/hypr/hyprlock.conf" =
       let
-        monitor-1 = "DP-1";
-        monitor-2 = "DP-2";
-        monitor-3 = "HDMI-A-1";
-
-        dir = "/home/${username}/files/images/wallpaper";
-        image = "${dir}/lockscreen.jpg";
+        image = "/home/${username}/.config/wallpaper/lockscreen";
       in
       {
         text = ''
@@ -32,17 +41,7 @@
           }
 
           label {
-            monitor = ${monitor-1}
-            text = <span foreground="##c5c9c5">Hello, <i>$USER</i></span>
-            font_size = 36
-            font_family = VictorMono Nerd Font
-            position = 0, 0
-            halign = center
-            valign = center
-          }
-
-          label {
-            monitor = ${monitor-2} 
+            monitor = ${config.lockscreen.monitor-1} 
             text = <span foreground="##c5c9c5">Enter password</span>
             font_size = 24
             font_family = VictorMono Nerd Font
@@ -51,18 +50,52 @@
             valign = center
           }
 
-          label {
-            monitor = ${monitor-3} 
-            text = cmd[update:1000] echo "<span foreground='##c5c9c5'>$(date +%r)</span>"
-            font_size = 36
-            font_family = VictorMono Nerd Font
-            position = 0, 0
-            halign = center
-            valign = center
+          ${
+            if config.lockscreen.monitor-2 != null then
+              ''
+                label {
+                  monitor = ${config.lockscreen.monitor-2}
+                  text = <span foreground="##c5c9c5">Hello, <i>$USER</i></span>
+                  font_size = 36
+                  font_family = VictorMono Nerd Font
+                  position = 0, 0
+                  halign = center
+                  valign = center
+                }
+              ''
+            else
+              ''
+                label {
+                  monitor = ${config.lockscreen.monitor-1}
+                  text = <span foreground="##c5c9c5">Hello, <i>$USER</i></span>
+                  font_size = 36
+                  font_family = VictorMono Nerd Font
+                  position = 0, 75
+                  halign = center
+                  valign = center
+                }
+              ''
+          }
+
+          ${
+            if config.lockscreen.monitor-3 != null then
+              ''
+                label {
+                  monitor = ${config.lockscreen.monitor-3} 
+                  text = cmd[update:1000] echo "<span foreground='##c5c9c5'>$(date +%r)</span>"
+                  font_size = 36
+                  font_family = VictorMono Nerd Font
+                  position = 0, 0
+                  halign = center
+                  valign = center
+                }
+              ''
+            else
+              ""
           }
 
           input-field {
-            monitor = DP-2
+            monitor = ${config.lockscreen.monitor-1}
             size = 250, 60
             outline_thickness = 2
             dots_size = 0.2

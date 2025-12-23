@@ -13,7 +13,6 @@
     ./hyprlock.nix
     ./hyprshot.nix
     ./layer-rules.nix
-    ./monitors.nix
     ./wallpaper.nix
     ./workspaces.nix
   ];
@@ -26,6 +25,9 @@
       --enable-features=UseOzonePlatform
       --ozone-platform=wayland
     '';
+
+    # hyrpolkitagent
+    services.hyprpolkitagent.enable = true;
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -70,9 +72,23 @@
           };
         };
 
+        input = {
+          kb_options = [
+            "caps:escape"
+          ];
+
+          touchpad = {
+            natural_scroll = "true";
+          };
+        };
+
         misc = {
           focus_on_activate = "false";
         };
+
+        monitor = [
+          ", preferred, auto, 1"
+        ];
 
         cursor = {
           # 0 - use hw cursors if possible

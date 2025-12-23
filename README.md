@@ -58,9 +58,12 @@ You can get the amount of RAM you have available with `free -h`.
 If setting up multiple drives, you will want to use a keyfile:
 
 ```sh
-dd if=/dev/urandom of=keyfile bs=1024 count=20
-sudo mkdir /mnt/root
-sudo cp keyfile /mnt/root
+sudo su
+tr -dc '[:alnum:]' </dev/urandom | head -c256 >keyfile
+mkdir /mnt/root
+cp keyfile /mnt/root
+chmod 400 /mnt/root/keyfile
+exit
 ```
 
 Run the following to format your disk(s).
@@ -99,12 +102,29 @@ cd ..
 sudo su
 mkdir /mnt/etc
 mv nixos /mnt/etc/
-nixos-generate-config --no-filesystems --root /
-mnt
+nixos-generate-config --no-filesystems --root '/mnt'
+
 # Move/copy configs accordingly & update flake.lock
 git add .
 nixos-install --root /mnt --flake /mnt/etc/nixos#<flake>
 reboot
+```
+
+Once in the machine, do some basic setup:
+
+```sh
+# Generate machine ssh keys
+sudo ssh-keygen -A
+persist /etc/ssh
+
+# Generate age key
+cat /etc/ssh/ssh_host_ed25519_key.pub | nix run nixpkgs#ssh-to-age | wl-copy
+
+# Create a password & update sops
+nix-shell -p mkpasswd # Needed to avoid expect#mkpasswd messing with things
+mkpasswd
+nix run nixpkgs#sops configs/HOST/secrets.yaml
+# add passwordHash: hash
 ```
 
 ## [modules](modules)
@@ -284,6 +304,8 @@ Breakdown of the included modules.
   - pcscd.enable `boolean` - Enables the module
 - [sddm](modules/nixos/sddm.nix) - Enables sddm window manager
   - sddm.enable `boolean` - Enables the module
+- [sops](modules/nixos/sops.nix) - Enables sops-nix
+  - sops.enable `boolean` - Enables the module
 - [users](modules/nixos/users.nix) - Create default user
   - users.enable `boolean` - Enables the module
   - users.zsh.enable `boolean` - Enables zsh as the default shell (must be done at the system level)
@@ -375,3 +397,4 @@ In no particular order.
 ### articles
 
 - [Impermanent NixOS: on a VM + tmpfs root + flakes + LUKS | Will Bush](https://willbush.dev/blog/impermanent-nixos/)
+- [Secret Managment with Sops Nix](https://michael.stapelberg.ch/posts/2025-08-24-secret-management-with-sops-nix/)

@@ -26,7 +26,7 @@
     users.users."${username}" = {
       isNormalUser = true;
       description = "Michael Hollingworth";
-      initialPassword = "0";
+      initialPassword = lib.mkIf (config.users.users."${username}".hashedPasswordFile == null) "0";
       extraGroups = [
         "dialout" # Allow access to serial device
         "networkmanager"

@@ -14,7 +14,15 @@
   ];
 
   config = lib.mkIf config.ai.enable {
-    m3l6h.ai.enable = true;
+    m3l6h.ai = {
+      enable = true;
+      extra-models = {
+        enable = true;
+        path = "extraModels.nix";
+        rev = "9fa4d6215063d53cee66d54524d33071c4f99730";
+        url = "git@github.com:M3L6H/ai-extra.git";
+      };
+    };
 
     environment.shellAliases = {
       comfyui = "xdg-open http://localhost:8188";

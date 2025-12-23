@@ -35,16 +35,6 @@
           "$mainMod ALT SHIFT, K, resizeactive, 0 -50"
           "$mainMod ALT SHIFT, L, resizeactive, 50 0"
 
-          # Move windows between monitors
-          "$mainMod ALT, 1, movewindow, mon:DP-1"
-          "$mainMod ALT, 2, movewindow, mon:DP-2"
-          "$mainMod ALT, 3, movewindow, mon:HDMI-A-1"
-
-          # Focus monitors
-          "$mainMod CTRL, 1, focusmonitor, DP-1"
-          "$mainMod CTRL, 2, focusmonitor, DP-2"
-          "$mainMod CTRL, 3, focusmonitor, HDMI-A-1"
-
           # Switch between workspaces
           "$mainMod, 1, workspace, 1"
           "$mainMod, 2, workspace, 2"

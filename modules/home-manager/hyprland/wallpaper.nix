@@ -7,13 +7,20 @@
 }:
 let
   dir = "/home/${username}/files/images/wallpaper";
-  image = "${dir}/wallpaper.jpg";
   video = "${dir}/wallpaper.mp4";
 in
 {
   options = {
     wallpaper.mpvpaper.enable = lib.mkEnableOption "enables mpvpaper wallpaper";
     wallpaper.swww.enable = lib.mkEnableOption "enables swww wallpaper";
+
+    wallpaper.initScript = lib.mkOption {
+      description = "Script to run on boot to initialize the wallpapers";
+    };
+
+    wallpaper.monitors = lib.mkOption {
+      description = "Space-delimited list of monitors to run wallpapers on";
+    };
   };
 
   config = {
@@ -23,9 +30,6 @@ in
     home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
       directories = [
         ".cache/swww"
-      ];
-
-      files = [
         ".config/wallpaper"
       ];
 
@@ -43,16 +47,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.writeShellScript "swww-init-wallpaper" ''
-          #!/run/current-system/sw/bin/bash
-
-          sleep 2 # Delay to ensure Wayland is ready
-          ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper")"
-          sleep 1
-          ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper")"
-          sleep 1
-          ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper")"
-        ''}";
+        ExecStart = config.wallpaper.initScript;
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -183,14 +178,13 @@ in
             systemctl --user start mpvpaper.service
           # Otherwise use swww
           else
-            swww img -o DP-1 "${dir}/$selection"
-            sleep 1
-            swww img -o HDMI-A-1 "${dir}/$selection"
-            sleep 1
-            swww img -o DP-2 "${dir}/$selection"
-            echo "${dir}/$selection" > "''${HOME}/.config/wallpaper"
-            rm "${dir}/lockscreen.jpg"
-            ln -s "${dir}/$selection" "${dir}/lockscreen.jpg"
+            for monitor in ${config.wallpaper.monitors}; do
+              swww img -o "$monitor" "${dir}/$selection"
+              sleep 1
+            done
+            echo "${dir}/$selection" > "''${HOME}/.config/wallpaper/wallpaper"
+            rm "''${HOME}/.config/wallpaper/lockscreen"
+            ln -s "${dir}/$selection" "''${HOME}/.config/wallpaper/lockscreen"
           fi
         # Otherwise toggle between video and image wallpaper
         elif ! systemctl is-active --quiet --user mpvpaper.service; then

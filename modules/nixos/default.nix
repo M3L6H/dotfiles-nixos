@@ -14,6 +14,7 @@
     ./partition-manager.nix
     ./pcscd.nix
     ./sddm.nix
+    ./sops.nix
     ./users.nix
     ./vcs.nix
   ];
@@ -27,6 +28,7 @@
   config.partition-manager.enable = lib.mkDefault false;
   config.pcscd.enable = lib.mkDefault true;
   config.sddm.enable = lib.mkDefault true;
+  config.sops.enable = lib.mkDefault true;
   config.users.enable = lib.mkDefault true;
   config.vcs.enable = lib.mkDefault true;
 }

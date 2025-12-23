@@ -23,15 +23,14 @@
           method = "symlink";
         }
 
-        # firefox
-        ".mozilla/firefox"
+        # keyrings
+        ".local/share/keyrings"
 
         # ssh files
         ".ssh"
       ];
 
       files = [
-        # .gitconfig
         ".gitconfig"
       ];
 

@@ -25,6 +25,7 @@
             group = "users";
             mode = "0755";
           }
+          "/etc/ssh" # Machine ssh keys
           "/var/lib/nixos" # NixOS state
           "/root/.cache/nix" # NixOS cache
         ];

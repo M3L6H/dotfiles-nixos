@@ -19,9 +19,5 @@
       source = ./eww;
       recursive = true;
     };
-
-    wayland.windowManager.hyprland.settings.exec-once = [
-      "eww open-many my-bar-0 my-bar-1 my-bar-2"
-    ];
   };
 }
