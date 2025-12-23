@@ -2,7 +2,6 @@
   device,
   hostname,
   inputs,
-  pkgs,
   username,
   ...
 }:
@@ -14,7 +13,7 @@
     ../../modules/nixos
   ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.05";
 
   boot = {
     kernelParams = [
@@ -24,14 +23,18 @@
     resumeDevice = device;
   };
 
-  environment.etc.crypttab = {
-    enable = true;
-    text = ''
-      files /dev/disk/by-uuid/b942d945-b599-48e1-8b9b-71235b725032 /root/keyfile luks
-    '';
+  # Mounts
+  fileSystems."/mnt/files" = {
+    device = "/dev/disk/by-uuid/13fc2c6d-1aa9-48c6-980c-8717bf3871ed";
+    fsType = "ext4";
+    options = [
+      "rw"
+      "users" # Allow any user to mount and unmount
+      "nofail" # Prevent the system from failing if the drive does not exist
+      "exec" # Users implies noexec, so explicitly set exec
+    ];
   };
 
-  # Mounts
   fileSystems."/home/${username}/files" = {
     device = "/mnt/files";
     options = [
@@ -41,29 +44,20 @@
     ];
   };
 
-  networking.hostName = "nixos-laptop";
+  networking.hostName = hostname;
+
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 128 * 1024; # 128GB
+    }
+  ];
 
   # Enable ai module
-  # ai.enable = true;
-
-  # Enable hyprland module
-  hyprland.enable = true;
+  ai.enable = true;
 
   # Enable nvidia module
   nvidia.enable = true;
-
-  environment = {
-    # Impermanence
-    persistence."/persist" = {
-      directories = [
-        "/etc/NetworkManager"
-        "/var/lib/NetworkManager"
-      ];
-      files = [
-        "/root/keyfile"
-      ];
-    };
-  };
 
   # Sops
   sops.defaultSopsFile = ./secrets.yaml;
@@ -72,7 +66,7 @@
   home-manager = {
     extraSpecialArgs = { inherit hostname inputs username; };
     users = {
-      "${username}" = import ../../homes/${username}/home.nix;
+      "${username}" = import ../../homes/${hostname}/${username}.nix;
     };
   };
 }

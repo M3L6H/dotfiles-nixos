@@ -186,8 +186,8 @@ in
               sleep 1
             done
             echo "${dir}/$selection" > "''${HOME}/.config/wallpaper"
-            rm "${dir}/lockscreen.jpg"
-            ln -s "${dir}/$selection" "${dir}/lockscreen.jpg"
+            rm "''${HOME}/.config/lockscreen"
+            ln -s "${dir}/$selection" "''${HOME}/.config/lockscreen"
           fi
         # Otherwise toggle between video and image wallpaper
         elif ! systemctl is-active --quiet --user mpvpaper.service; then

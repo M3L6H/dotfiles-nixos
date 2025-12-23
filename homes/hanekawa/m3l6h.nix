@@ -8,10 +8,6 @@
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    shellAliases = {
-      hms = "/home/${username}/.local/bin/home-manager-wrapper /etc/nixos#m3l6h";
-      nxs = "/home/${username}/.local/bin/nix-rebuild-wrapper /etc/nixos#nixos";
-    };
   };
 
   # Let Home Manager install and manage itself.

@@ -1,5 +1,5 @@
 {
-  description = "Home of Artemis";
+  description = "My system flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -80,10 +80,7 @@
       ...
     }@inputs:
     let
-      device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_4TB_S757NS0X302547W";
-      hostname = "nixos";
       system = "x86_64-linux";
-      username = "m3l6h";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -97,6 +94,21 @@
         inputs.impermanence.nixosModules.impermanence
         inputs.sops-nix.nixosModules.sops
       ];
+
+      my-systems = [
+        {
+          inherit inputs;
+          hostname = "hanekewa";
+          device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_4TB_S757NS0X302547W";
+          username = "m3l6h";
+        }
+        {
+          inherit inputs;
+          hostname = "raphtalia";
+          device = "/dev/disk/by-id/wwn-0x5002538700000000";
+          username = "m3l6h";
+        }
+      ];
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ system ];
@@ -104,61 +116,33 @@
       flake = {
         # NixOS configuration entrypoint
         # Available through 'sudo nixos-rebuild switch --flake .#hostname'
-        nixosConfigurations = {
-          "${hostname}" = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit
-                device
-                hostname
-                inputs
-                username
-                ;
+        nixosConfigurations = builtins.listToAttrs (
+          builtins.map (args: {
+            name = args.hostname;
+            value = nixpkgs.lib.nixosSystem {
+              specialArgs = args;
+              modules = modules ++ [
+                (import ./configs/${args.hostname}/disko.nix args)
+                ./configs/${args.hostname}/configuration.nix
+              ];
             };
-            modules = modules ++ [
-              (import ./disko.nix { inherit device; })
-              ./configs/nixos/configuration.nix
-            ];
-          };
-          laptop = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit
-                inputs
-                ;
-              device = "/dev/disk/by-id/wwn-0x5002538700000000";
-              hostname = "laptop";
-              username = "sanshiliu";
-            };
-            modules = modules ++ [
-              (import ./laptop-disko.nix { })
-              ./configs/laptop/configuration.nix
-            ];
-          };
-        };
+          }) my-systems
+        );
 
         # Standalone home-manager configuration entrypoint
-        # Available through 'home-manager switch --flake .#username'
-        homeConfigurations = {
-          "${username}" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit hostname inputs username;
+        # Available through 'home-manager switch --flake .#hostname'
+        homeConfigurations = builtins.listToAttrs (
+          builtins.map (args: {
+            name = "${args.hostname}-${args.username}";
+            value = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = args;
+              modules = [
+                ./homes/${args.hostname}/${args.username}.nix
+              ];
             };
-            modules = [
-              ./homes/${username}/home.nix
-            ];
-          };
-          sanshiliu = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit inputs;
-              hostname = "laptop";
-              username = "sanshiliu";
-            };
-            modules = [
-              ./homes/sanshiliu/home.nix
-            ];
-          };
-        };
+          }) my-systems
+        );
       };
     };
 }

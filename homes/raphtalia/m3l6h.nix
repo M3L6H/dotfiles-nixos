@@ -1,4 +1,8 @@
-{ pkgs, username, ... }:
+{
+  pkgs,
+  username,
+  ...
+}:
 {
   imports = [
     ../../modules/home-manager/default.nix
@@ -8,10 +12,6 @@
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.05";
-    shellAliases = {
-      hms = "/home/${username}/.local/bin/home-manager-wrapper /etc/nixos#sanshiliu";
-      nxs = "/home/${username}/.local/bin/nix-rebuild-wrapper /etc/nixos#laptop";
-    };
   };
 
   # Let Home Manager install and manage itself.
