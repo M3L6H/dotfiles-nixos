@@ -3,8 +3,8 @@
 # Expects monitor index to be passed as the argument
 workspaces() {
   monitor="$1"
-  max_monitor="$(hyprctl monitors -j | jq 'len(.[])')"
-  monitor=$((monitor > max_monitor ? max_monitor : monitor))
+  max_monitor="$(hyprctl monitors -j | jq '. | length')"
+  monitor=$((monitor >= max_monitor ? max_monitor - 1 : monitor))
 
   active_ws="$(hyprctl monitors -j | jq ".[] | select(.id == $monitor) | .activeWorkspace.id")"
   ws_dat="$(hyprctl workspaces -j | jq '[.[] | {id: .id, monitor: .monitorID, content: .lastwindow}]')"

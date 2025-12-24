@@ -179,7 +179,7 @@ in
           # Otherwise use swww
           else
             for monitor in ${config.wallpaper.monitors}; do
-              swww img -o "$monitor" "${dir}/$selection"
+              swww img -o "$monitor" --transition-type center "${dir}/$selection"
               sleep 1
             done
             echo "${dir}/$selection" > "''${HOME}/.config/wallpaper/wallpaper"

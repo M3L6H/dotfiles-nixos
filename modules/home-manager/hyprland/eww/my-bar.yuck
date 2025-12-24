@@ -123,9 +123,6 @@
     :xalign 0.5
     :justify "center"))
 
-(deflisten music-icon :initial ""
-  "playerctl --follow metadata --format '{{ status }}' | sed -u 's/Playing/  /g' | sed -u 's/Paused/  /g' || true")
-
 (defwidget music-details []
   (box
     :space-evenly false
@@ -141,15 +138,19 @@
       :class "music-icon"
       :text {music-icon})
     (progress
+      :visible {music-position > 0}
       :valign "center"
       :value { music-position / music-duration * 100 }
       :orientation "h")))
+
+(deflisten music-icon :initial ""
+  "playerctl --follow metadata --format '{{ status }}' | sed -u 's/Playing/  /g' | sed -u 's/Paused/  /g' || true")
 
 (deflisten music-details :initial ""
   "playerctl --follow metadata --format '{{ artist }} | {{ title }}' | sed -u 's/^ | //' || true")
 
 (deflisten music-position :initial 0
-  "playerctl --follow metadata --format '{{ position }}' || true")
+  "playerctl --follow metadata --format '{{ position }}' || echo 0")
 
-(deflisten music-duration :initial 0
-  "playerctl --follow metadata --format '{{ mpris:length }}' || true")
+(deflisten music-duration :initial 1
+  "playerctl --follow metadata --format '{{ mpris:length }}' || echo 1")
