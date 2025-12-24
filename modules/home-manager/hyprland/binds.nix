@@ -67,9 +67,9 @@
           "$mainMod, M, exec, makoctl dismiss -a"
 
           # Media keys
-          ", XF86AudioLowerVolume, exec, playerctl volume 0.10-"
-          ", XF86AudioMute, exec, /home/${username}/.local/bin/toggle-mute.sh"
-          ", XF86AudioRaiseVolume, exec, playerctl volume 0.10+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
           ", XF86AudioNext, exec, playerctl next"

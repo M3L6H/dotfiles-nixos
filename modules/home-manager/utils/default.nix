@@ -47,7 +47,7 @@
   utils.mermaid-cli.enable = lib.mkDefault false;
   utils.nvr.enable = lib.mkDefault false;
   utils.parted.enable = lib.mkDefault false;
-  utils.playerctl.enable = lib.mkDefault false;
+  utils.playerctl.enable = lib.mkDefault true;
   utils.ripgrep.enable = lib.mkDefault false;
   utils.socat.enable = lib.mkDefault false;
   utils.sqlite.enable = lib.mkDefault false;
