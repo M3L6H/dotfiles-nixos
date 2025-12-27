@@ -13,6 +13,7 @@
     ./hyprlock.nix
     ./hyprshot.nix
     ./layer-rules.nix
+    ./mako.nix
     ./wallpaper.nix
     ./workspaces.nix
   ];

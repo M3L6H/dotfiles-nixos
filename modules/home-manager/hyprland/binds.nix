@@ -63,9 +63,6 @@
           "$mainMod SHIFT, bracketright, movetoworkspacesilent, +1"
           "$mainMod SHIFT, bracketleft, movetoworkspacesilent, -1"
 
-          # Dismiss notifications
-          "$mainMod, M, exec, makoctl dismiss -a"
-
           # Media keys
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

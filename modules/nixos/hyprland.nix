@@ -31,10 +31,6 @@
       # Enable compatibility between the EGL API and the Wayland protocol
       egl-wayland
 
-      # Notifications
-      mako
-      libnotify
-
       # Wallpaper engine
       mpvpaper # For video wallpapers
       swww
