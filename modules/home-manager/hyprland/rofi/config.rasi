@@ -1,6 +1,6 @@
 configuration {
 /*	modes: "window,drun,run,ssh";*/
-/*	font: "mono 12";*/
+  font: "VictorMono Nerd Font 10";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -75,14 +75,14 @@ configuration {
 /*	kb-move-word-back: "Alt+b,Control+Left";*/
 /*	kb-move-word-forward: "Alt+f,Control+Right";*/
 /*	kb-move-char-back: "Left,Control+b";*/
-	kb-move-char-forward: "Right";
+  kb-move-char-forward: "Right";
 /*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
 /*	kb-remove-word-forward: "Control+Alt+d";*/
-	kb-remove-char-forward: "Delete";
+  kb-remove-char-forward: "Delete";
 /*	kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h";*/
 /*	kb-remove-to-eol: "Control+k";*/
 /*	kb-remove-to-sol: "Control+u";*/
-	kb-accept-entry: "Control+g,Return,KP_Enter";
+  kb-accept-entry: "Control+g,Return,KP_Enter";
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-custom-alt: "Control+Shift+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
@@ -92,8 +92,8 @@ configuration {
 /*	kb-mode-complete: "Control+l";*/
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-	kb-row-up: "Control+d,Control+p,Up";
-	kb-row-down: "Control+f,Control+n,Down";
+  kb-row-up: "Control+d,Control+p,Up";
+  kb-row-down: "Control+f,Control+n,Down";
 /*	kb-row-tab: "";*/
 /*	kb-element-next: "Tab";*/
 /*	kb-element-prev: "ISO_Left_Tab";*/
@@ -106,7 +106,7 @@ configuration {
 /*	kb-ellipsize: "Alt+period";*/
 /*	kb-toggle-case-sensitivity: "grave,dead_grave";*/
 /*	kb-toggle-sort: "Alt+grave";*/
-	kb-cancel: "Escape";
+  kb-cancel: "Escape";
 /*	kb-custom-1: "Alt+1";*/
 /*	kb-custom-2: "Alt+2";*/
 /*	kb-custom-3: "Alt+3";*/
