@@ -288,6 +288,8 @@ Breakdown of the included modules.
     - services.clean-old-generations.enable `boolean` - Enables the module
 - [ai](modules/nixos/ai.nix) - Enables ai stuff
   - ai.enable `boolean` - Enables the module
+- [bluetooth](modules/nixos/bluetooth.nix) - Enables bluetooth functionality
+  - bluetooth.enable `boolean` - Enables the module
 - [hyprland](modules/nixos/hyprland.nix) - Enables hyprland window manager
   - hyprland.enable `boolean` - Enables the module
 - [neovim](modules/nixos/impermanence.nix) - Enables impermanence at system level

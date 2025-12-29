@@ -42,6 +42,9 @@
 
   networking.hostName = hostname;
 
+  # Enable bluetooth module
+  bluetooth.enable = true;
+
   # Enable hyprland module
   hyprland.enable = true;
 
