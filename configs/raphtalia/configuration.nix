@@ -64,6 +64,9 @@
     };
   };
 
+  # Laptop close
+  services.logind.lidSwitch = "ignore";
+
   # Sops
   sops.defaultSopsFile = ./secrets.yaml;
 
