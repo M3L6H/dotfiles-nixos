@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 with lib;
@@ -29,13 +28,9 @@ with lib;
       ];
     };
 
-    home.persistence."/persist/home/${username}" = mkIf config.impermanence.enable {
-      directories = [
-        ".config/obs-studio"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = mkIf config.impermanence.enable [
+      ".config/obs-studio"
+    ];
 
     wayland.windowManager.hyprland.settings.windowrule = mkIf config.hyprland.enable [
       "match:class com.obsproject.Studio, workspace 7"

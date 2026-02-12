@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -25,13 +24,9 @@
       freecad
     ];
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".config/FreeCAD"
-        ".local/share/FreeCAD"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".config/FreeCAD"
+      ".local/share/FreeCAD"
+    ];
   };
 }

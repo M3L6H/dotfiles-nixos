@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -15,13 +14,9 @@
       prusa-slicer
     ];
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".config/PrusaSlicer"
-        ".local/share/prusa-slicer"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".config/PrusaSlicer"
+      ".local/share/prusa-slicer"
+    ];
   };
 }

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -16,7 +15,7 @@
       exiftool
     ];
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
+    home.persistence."/persist" = lib.mkIf config.impermanence.enable {
       directories = [
         ".local/share/digikam"
         "digikam"
@@ -26,8 +25,6 @@
         ".config/digikam_systemrc"
         ".config/digikamrc"
       ];
-
-      allowOther = false;
     };
   };
 }

@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -16,12 +15,8 @@
       inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
     ];
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".config/TagStudio"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".config/TagStudio"
+    ];
   };
 }

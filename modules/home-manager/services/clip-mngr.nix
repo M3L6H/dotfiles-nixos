@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  username,
   ...
 }:
 {
@@ -45,12 +44,8 @@
       ];
     };
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".config/clipse"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".config/clipse"
+    ];
   };
 }

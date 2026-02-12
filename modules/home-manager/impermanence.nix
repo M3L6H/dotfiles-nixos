@@ -1,8 +1,6 @@
 {
   config,
-  inputs,
   lib,
-  username,
   ...
 }:
 {
@@ -10,18 +8,11 @@
     impermanence.enable = lib.mkEnableOption "enables impermanence module";
   };
 
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-  ];
-
   config = lib.mkIf config.impermanence.enable {
-    home.persistence."/persist/home/${username}" = {
+    home.persistence."/persist" = {
       directories = [
         # Audio
-        {
-          directory = ".local/state/wireplumber";
-          method = "symlink";
-        }
+        ".local/state/wireplumber"
 
         # keyrings
         ".local/share/keyrings"
@@ -33,8 +24,6 @@
       files = [
         ".gitconfig"
       ];
-
-      allowOther = false;
     };
   };
 }

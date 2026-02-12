@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -15,7 +14,7 @@
       krita
     ];
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
+    home.persistence."/persist" = lib.mkIf config.impermanence.enable {
       directories = [
         ".local/share/krita"
       ];
@@ -24,8 +23,6 @@
         ".config/kritadisplayrc"
         ".config/kritarc"
       ];
-
-      allowOther = false;
     };
   };
 }

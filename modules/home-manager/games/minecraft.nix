@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -39,7 +38,7 @@
         source = "${prismlauncher-kanagawa}/prismlauncher-kanagawa";
       };
 
-      home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
+      home.persistence."/persist" = lib.mkIf config.impermanence.enable {
         directories = [
           ".local/share/PrismLauncher/assets"
           ".local/share/PrismLauncher/cache"
@@ -59,8 +58,6 @@
           ".local/share/PrismLauncher/metacache"
           ".local/share/PrismLauncher/prismlauncher.cfg"
         ];
-
-        allowOther = false;
       };
     };
 }

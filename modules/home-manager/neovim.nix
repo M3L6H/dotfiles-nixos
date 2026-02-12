@@ -22,15 +22,11 @@ in
     # Tone down nixd logs
     home.sessionVariables.NIXD_FLAGS = "-log=error";
 
-    home.persistence."/persist/home/${username}" = {
-      directories = lib.mkIf config.impermanence.enable [
-        ".local/share/nvim"
-        ".local/state/nvim"
-        ".vim/undodir"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".local/share/nvim"
+      ".local/state/nvim"
+      ".vim/undodir"
+    ];
 
     m3l6h.neovim = {
       enable = true;

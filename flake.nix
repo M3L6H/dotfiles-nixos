@@ -117,28 +117,13 @@
         # NixOS configuration entrypoint
         # Available through 'sudo nixos-rebuild switch --flake .#hostname'
         nixosConfigurations = builtins.listToAttrs (
-          builtins.map (args: {
+          map (args: {
             name = args.hostname;
             value = nixpkgs.lib.nixosSystem {
               specialArgs = args;
               modules = modules ++ [
                 (import ./configs/${args.hostname}/disko.nix args)
                 ./configs/${args.hostname}/configuration.nix
-              ];
-            };
-          }) my-systems
-        );
-
-        # Standalone home-manager configuration entrypoint
-        # Available through 'home-manager switch --flake .#hostname'
-        homeConfigurations = builtins.listToAttrs (
-          builtins.map (args: {
-            name = "${args.hostname}-${args.username}";
-            value = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = args;
-              modules = [
-                ./homes/${args.hostname}/${args.username}.nix
               ];
             };
           }) my-systems

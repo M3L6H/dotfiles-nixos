@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  username,
   ...
 }:
 {
@@ -20,12 +19,8 @@
       };
     };
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".cache/tealdeer"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".cache/tealdeer"
+    ];
   };
 }

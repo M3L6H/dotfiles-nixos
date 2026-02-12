@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 {
@@ -27,6 +26,8 @@
                 --ozone-platform-hint=auto
                 --enable-features=WaylandWindowDecorations
               '';
+              enableWidevine = true;
+              proprietaryCodecs = true;
             };
       })
     ];
@@ -35,14 +36,10 @@
       vivaldi
     ];
 
-    home.persistence."/persist/home/${username}" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".config/vivaldi"
-        ".local/lib/vivaldi"
-      ];
-
-      allowOther = false;
-    };
+    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".config/vivaldi"
+      ".local/lib/vivaldi"
+    ];
 
     xdg.mimeApps = {
       enable = true;
