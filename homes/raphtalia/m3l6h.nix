@@ -98,6 +98,9 @@
   # Enable neovim-remote
   utils.nvr.enable = true;
 
+  # Enable sysstat
+  utils.sysstat.enable = true;
+
   # Enable tealdeer
   utils.tealdeer.enable = true;
 

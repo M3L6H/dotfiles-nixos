@@ -22,6 +22,7 @@
     ./ripgrep.nix
     ./socat.nix
     ./sqlite.nix
+    ./sysstat.nix
     ./tealdeer.nix
     ./tectonic.nix
     ./unp.nix
@@ -51,6 +52,7 @@
   utils.ripgrep.enable = lib.mkDefault false;
   utils.socat.enable = lib.mkDefault false;
   utils.sqlite.enable = lib.mkDefault false;
+  utils.sysstat.enable = lib.mkDefault false;
   utils.tealdeer.enable = lib.mkDefault false;
   utils.tectonic.enable = lib.mkDefault false;
   utils.unp.enable = lib.mkDefault false;
