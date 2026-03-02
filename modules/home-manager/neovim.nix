@@ -23,6 +23,7 @@ in
     home.sessionVariables.NIXD_FLAGS = "-log=error";
 
     home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+      ".config/github-copilot"
       ".local/share/nvim"
       ".local/state/nvim"
       ".vim/undodir"
