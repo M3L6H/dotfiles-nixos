@@ -17,7 +17,7 @@
   config = lib.mkIf config.zsh.enable {
     m3l6h.zsh = {
       enable = true;
-      impermanence.enable = true;
+      impermanence.enable = config.impermanence.enable;
     };
 
     m3l6h.zsh.zoxide.enable = config.zsh.zoxide.enable;
