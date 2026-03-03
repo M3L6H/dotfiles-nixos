@@ -17,7 +17,7 @@ with lib;
       bluetui
     ];
 
-    environment.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
+    environment.persistence."/persist".directories = lib.optionalAttrs config.impermanence.enable [
       "/var/lib/bluetooth" # Bluetooth state
     ];
   };

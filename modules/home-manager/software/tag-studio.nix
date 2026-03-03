@@ -16,7 +16,7 @@
         inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
       ];
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/TagStudio"
       ];

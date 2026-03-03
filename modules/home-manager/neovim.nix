@@ -23,7 +23,7 @@ in
       # Tone down nixd logs
       sessionVariables.NIXD_FLAGS = "-log=error";
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/github-copilot"
         ".local/share/nvim"

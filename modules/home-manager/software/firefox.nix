@@ -24,7 +24,7 @@
           MOZ_ENABLE_WAYLAND = 1;
         };
       }
-      // lib.mkIf config.impermanence.enable {
+      // lib.optionalAttrs config.impermanence.enable {
         persistence."/persist".directories = [
           ".mozilla/firefox"
         ];

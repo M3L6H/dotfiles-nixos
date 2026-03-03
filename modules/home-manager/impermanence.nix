@@ -8,22 +8,24 @@
     impermanence.enable = lib.mkEnableOption "enables impermanence module";
   };
 
-  config = lib.mkIf config.impermanence.enable {
-    home.persistence."/persist" = {
-      directories = [
-        # Audio
-        ".local/state/wireplumber"
+  config = {
+    home = lib.optionalAttrs config.impermanence.enable {
+      persistence."/persist" = {
+        directories = [
+          # Audio
+          ".local/state/wireplumber"
 
-        # keyrings
-        ".local/share/keyrings"
+          # keyrings
+          ".local/share/keyrings"
 
-        # ssh files
-        ".ssh"
-      ];
+          # ssh files
+          ".ssh"
+        ];
 
-      files = [
-        ".gitconfig"
-      ];
+        files = [
+          ".gitconfig"
+        ];
+      };
     };
   };
 }

@@ -15,7 +15,7 @@
         pinentry-qt
       ];
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".gnupg"
       ];

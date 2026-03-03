@@ -37,7 +37,7 @@
         vivaldi
       ];
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/vivaldi"
         ".local/lib/vivaldi"

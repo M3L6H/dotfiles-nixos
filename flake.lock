@@ -928,11 +928,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772517033,
-        "narHash": "sha256-cyIyx0L288CPxsHTywPYlRyexkV/dfx6w+eXVfL8XGY=",
+        "lastModified": 1772519296,
+        "narHash": "sha256-z/0Vay61SvBBfpJLrfD6Ta57dUFwnLL60dq7KuLLfrE=",
         "owner": "m3l6h",
         "repo": "dotfiles-zsh",
-        "rev": "b80b43eeec4b5199f38c0452fec18f9f48f72432",
+        "rev": "699c5578b2f6ba46990a342667f6a04c6feeaa20",
         "type": "github"
       },
       "original": {

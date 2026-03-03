@@ -19,7 +19,7 @@
       };
     };
 
-    home = lib.mkIf config.impermanence.enable {
+    home = lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".cache/tealdeer"
       ];

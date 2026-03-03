@@ -16,7 +16,7 @@
         exiftool
       ];
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist" = {
         directories = [
           ".local/share/digikam"

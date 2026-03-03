@@ -28,7 +28,7 @@ with lib;
       ];
     };
 
-    home = mkIf config.impermanence.enable {
+    home = optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/obs-studio"
       ];

@@ -39,7 +39,7 @@
           source = "${prismlauncher-kanagawa}/prismlauncher-kanagawa";
         };
       }
-      // lib.mkIf config.impermanence.enable {
+      // lib.optionalAttrs config.impermanence.enable {
         persistence."/persist" = {
           directories = [
             ".local/share/PrismLauncher/assets"

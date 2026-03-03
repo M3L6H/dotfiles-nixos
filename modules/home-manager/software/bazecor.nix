@@ -15,7 +15,7 @@
         bazecor
       ];
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/Bazecor"
         "Dygma"

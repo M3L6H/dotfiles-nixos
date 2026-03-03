@@ -25,7 +25,7 @@
         freecad
       ];
     }
-    // lib.mkIf config.impermanence.enable {
+    // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/FreeCAD"
         ".local/share/FreeCAD"
