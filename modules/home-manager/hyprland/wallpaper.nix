@@ -23,7 +23,7 @@ in
     };
   };
 
-  config = {
+  config = lib.mkIf config.hyprland.enable {
     # Used to terminate mpvpaper
     utils.killall.enable = true;
 
