@@ -10,9 +10,16 @@
   };
 
   config = lib.mkIf config.gpg.enable {
-    home.packages = with pkgs; [
-      pinentry-qt
-    ];
+    home = {
+      packages = with pkgs; [
+        pinentry-qt
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".gnupg"
+      ];
+    };
 
     programs.gpg = {
       enable = true;
@@ -24,9 +31,5 @@
       enable = true;
       pinentry.package = pkgs.pinentry-qt;
     };
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".gnupg"
-    ];
   };
 }

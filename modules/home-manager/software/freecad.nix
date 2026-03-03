@@ -20,13 +20,16 @@
       })
     ];
 
-    home.packages = with pkgs; [
-      freecad
-    ];
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/FreeCAD"
-      ".local/share/FreeCAD"
-    ];
+    home = {
+      packages = with pkgs; [
+        freecad
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/FreeCAD"
+        ".local/share/FreeCAD"
+      ];
+    };
   };
 }

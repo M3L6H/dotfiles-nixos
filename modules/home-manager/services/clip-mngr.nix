@@ -44,8 +44,10 @@
       ];
     };
 
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/clipse"
-    ];
+    home = lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/clipse"
+      ];
+    };
   };
 }

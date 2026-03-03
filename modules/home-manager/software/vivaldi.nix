@@ -32,14 +32,17 @@
       })
     ];
 
-    home.packages = with pkgs; [
-      vivaldi
-    ];
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/vivaldi"
-      ".local/lib/vivaldi"
-    ];
+    home = {
+      packages = with pkgs; [
+        vivaldi
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/vivaldi"
+        ".local/lib/vivaldi"
+      ];
+    };
 
     xdg.mimeApps = {
       enable = true;

@@ -10,19 +10,22 @@
   };
 
   config = lib.mkIf config.software.krita.enable {
-    home.packages = with pkgs; [
-      krita
-    ];
-
-    home.persistence."/persist" = lib.mkIf config.impermanence.enable {
-      directories = [
-        ".local/share/krita"
+    home = {
+      packages = with pkgs; [
+        krita
       ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist" = {
+        directories = [
+          ".local/share/krita"
+        ];
 
-      files = [
-        ".config/kritadisplayrc"
-        ".config/kritarc"
-      ];
+        files = [
+          ".config/kritadisplayrc"
+          ".config/kritarc"
+        ];
+      };
     };
   };
 }

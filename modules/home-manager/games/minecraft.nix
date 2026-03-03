@@ -29,35 +29,38 @@
       };
     in
     lib.mkIf config.games.minecraft.enable {
-      home.packages = with pkgs; [
-        prismlauncher
-        prismlauncher-kanagawa
-      ];
-
-      home.file.".local/share/PrismLauncher/themes/kanagawa" = {
-        source = "${prismlauncher-kanagawa}/prismlauncher-kanagawa";
-      };
-
-      home.persistence."/persist" = lib.mkIf config.impermanence.enable {
-        directories = [
-          ".local/share/PrismLauncher/assets"
-          ".local/share/PrismLauncher/cache"
-          ".local/share/PrismLauncher/catpacks"
-          ".local/share/PrismLauncher/icons"
-          ".local/share/PrismLauncher/instances"
-          ".local/share/PrismLauncher/java"
-          ".local/share/PrismLauncher/libraries"
-          ".local/share/PrismLauncher/logs"
-          ".local/share/PrismLauncher/meta"
-          ".local/share/PrismLauncher/skins"
-          ".local/share/PrismLauncher/translations"
+      home = {
+        packages = with pkgs; [
+          prismlauncher
+          prismlauncher-kanagawa
         ];
 
-        files = [
-          ".local/share/PrismLauncher/accounts.json"
-          ".local/share/PrismLauncher/metacache"
-          ".local/share/PrismLauncher/prismlauncher.cfg"
-        ];
+        file.".local/share/PrismLauncher/themes/kanagawa" = {
+          source = "${prismlauncher-kanagawa}/prismlauncher-kanagawa";
+        };
+      }
+      // lib.mkIf config.impermanence.enable {
+        persistence."/persist" = {
+          directories = [
+            ".local/share/PrismLauncher/assets"
+            ".local/share/PrismLauncher/cache"
+            ".local/share/PrismLauncher/catpacks"
+            ".local/share/PrismLauncher/icons"
+            ".local/share/PrismLauncher/instances"
+            ".local/share/PrismLauncher/java"
+            ".local/share/PrismLauncher/libraries"
+            ".local/share/PrismLauncher/logs"
+            ".local/share/PrismLauncher/meta"
+            ".local/share/PrismLauncher/skins"
+            ".local/share/PrismLauncher/translations"
+          ];
+
+          files = [
+            ".local/share/PrismLauncher/accounts.json"
+            ".local/share/PrismLauncher/metacache"
+            ".local/share/PrismLauncher/prismlauncher.cfg"
+          ];
+        };
       };
     };
 }

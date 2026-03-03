@@ -19,12 +19,15 @@
         package = pkgs.firefox-esr;
       };
 
-      home.sessionVariables = {
-        MOZ_ENABLE_WAYLAND = 1;
+      home = {
+        sessionVariables = {
+          MOZ_ENABLE_WAYLAND = 1;
+        };
+      }
+      // lib.mkIf config.impermanence.enable {
+        persistence."/persist".directories = [
+          ".mozilla/firefox"
+        ];
       };
-
-      home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-        ".mozilla/firefox"
-      ];
     };
 }

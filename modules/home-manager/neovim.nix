@@ -19,15 +19,18 @@ in
   ];
 
   config = lib.mkIf config.neovim.enable {
-    # Tone down nixd logs
-    home.sessionVariables.NIXD_FLAGS = "-log=error";
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/github-copilot"
-      ".local/share/nvim"
-      ".local/state/nvim"
-      ".vim/undodir"
-    ];
+    home = {
+      # Tone down nixd logs
+      sessionVariables.NIXD_FLAGS = "-log=error";
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/github-copilot"
+        ".local/share/nvim"
+        ".local/state/nvim"
+        ".vim/undodir"
+      ];
+    };
 
     m3l6h.neovim = {
       enable = true;
@@ -66,9 +69,9 @@ in
             };
 
             extra = {
-              nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${builtins.toString inputs.self}").inputs.nixpkgs {}'';
-              nixdExtras.nixos_options = ''(builtins.getFlake "path:${builtins.toString inputs.self}").nixosConfigurations.${hostname}.options'';
-              nixdExtras.home_manager_options = ''(builtins.getFlake "path:${builtins.toString inputs.self}").homeConfigurations.${username}.options'';
+              nixdExtras.nixpkgs = ''import (builtins.getFlake "path:${toString inputs.self}").inputs.nixpkgs {}'';
+              nixdExtras.nixos_options = ''(builtins.getFlake "path:${toString inputs.self}").nixosConfigurations.${hostname}.options'';
+              nixdExtras.home_manager_options = ''(builtins.getFlake "path:${toString inputs.self}").homeConfigurations.${username}.options'';
 
               nixdExtras.nvim_lspconfig = "${pkgs.vimPlugins.nvim-lspconfig}";
               nixdExtras.sqlite3_path = "${pkgs.sqlite.out}/lib/libsqlite3.so";

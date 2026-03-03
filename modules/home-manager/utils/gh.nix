@@ -10,12 +10,15 @@
   };
 
   config = lib.mkIf config.utils.gh.enable {
-    home.packages = with pkgs; [
-      gh
-    ];
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/gh"
-    ];
+    home = {
+      packages = with pkgs; [
+        gh
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/gh"
+      ];
+    };
   };
 }

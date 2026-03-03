@@ -11,12 +11,15 @@
   };
 
   config = lib.mkIf config.software.tag-studio.enable {
-    home.packages = [
-      inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
-    ];
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/TagStudio"
-    ];
+    home = {
+      packages = [
+        inputs.tagstudio.packages.${pkgs.stdenv.hostPlatform.system}.tagstudio
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/TagStudio"
+      ];
+    };
   };
 }

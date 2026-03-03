@@ -10,13 +10,16 @@
   };
 
   config = lib.mkIf config.software.prusa-slicer.enable {
-    home.packages = with pkgs; [
-      prusa-slicer
-    ];
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/PrusaSlicer"
-      ".local/share/prusa-slicer"
-    ];
+    home = {
+      packages = with pkgs; [
+        prusa-slicer
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/PrusaSlicer"
+        ".local/share/prusa-slicer"
+      ];
+    };
   };
 }

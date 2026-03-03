@@ -10,13 +10,16 @@
   };
 
   config = lib.mkIf config.software.bazecor.enable {
-    home.packages = with pkgs; [
-      bazecor
-    ];
-
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".config/Bazecor"
-      "Dygma"
-    ];
+    home = {
+      packages = with pkgs; [
+        bazecor
+      ];
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".config/Bazecor"
+        "Dygma"
+      ];
+    };
   };
 }

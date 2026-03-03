@@ -27,10 +27,47 @@ in
     # Used to terminate mpvpaper
     utils.killall.enable = true;
 
-    home.persistence."/persist".directories = lib.mkIf config.impermanence.enable [
-      ".cache/swww"
-      ".config/wallpaper"
-    ];
+    home = {
+      file.".local/bin/choose-wallpaper.sh" = {
+        executable = true;
+        text = ''
+          #!/usr/bin/env sh
+
+          selection="$(ls ${dir} | rofi -dmenu)"
+
+          # If we selected a specific wallpaper, then display it
+          if [ -n "$selection" ]; then
+            systemctl --user stop mpvpaper.service
+
+            # If we selected a video wallpaper, use mpvpaper
+            if [ "''${selection#*.}" = 'mp4' ]; then
+              echo "VIDEO=${dir}/''${selection}" > "''${HOME}/.local/state/mpvpaper"
+              systemctl --user start mpvpaper.service
+            # Otherwise use swww
+            else
+              for monitor in ${config.wallpaper.monitors}; do
+                swww img -o "$monitor" --transition-type center "${dir}/$selection"
+                sleep 1
+              done
+              echo "${dir}/$selection" > "''${HOME}/.config/wallpaper/wallpaper"
+              rm "''${HOME}/.config/wallpaper/lockscreen"
+              ln -s "${dir}/$selection" "''${HOME}/.config/wallpaper/lockscreen"
+            fi
+          # Otherwise toggle between video and image wallpaper
+          elif ! systemctl is-active --quiet --user mpvpaper.service; then
+            systemctl --user start mpvpaper.service
+          else
+            systemctl --user stop mpvpaper.service
+          fi
+        '';
+      };
+    }
+    // lib.mkIf config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".cache/swww"
+        ".config/wallpaper"
+      ];
+    };
 
     systemd.user.services.swww-init-wallpaper = lib.mkIf config.wallpaper.swww.enable {
       Unit = {
@@ -155,40 +192,6 @@ in
         OnUnitActiveSec = "5min";
         Persistent = true;
       };
-    };
-
-    home.file.".local/bin/choose-wallpaper.sh" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env sh
-
-        selection="$(ls ${dir} | rofi -dmenu)"
-
-        # If we selected a specific wallpaper, then display it
-        if [ -n "$selection" ]; then
-          systemctl --user stop mpvpaper.service
-
-          # If we selected a video wallpaper, use mpvpaper
-          if [ "''${selection#*.}" = 'mp4' ]; then
-            echo "VIDEO=${dir}/''${selection}" > "''${HOME}/.local/state/mpvpaper"
-            systemctl --user start mpvpaper.service
-          # Otherwise use swww
-          else
-            for monitor in ${config.wallpaper.monitors}; do
-              swww img -o "$monitor" --transition-type center "${dir}/$selection"
-              sleep 1
-            done
-            echo "${dir}/$selection" > "''${HOME}/.config/wallpaper/wallpaper"
-            rm "''${HOME}/.config/wallpaper/lockscreen"
-            ln -s "${dir}/$selection" "''${HOME}/.config/wallpaper/lockscreen"
-          fi
-        # Otherwise toggle between video and image wallpaper
-        elif ! systemctl is-active --quiet --user mpvpaper.service; then
-          systemctl --user start mpvpaper.service
-        else
-          systemctl --user stop mpvpaper.service
-        fi
-      '';
     };
   };
 }
