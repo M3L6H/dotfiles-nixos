@@ -110,12 +110,10 @@
         }
       ];
 
-      # Standalone home-manager configurations
       my-homes = [
         {
           inherit inputs;
           hostname = "makima";
-          device = "";
           username = "dc-user";
         }
       ];
@@ -139,6 +137,7 @@
           }) my-systems
         );
 
+        # Standalone home-manager configurations
         homeConfigurations = builtins.listToAttrs (
           map (args: {
             name = "${args.hostname}-${args.username}";
@@ -146,7 +145,6 @@
               inherit pkgs;
               extraSpecialArgs = args;
               modules = [
-                inputs.home-manager.nixosModules.default
                 ./homes/${args.hostname}/${args.username}.nix
               ];
             };
