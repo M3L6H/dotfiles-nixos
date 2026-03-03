@@ -22,7 +22,7 @@ with lib;
 
     m3l6h.tmux = {
       enable = true;
-      impermanence.enable = true;
+      impermanence.enable = config.impermanence.enable;
       sessionx.enable = config.tmux.sessionx.enable;
       tmuxinator.enable = config.tmux.tmuxinator.enable;
     };

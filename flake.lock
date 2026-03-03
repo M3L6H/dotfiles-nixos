@@ -901,11 +901,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769435857,
-        "narHash": "sha256-l0g5Fjnzgth0DmZzHtOXiLhU6EDmnHqt5PfV+r0k7aE=",
+        "lastModified": 1772520075,
+        "narHash": "sha256-/yXJtdSow4b4rpyCsFVyyZ3IyuYziSM1nS/a+Jv3bb4=",
         "owner": "m3l6h",
         "repo": "dotfiles-tmux",
-        "rev": "7a828340b34e13762f25cae7ff7973f194eeb26a",
+        "rev": "181b51019315059606e10c42ebb5d760b4037647",
         "type": "github"
       },
       "original": {
