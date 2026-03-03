@@ -109,6 +109,16 @@
           username = "m3l6h";
         }
       ];
+
+      # Standalone home-manager configurations
+      my-homes = [
+        {
+          inherit inputs;
+          hostname = "makima";
+          device = "";
+          username = "dc-user";
+        }
+      ];
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ system ];
@@ -127,6 +137,20 @@
               ];
             };
           }) my-systems
+        );
+
+        homeConfigurations = builtins.listToAttrs (
+          map (args: {
+            name = "${args.hostname}-${args.username}";
+            value = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = args;
+              modules = [
+                inputs.home-manager.nixosModules.default
+                ./homes/${args.hostname}/${args.username}.nix
+              ];
+            };
+          }) my-homes
         );
       };
     };
