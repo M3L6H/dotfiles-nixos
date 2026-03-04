@@ -39,7 +39,6 @@
 
     m3l6h-neovim = {
       url = "github:m3l6h/dotfiles-neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     m3l6h-tmux = {
