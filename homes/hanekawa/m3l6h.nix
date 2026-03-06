@@ -87,9 +87,6 @@
   # Enable obs
   software.prusa-slicer.enable = true;
 
-  # Enable obs
-  software.tag-studio.enable = true;
-
   # Enable vivaldi
   software.vivaldi.enable = true;
 
