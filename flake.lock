@@ -926,11 +926,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772574153,
-        "narHash": "sha256-sIdJYZLiv9CJCVKuX7N0IVHuzItB9LMZyx5S8V+WnP4=",
+        "lastModified": 1772837625,
+        "narHash": "sha256-iYxIkxHJvrqqxhWy8N/Y6iBj/c2xFKLQivRkpSMEX+o=",
         "owner": "m3l6h",
         "repo": "dotfiles-zsh",
-        "rev": "ab8f6df78d1f0e475cde2628bae97b2f8091a42d",
+        "rev": "9b700dc11dbdb9f4ad822fedb9affd17ad0aa2b3",
         "type": "github"
       },
       "original": {
