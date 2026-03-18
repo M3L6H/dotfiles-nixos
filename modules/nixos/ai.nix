@@ -7,6 +7,7 @@
 {
   options = {
     ai.enable = lib.mkEnableOption "enables ai module";
+    ai.openFirewall = lib.mkEnableOption "opens firewall for local network access";
   };
 
   imports = [
@@ -23,6 +24,8 @@
         url = "git@github.com:M3L6H/ai-extra.git";
       };
     };
+
+    networking.firewall.allowedTCPPorts = lib.mkIf config.ai.openFirewall [ 8188 ];
 
     environment.shellAliases = {
       comfyui = "xdg-open http://localhost:8188";

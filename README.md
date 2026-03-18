@@ -288,6 +288,7 @@ Breakdown of the included modules.
     - services.clean-old-generations.enable `boolean` - Enables the module
 - [ai](modules/nixos/ai.nix) - Enables ai stuff
   - ai.enable `boolean` - Enables the module
+  - ai.openFirewall `boolean` - Opens the firewall for local access to ComfyUI
 - [bluetooth](modules/nixos/bluetooth.nix) - Enables bluetooth functionality
   - bluetooth.enable `boolean` - Enables the module
 - [hyprland](modules/nixos/hyprland.nix) - Enables hyprland window manager

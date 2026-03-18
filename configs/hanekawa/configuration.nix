@@ -55,6 +55,7 @@
 
   # Enable ai module
   ai.enable = true;
+  ai.openFirewall = true;
 
   # Enable nvidia module
   nvidia.enable = true;
