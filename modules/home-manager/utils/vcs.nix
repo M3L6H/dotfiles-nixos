@@ -6,7 +6,7 @@
 }:
 {
   options = {
-    vcs.enable = lib.mkEnableOption "enables vcs module";
+    utils.vcs.enable = lib.mkEnableOption "enables vcs module";
   };
 
   config =
@@ -17,14 +17,14 @@
         gpg "$@"
       '';
     in
-    lib.mkIf config.vcs.enable {
-      environment.systemPackages = [
+    lib.mkIf config.utils.vcs.enable {
+      home.packages = [
         gpg-no-cache
       ];
 
       programs.git = {
         enable = true;
-        config = {
+        settings = {
           user = {
             email = "8094643+M3L6H@users.noreply.github.com";
             name = "m3l6h";

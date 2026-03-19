@@ -251,6 +251,8 @@ Breakdown of the included modules.
     - utils.tectonic.enable `boolean` - Enables the module
   - [unp](modules/home-manager/utils/unp.nix) - Install unp & its requisite tools
     - utils.unp.enable `boolean` - Enables the module
+  - [vcs](modules/home-manager/utils/vcs.nix) - Install git
+    - vcs.enable `boolean` - Enables the module
   - [vulkan](modules/home-manager/utils/vulkan.nix) - Install vulkan-tools
     - utils.vulkan.enable `boolean` - Enables the module
   - [wget](modules/home-manager/utils/wget.nix) - Install wget
@@ -312,8 +314,6 @@ Breakdown of the included modules.
 - [users](modules/nixos/users.nix) - Create default user
   - users.enable `boolean` - Enables the module
   - users.zsh.enable `boolean` - Enables zsh as the default shell (must be done at the system level)
-- [vcs](modules/nixos/vcs.nix) - Install git
-  - vcs.enable `boolean` - Enables the module
 
 ## cheatsheet
 

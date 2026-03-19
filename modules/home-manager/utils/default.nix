@@ -26,6 +26,7 @@
     ./tealdeer.nix
     ./tectonic.nix
     ./unp.nix
+    ./vcs.nix
     ./vulkan.nix
     ./wget.nix
     ./wl-clipboard.nix
@@ -56,6 +57,7 @@
   utils.tealdeer.enable = lib.mkDefault false;
   utils.tectonic.enable = lib.mkDefault false;
   utils.unp.enable = lib.mkDefault false;
+  utils.vcs.enable = lib.mkDefault true;
   utils.vulkan.enable = lib.mkDefault false;
   utils.wget.enable = lib.mkDefault false;
   utils.wl-clipboard.enable = lib.mkDefault false;

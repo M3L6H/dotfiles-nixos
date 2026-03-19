@@ -17,7 +17,6 @@
     ./sddm.nix
     ./sops.nix
     ./users.nix
-    ./vcs.nix
   ];
 
   config.ai.enable = lib.mkDefault false;
@@ -32,5 +31,4 @@
   config.sddm.enable = lib.mkDefault true;
   config.sops.enable = lib.mkDefault true;
   config.users.enable = lib.mkDefault true;
-  config.vcs.enable = lib.mkDefault true;
 }
