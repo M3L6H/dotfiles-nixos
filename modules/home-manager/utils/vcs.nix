@@ -18,7 +18,8 @@
       '';
     in
     lib.mkIf config.utils.vcs.enable {
-      home.packages = [
+      home.packages = with pkgs; [
+        git-crypt
         gpg-no-cache
       ];
 
