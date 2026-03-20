@@ -856,11 +856,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766491549,
-        "narHash": "sha256-f4bDaUff2e2LWtYW/5/OZR6kk9MCYaxwaBd2Ev5BOoA=",
+        "lastModified": 1773972097,
+        "narHash": "sha256-/xnhg4QljcDaNhhVse6z36A3oas39uSZEZGAtL290GU=",
         "owner": "m3l6h",
         "repo": "dotfiles-ai",
-        "rev": "312bcb93dc8e42aa7dacfd5aee2657241ab3e1d7",
+        "rev": "a0692d1b2a99c483f36be532b696445cf9e8ff1a",
         "type": "github"
       },
       "original": {
