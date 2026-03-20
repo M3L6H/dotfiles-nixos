@@ -80,6 +80,9 @@
   # Enable markdown toolchain
   toolchains.markdown.enable = true;
 
+  # Enable battery utils
+  utils.battery.enable = true;
+
   # Enable ffmpeg util
   utils.ffmpeg.enable = true;
 
