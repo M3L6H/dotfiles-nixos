@@ -7,6 +7,7 @@
     ./home-manager-wrapper.nix
     ./nix-rebuild-wrapper.nix
     ./persist.nix
+    ./ssh-in-tmux.nix
     ./toggle-mute.nix
     ./wallpaper-haven.nix
   ];
