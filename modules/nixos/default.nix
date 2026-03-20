@@ -2,6 +2,7 @@
 {
   imports = [
     ./services
+    ./ssh
 
     ./ai.nix
     ./bluetooth.nix
@@ -29,6 +30,7 @@
   config.partition-manager.enable = lib.mkDefault false;
   config.pcscd.enable = lib.mkDefault true;
   config.sddm.enable = lib.mkDefault true;
+  config.ssh.enable = lib.mkDefault false;
   config.sops.enable = lib.mkDefault true;
   config.users.enable = lib.mkDefault true;
 }

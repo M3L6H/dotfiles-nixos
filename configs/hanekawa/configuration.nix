@@ -63,6 +63,9 @@
   # Sops
   sops.defaultSopsFile = ./secrets.yaml;
 
+  # ssh
+  ssh.enable = true;
+
   # Home manager
   home-manager = {
     extraSpecialArgs = { inherit hostname inputs username; };
