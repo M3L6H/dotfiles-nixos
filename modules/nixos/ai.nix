@@ -20,7 +20,7 @@
       extra-models = {
         enable = true;
         path = "extraModels.nix";
-        rev = "9fa4d6215063d53cee66d54524d33071c4f99730";
+        rev = "fded33dccbfac75982b076bb1306dc536275ef96";
         url = "git@github.com:M3L6H/ai-extra.git";
       };
     };

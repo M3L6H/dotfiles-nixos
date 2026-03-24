@@ -34,6 +34,7 @@
 
     m3l6h-ai = {
       url = "github:m3l6h/dotfiles-ai";
+      # url = "/home/m3l6h/files/dev/m3l6h/dotfiles-ai";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
