@@ -110,13 +110,6 @@
   # Enable unp util
   utils.unp.enable = true;
 
-  # Configure the git util
-  utils.vcs.settings = {
-    commit.gpgsign = false;
-    tag.gpgsign = false;
-    user = { };
-  };
-
   # Enable wget
   utils.wget.enable = true;
 
