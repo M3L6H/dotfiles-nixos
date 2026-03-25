@@ -7,6 +7,24 @@
 {
   options = {
     utils.vcs.enable = lib.mkEnableOption "enables vcs module";
+    utils.vcs.settings = {
+      commit.gpgsign = lib.mkOption {
+        description = "Sign commits";
+        default = true;
+      };
+      tag.gpgsign = lib.mkOption {
+        description = "Sign tags";
+        default = true;
+      };
+      user = lib.mkOption {
+        description = "Passthrough user settings for git";
+        default = {
+          email = "8094643+M3L6H@users.noreply.github.com";
+          name = "m3l6h";
+          signingkey = "0x684A2EF7691E4FD3";
+        };
+      };
+    };
   };
 
   config =
@@ -21,24 +39,25 @@
       home.packages = with pkgs; [
         git-crypt
         gpg-no-cache
+        libsecret
       ];
 
       programs.git = {
         enable = true;
+        package = pkgs.git.override { withLibsecret = true; };
         settings = {
-          user = {
-            email = "8094643+M3L6H@users.noreply.github.com";
-            name = "m3l6h";
-            signingkey = "0x684A2EF7691E4FD3";
-          };
+          user = config.utils.vcs.settings.user;
           pull.rebase = true;
           init.defaultbranch = "main";
           rerere.enabled = true;
           column.ui = "auto";
           branch.sort = "comitterdate";
           gpg.program = "${gpg-no-cache}/bin/gpg-no-cache";
-          commit.gpgsign = true;
-          tag.gpgsign = true;
+          commit.gpgsign = config.utils.vcs.settings.commit.gpgsign;
+          tag.gpgsign = config.utils.vcs.settings.tag.gpgsign;
+
+          # Credential settings
+          credential.helper = "libsecret";
         };
       };
     };
