@@ -51,7 +51,7 @@
           init.defaultbranch = "main";
           rerere.enabled = true;
           column.ui = "auto";
-          branch.sort = "comitterdate";
+          branch.sort = "committerdate";
           gpg.program = "${gpg-no-cache}/bin/gpg-no-cache";
           commit.gpgsign = config.utils.vcs.settings.commit.gpgsign;
           tag.gpgsign = config.utils.vcs.settings.tag.gpgsign;
