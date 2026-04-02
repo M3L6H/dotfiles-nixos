@@ -45,6 +45,7 @@
       programs.git = {
         enable = true;
         package = pkgs.git.override { withLibsecret = true; };
+        signing.format = "openpgp";
         settings = {
           user = config.utils.vcs.settings.user;
           pull.rebase = true;

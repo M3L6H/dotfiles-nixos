@@ -96,6 +96,9 @@
   # Enable markdown toolchain
   toolchains.markdown.enable = true;
 
+  # Enable direnv utils
+  utils.direnv.enable = true;
+
   # Enable ffmpeg util
   utils.ffmpeg.enable = true;
 

@@ -83,6 +83,9 @@
   # Enable battery utils
   utils.battery.enable = true;
 
+  # Enable direnv utils
+  utils.direnv.enable = true;
+
   # Enable ffmpeg util
   utils.ffmpeg.enable = true;
 

@@ -211,6 +211,8 @@ Breakdown of the included modules.
     - utils.battery.enable `boolean` - Enables the module
   - [chafa](modules/home-manager/utils/chafa.nix) - Install chafa
     - utils.chafa.enable `boolean` - Enables the module
+  - [direnv](modules/home-manager/utils/direnv.nix) - Install direnv utils
+    - utils.direnv.enable `boolean` - Enables the module
   - [expect](modules/home-manager/utils/expect.nix) - Install expect tools (e.g. unbuffer)
     - utils.expect.enable `boolean` - Enables the module
   - [ffmpeg](modules/home-manager/utils/ffmpeg.nix) - Install ffmpeg

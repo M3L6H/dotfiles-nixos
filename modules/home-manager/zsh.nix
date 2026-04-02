@@ -4,22 +4,25 @@
   lib,
   ...
 }:
+with lib;
 {
   options = {
-    zsh.enable = lib.mkEnableOption "enables zsh module";
-    zsh.zoxide.enable = lib.mkEnableOption "enables zoxide";
+    zsh.enable = mkEnableOption "enables zsh module";
+    zsh.zoxide.enable = mkEnableOption "enables zoxide";
   };
 
   imports = [
     inputs.m3l6h-zsh.homeModule
   ];
 
-  config = lib.mkIf config.zsh.enable {
+  config = mkIf config.zsh.enable {
     m3l6h.zsh = {
       enable = true;
+      initContent = mkIf config.utils.direnv.enable ''
+        eval "$(direnv hook zsh)"
+      '';
       impermanence.enable = config.impermanence.enable;
+      zoxide.enable = config.zsh.zoxide.enable;
     };
-
-    m3l6h.zsh.zoxide.enable = config.zsh.zoxide.enable;
   };
 }

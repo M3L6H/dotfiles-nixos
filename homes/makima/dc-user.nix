@@ -46,6 +46,9 @@
   # Enable markdown toolchain
   toolchains.markdown.enable = true;
 
+  # Enable direnv utils
+  utils.direnv.enable = true;
+
   # Enable file util
   utils.file.enable = true;
 

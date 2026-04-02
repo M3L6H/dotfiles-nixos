@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   options = {
     user-dirs.enable = lib.mkEnableOption "enables user dirs module";
   };
@@ -6,6 +7,7 @@
   config = lib.mkIf config.user-dirs.enable {
     xdg.userDirs = {
       enable = true;
+      setSessionVariables = false;
 
       desktop = "${config.home.homeDirectory}/desktop";
       documents = null;
@@ -18,4 +20,3 @@
     };
   };
 }
-
