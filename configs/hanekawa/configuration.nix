@@ -37,6 +37,7 @@
 
   fileSystems."/home/${username}/files" = {
     device = "/mnt/files";
+    fsType = "auto";
     options = [
       "bind"
       "rw"

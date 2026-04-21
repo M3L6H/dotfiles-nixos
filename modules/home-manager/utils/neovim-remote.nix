@@ -30,6 +30,7 @@
         if ! lsof "$NEOVIM_SOCKET" >/dev/null 2>&1; then
           if "$IS_TMUX" && [ "$CUR_WIN" != '1' ]; then
             tmux send-keys -t "$(tmux display-message -p '#S'):1" "$NVIM_CMD" Enter
+            while ! lsof "$NEOVIM_SOCKET" >/dev/null 2>&1; do true; done
           fi
         fi
 

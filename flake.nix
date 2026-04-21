@@ -49,6 +49,7 @@
 
     m3l6h-zsh = {
       url = "github:m3l6h/dotfiles-zsh";
+      # url = "/home/m3l6h/files/dev/m3l6h/dotfiles-zsh";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.impermanence.follows = "impermanence";

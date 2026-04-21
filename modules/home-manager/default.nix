@@ -28,4 +28,5 @@
   terminal.enable = lib.mkDefault false;
   tmux.enable = lib.mkDefault false;
   zsh.enable = lib.mkDefault false;
+  zsh.zoxide.enable = lib.mkDefault true;
 }
