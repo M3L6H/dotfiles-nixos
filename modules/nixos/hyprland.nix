@@ -33,7 +33,7 @@
 
       # Wallpaper engine
       mpvpaper # For video wallpapers
-      swww
+      awww
 
       # App launcher
       rofi
@@ -68,14 +68,14 @@
       polkit.enable = true;
     };
 
-    systemd.user.services.swww-daemon = {
-      description = "swww-daemon";
+    systemd.user.services.awww-daemon = {
+      description = "awww-daemon";
       wantedBy = [ "graphical-session.target" ];
       wants = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.swww}/bin/swww-daemon";
+        ExecStart = "${pkgs.awww}/bin/awww-daemon";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;

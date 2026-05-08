@@ -149,7 +149,7 @@ Breakdown of the included modules.
   - [monitors](modules/home-manager/hyprland/monitors.nix) - Configures monitors
   - [wallpaper](modules/home-manager/hyprland/wallpaper.nix) - Configures wallpapers
     - wallpaper.mpvpaper.enable `boolean` - Enable mpvpaper video wallpaper
-    - wallpaper.swww.enable `boolean` - Enable swww image wallpaper
+    - wallpaper.awww.enable `boolean` - Enable awww image wallpaper
   - [workspaces](modules/home-manager/hyprland/workspaces.nix) - Configures workspaces
 - [scripts](modules/home-manager/scripts) - Scripts submodule
   - [conditional-lock](modules/home-manager/scripts/conditional-lock.nix) - When called will lock the system as long as ~/.local/state/no-lock is not present

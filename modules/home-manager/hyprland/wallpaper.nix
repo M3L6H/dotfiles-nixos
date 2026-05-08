@@ -12,7 +12,7 @@ in
 {
   options = {
     wallpaper.mpvpaper.enable = lib.mkEnableOption "enables mpvpaper wallpaper";
-    wallpaper.swww.enable = lib.mkEnableOption "enables swww wallpaper";
+    wallpaper.awww.enable = lib.mkEnableOption "enables awww wallpaper";
 
     wallpaper.initScript = lib.mkOption {
       description = "Script to run on boot to initialize the wallpapers";
@@ -43,10 +43,10 @@ in
             if [ "''${selection#*.}" = 'mp4' ]; then
               echo "VIDEO=${dir}/''${selection}" > "''${HOME}/.local/state/mpvpaper"
               systemctl --user start mpvpaper.service
-            # Otherwise use swww
+            # Otherwise use awww
             else
               for monitor in ${config.wallpaper.monitors}; do
-                swww img -o "$monitor" --transition-type center "${dir}/$selection"
+                awww img -o "$monitor" --transition-type center "${dir}/$selection"
                 sleep 1
               done
               echo "${dir}/$selection" > "''${HOME}/.config/wallpaper/wallpaper"
@@ -64,19 +64,19 @@ in
     }
     // lib.optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
-        ".cache/swww"
+        ".cache/awww"
         ".config/wallpaper"
       ];
     };
 
-    systemd.user.services.swww-init-wallpaper = lib.mkIf config.wallpaper.swww.enable {
+    systemd.user.services.awww-init-wallpaper = lib.mkIf config.wallpaper.awww.enable {
       Unit = {
-        Description = "swww-init-wallpaper";
-        Wants = [ "swww-daemon.service" ];
-        After = [ "swww-daemon.service" ];
+        Description = "awww-init-wallpaper";
+        Wants = [ "awww-daemon.service" ];
+        After = [ "awww-daemon.service" ];
       };
       Install = {
-        WantedBy = [ "swww-daemon.service" ];
+        WantedBy = [ "awww-daemon.service" ];
       };
       Service = {
         Type = "oneshot";

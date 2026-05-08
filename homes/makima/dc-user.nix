@@ -34,8 +34,8 @@
   # Still having memory issues :(
   wallpaper.mpvpaper.enable = false;
 
-  # Enable swww wallpaper
-  wallpaper.swww.enable = false;
+  # Enable awww wallpaper
+  wallpaper.awww.enable = false;
 
   # Enable zsh
   zsh.enable = true;

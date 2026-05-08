@@ -40,19 +40,19 @@
   # Still having memory issues :(
   wallpaper.mpvpaper.enable = false;
 
-  # Enable swww wallpaper
-  wallpaper.swww.enable = true;
+  # Enable awww wallpaper
+  wallpaper.awww.enable = true;
 
   # Wallpaper init script
-  wallpaper.initScript = "${pkgs.writeShellScript "swww-init-wallpaper" ''
+  wallpaper.initScript = "${pkgs.writeShellScript "awww-init-wallpaper" ''
     #!/run/current-system/sw/bin/bash
 
     sleep 2 # Delay to ensure Wayland is ready
-    ${pkgs.swww}/bin/swww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
+    ${pkgs.awww}/bin/awww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
     sleep 1
-    ${pkgs.swww}/bin/swww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
+    ${pkgs.awww}/bin/awww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
     sleep 1
-    ${pkgs.swww}/bin/swww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
+    ${pkgs.awww}/bin/awww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
   ''}";
 
   wallpaper.monitors = "DP-1 HDMI-A-1 DP-2";
@@ -76,7 +76,7 @@
   software.digikam.enable = false;
 
   # Enable freecad
-  software.freecad.enable = true;
+  software.freecad.enable = false; # Takes forever to build
 
   # Enable krita
   software.krita.enable = false;
