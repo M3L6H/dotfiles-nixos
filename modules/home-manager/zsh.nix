@@ -18,9 +18,6 @@ with lib;
   config = mkIf config.zsh.enable {
     m3l6h.zsh = {
       enable = true;
-      initContent = mkIf config.utils.direnv.enable ''
-        eval "$(direnv hook zsh)"
-      '';
       impermanence.enable = config.impermanence.enable;
       zoxide.enable = config.zsh.zoxide.enable;
     };
