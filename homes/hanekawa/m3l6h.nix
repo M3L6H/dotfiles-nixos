@@ -96,6 +96,9 @@
   # Enable markdown toolchain
   toolchains.markdown.enable = true;
 
+  # Enable copilot cli
+  utils.copilot.enable = true;
+
   # Enable direnv utils
   utils.direnv.enable = true;
 

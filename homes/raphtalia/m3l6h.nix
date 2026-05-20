@@ -83,6 +83,9 @@
   # Enable battery utils
   utils.battery.enable = true;
 
+  # Enable copilot cli
+  utils.copilot.enable = true;
+
   # Enable direnv utils
   utils.direnv.enable = true;
 

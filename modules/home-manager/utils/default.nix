@@ -4,6 +4,7 @@
     ./bat.nix
     ./battery.nix
     ./chafa.nix
+    ./copilot.nix
     ./direnv.nix
     ./expect.nix
     ./ffmpeg.nix
@@ -37,6 +38,7 @@
   utils.bat.enable = lib.mkDefault false;
   utils.battery.enable = lib.mkDefault false;
   utils.chafa.enable = lib.mkDefault false;
+  utils.copilot.enable = lib.mkDefault false;
   utils.direnv.enable = lib.mkDefault false;
   utils.expect.enable = lib.mkDefault false;
   utils.ffmpeg.enable = lib.mkDefault false;
