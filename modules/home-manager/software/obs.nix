@@ -7,7 +7,7 @@
 with lib;
 {
   options = {
-    software.obs.enable = lib.mkEnableOption "enables obs module";
+    software.obs.enable = mkEnableOption "enables obs module";
   };
 
   config = mkIf config.software.obs.enable {
@@ -34,8 +34,18 @@ with lib;
       ];
     };
 
-    wayland.windowManager.hyprland.settings.windowrule = mkIf config.hyprland.enable [
-      "match:class com.obsproject.Studio, workspace 7"
-    ];
+    wayland.windowManager = mkIf config.hyprland.enable {
+      hyprland.settings = {
+        window_rule = [
+          {
+            name = "OBS";
+            match = {
+              class = "com.obsproject.Studio";
+            };
+            workspace = "7";
+          }
+        ];
+      };
+    };
   };
 }

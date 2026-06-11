@@ -3,12 +3,13 @@
   lib,
   ...
 }:
+with lib;
 {
   options = {
-    services.clip-mngr.enable = lib.mkEnableOption "enables clipboard manager (clipse) module";
+    services.clip-mngr.enable = mkEnableOption "enables clipboard manager (clipse) module";
   };
 
-  config = lib.mkIf config.services.clip-mngr.enable {
+  config = mkIf config.services.clip-mngr.enable {
     services.clipse = {
       enable = true;
       historySize = 200;
@@ -33,18 +34,34 @@
       };
     };
 
-    wayland.windowManager.hyprland.settings = {
-      bind = [
-        "$mainMod SHIFT, C, exec, ${config.terminal.emulator} --class=com.example.clipse -e 'clipse'"
-      ];
-
-      windowrule = [
-        "match:class com.example.clipse, float on"
-        "match:class com.example.clipse, size 622 652"
-      ];
+    wayland.windowManager = mkIf config.hyprland.enable {
+      hyprland.settings = {
+        bind = [
+          {
+            _args = [
+              "SUPER + SHIFT + C"
+              (generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.terminal.emulator} --class=com.example.clipse -e 'clipse'\")")
+              { description = "Launch clip mngr"; }
+            ];
+          }
+        ];
+        window_rule = [
+          {
+            name = "Clip Mngr";
+            match = {
+              class = "com.example.clipse";
+            };
+            float = true;
+            size = [
+              "622"
+              "652"
+            ];
+          }
+        ];
+      };
     };
 
-    home = lib.optionalAttrs config.impermanence.enable {
+    home = optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/clipse"
       ];

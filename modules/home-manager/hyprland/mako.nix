@@ -4,8 +4,9 @@
   pkgs,
   ...
 }:
+with lib;
 {
-  config = lib.mkIf config.hyprland.enable {
+  config = mkIf config.hyprland.enable {
     home.packages = with pkgs; [
       # Notifications
       mako
@@ -16,9 +17,16 @@
       source = ./mako.ini;
     };
 
-    wayland.windowManager.hyprland.settings.bind = [
-      # Dismiss notifications
-      "$mainMod, M, exec, makoctl dismiss -a"
-    ];
+    wayland.windowManager = mkIf config.hyprland.enable {
+      hyprland.settings.bind = [
+        {
+          _args = [
+            "SUPER + M"
+            (generators.mkLuaInline "hl.dsp.exec_cmd(\"makoctl dismiss -a\")")
+            { description = "Dismiss notifications"; }
+          ];
+        }
+      ];
+    };
   };
 }

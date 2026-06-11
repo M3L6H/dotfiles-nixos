@@ -130,19 +130,41 @@
   utils.wget.enable = true;
 
   # Hyprland stuff
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "eww open-many my-bar-0 my-bar-1 main-bar"
-  ];
+  hyprland.bar = "eww open-many my-bar-0 my-bar-1 main-bar";
   wayland.windowManager.hyprland.settings = {
-    "monitor" = [
-      "DP-1, 1920x1080, 0x0, 1"
-      "DP-2, 3840x2160, 1920x0, 2"
-      "HDMI-A-1, 1920x1080, 3840x0, 1"
+    monitor = [
+      {
+        output = "DP-1";
+        mode = "1920x1080";
+        position = "0x0";
+        scale = "1";
+      }
+      {
+        output = "DP-2";
+        mode = "3840x2160";
+        position = "1920x0";
+        scale = "2";
+      }
+      {
+        output = "HDMI-A-1";
+        mode = "1920x1080";
+        position = "3840x0";
+        scale = "1";
+      }
     ];
-    "workspace" = [
-      "1, monitor:DP-1"
-      "2, monitor:DP-2"
-      "3, monitor:HDMI-A-1"
+    workspace_rule = [
+      {
+        workspace = "1";
+        monitor = "DP-1";
+      }
+      {
+        workspace = "2";
+        monitor = "DP-2";
+      }
+      {
+        workspace = "3";
+        monitor = "DP-3";
+      }
     ];
   };
 }

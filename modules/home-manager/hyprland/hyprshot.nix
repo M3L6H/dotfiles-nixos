@@ -1,17 +1,40 @@
-{ config, lib, pkgs, ... }: {
-  config = lib.mkIf config.hyprland.enable {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
+{
+  config = mkIf config.hyprland.enable {
     home.packages = with pkgs; [
       hyprshot
     ];
 
-    wayland.windowManager.hyprland.settings.bind = [
-      # Screenshot a window
-      "$mainMod, PRINT, exec, hyprshot -m window"
-      # Screenshot a monitor
-      ", PRINT, exec, hyprshot -m output"
-      # Screenshot a region
-      "$mainMod SHIFT, PRINT, exec, hyprshot -m region"
-    ];
+    wayland.windowManager = mkIf config.hyprland.enable {
+      hyprland.settings.bind = [
+        {
+          _args = [
+            "SUPER + PRINT"
+            (generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprshot -m window\")")
+            { description = "Screenshot a window"; }
+          ];
+        }
+        {
+          _args = [
+            "PRINT"
+            (generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprshot -m active -m window\")")
+            { description = "Screenshot active window"; }
+          ];
+        }
+        {
+          _args = [
+            "SUPER + SHIFT + PRINT"
+            (generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprshot -m region\")")
+            { description = "Screenshot a region"; }
+          ];
+        }
+      ];
+    };
   };
 }
-
