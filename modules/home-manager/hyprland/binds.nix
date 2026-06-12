@@ -7,6 +7,11 @@
 with lib;
 {
   config = mkIf config.hyprland.enable {
+    home.file.".local/bin/binds" = {
+      executable = true;
+      source = ./binds.sh;
+    };
+
     wayland.windowManager.hyprland = {
       settings = {
         bind = [
@@ -309,6 +314,13 @@ with lib;
               "XF86AudioNext"
               (generators.mkLuaInline "hl.dsp.exec_cmd(\"playerctl next\")")
               { description = "Next track"; }
+            ];
+          }
+          {
+            _args = [
+              "SUPER + SHIFT + B"
+              (generators.mkLuaInline "hl.dsp.exec_cmd(\"/home/${username}/.local/bin/binds\")")
+              { description = "Search key binds"; }
             ];
           }
           {
