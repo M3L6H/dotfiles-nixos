@@ -4,9 +4,10 @@
   pkgs,
   ...
 }:
+with lib;
 {
   options = {
-    games.minecraft.enable = lib.mkEnableOption "enables minecraft module";
+    games.minecraft.enable = mkEnableOption "enables minecraft module";
   };
 
   config =
@@ -28,7 +29,28 @@
         '';
       };
     in
-    lib.mkIf config.games.minecraft.enable {
+    mkIf config.games.minecraft.enable {
+      wayland.windowManager = mkIf config.hyprland.enable {
+        hyprland.settings = {
+          window_rule = [
+            {
+              name = "PrismLauncher";
+              match = {
+                class = "org.prismlauncher.PrismLauncher";
+              };
+              workspace = "5";
+            }
+            {
+              name = "PrismLauncher";
+              match = {
+                class = "Minecraft.*";
+              };
+              workspace = "5";
+            }
+          ];
+        };
+      };
+
       home = {
         packages = with pkgs; [
           prismlauncher
@@ -39,7 +61,7 @@
           source = "${prismlauncher-kanagawa}/prismlauncher-kanagawa";
         };
       }
-      // lib.optionalAttrs config.impermanence.enable {
+      // optionalAttrs config.impermanence.enable {
         persistence."/persist" = {
           directories = [
             ".local/share/PrismLauncher/assets"
