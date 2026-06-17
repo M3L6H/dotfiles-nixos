@@ -36,12 +36,12 @@ with lib;
             {
               name = "PrismLauncher";
               match = {
-                class = "org.prismlauncher.PrismLauncher";
+                class = "org.prismlauncher.*";
               };
               workspace = "5";
             }
             {
-              name = "PrismLauncher";
+              name = "Minecraft";
               match = {
                 class = "Minecraft.*";
               };
@@ -68,7 +68,7 @@ with lib;
             ".local/share/PrismLauncher/cache"
             ".local/share/PrismLauncher/catpacks"
             ".local/share/PrismLauncher/icons"
-            ".local/share/PrismLauncher/instances"
+            ".local/share/PrismLauncher/iconthemes"
             ".local/share/PrismLauncher/java"
             ".local/share/PrismLauncher/libraries"
             ".local/share/PrismLauncher/logs"

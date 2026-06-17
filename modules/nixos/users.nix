@@ -34,5 +34,18 @@
       ];
       shell = lib.mkIf config.users.zsh.enable pkgs.zsh;
     };
+
+    # Mount
+    fileSystems."/home/${username}/.local/share/PrismLauncher/instances" = {
+      device = "/persist/home/${username}/.local/share/PrismLauncher/instances";
+      fsType = "none";
+      options = [
+        "bind"
+        "user"
+        "exec"
+        "noauto"
+        "x-systemd.automount"
+      ];
+    };
   };
 }

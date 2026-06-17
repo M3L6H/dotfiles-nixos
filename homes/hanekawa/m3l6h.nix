@@ -163,7 +163,7 @@
       }
       {
         workspace = "3";
-        monitor = "DP-3";
+        monitor = "HDMI-A-1";
       }
     ];
   };
