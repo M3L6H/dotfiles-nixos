@@ -52,6 +52,13 @@ with lib;
           }
           {
             _args = [
+              "SUPER + SHIFT + F"
+              (generators.mkLuaInline "hl.dsp.window.fullscreen({ mode = \"fullscreen\", action = \"toggle\"})")
+              { description = "Toggle fullscreen"; }
+            ];
+          }
+          {
+            _args = [
               "SUPER + H"
               (generators.mkLuaInline "hl.dsp.focus({ direction = \"l\"})")
               { description = "Move focus left"; }
