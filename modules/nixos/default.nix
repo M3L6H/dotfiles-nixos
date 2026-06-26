@@ -7,6 +7,7 @@
     ./ai.nix
     ./bluetooth.nix
     ./caches.nix
+    ./containers.nix
     ./fonts.nix
     ./hyprland.nix
     ./impermanence.nix
@@ -22,6 +23,7 @@
 
   config.ai.enable = lib.mkDefault false;
   config.bluetooth.enable = lib.mkDefault false;
+  config.containers.enable = lib.mkDefault true;
   config.hyprland.enable = lib.mkDefault true;
   config.impermanence.enable = lib.mkDefault true;
   config.nix-ld.enable = lib.mkDefault true;
