@@ -7,10 +7,10 @@
 with lib;
 {
   options = {
-    containers.enable = mkEnableOption "enables containers module";
+    container-engine.enable = mkEnableOption "enables container-engine module";
   };
 
-  config = mkIf config.containers.enable {
+  config = mkIf config.container-engine.enable {
     virtualisation = {
       containers.enable = true;
       podman = {

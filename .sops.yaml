@@ -15,7 +15,7 @@ creation_rules:
   - path_regex: configs/raphtalia/secrets(/.+)?\.(ya?ml|json|env|ini)$
     key_groups:
       - age:
-          - *raohtalia
+          - *raphtalia
         pgp:
           - *m3l6h
   - path_regex: configs/hanekawa/secrets(/.+)?\.(ya?ml|json|env|ini)$

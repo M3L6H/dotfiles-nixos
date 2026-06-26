@@ -299,8 +299,8 @@ Breakdown of the included modules.
   - ai.openFirewall `boolean` - Opens the firewall for local access to ComfyUI
 - [bluetooth](modules/nixos/bluetooth.nix) - Enables bluetooth functionality
   - bluetooth.enable `boolean` - Enables the module
-- [containers](modules/nixos/containers.nix) - Enables container functionality
-  - containers.enable `boolean` - Enables the module
+- [container-engine](modules/nixos/container-engine.nix) - Enables container functionality
+  - container-engine.enable `boolean` - Enables the module
 - [hyprland](modules/nixos/hyprland.nix) - Enables hyprland window manager
   - hyprland.enable `boolean` - Enables the module
 - [neovim](modules/nixos/impermanence.nix) - Enables impermanence at system level
