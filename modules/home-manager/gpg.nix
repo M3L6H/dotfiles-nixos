@@ -31,6 +31,7 @@ with lib;
     services.gpg-agent = {
       enable = true;
       pinentry.package = pkgs.pinentry-curses;
+      enableExtraSocket = true;
     };
 
     # Force-disable the default user sockets so they don't block your forwarded tunnel

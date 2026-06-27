@@ -5,6 +5,8 @@
 }:
 {
   imports = [
+    ./ssh.nix
+
     ../../modules/home-manager/default.nix
   ];
 
