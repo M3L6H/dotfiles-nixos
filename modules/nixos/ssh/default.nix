@@ -17,10 +17,12 @@ with lib;
       enable = true;
       ports = [ 7272 ];
       settings = {
+        AllowAgentForwarding = true;
         AllowUsers = [ username ];
         KbdInteractiveAuthentication = false;
         PasswordAuthentication = false;
         PermitRootLogin = "no";
+        StreamLocalBindUnlink = true;
       };
     };
 

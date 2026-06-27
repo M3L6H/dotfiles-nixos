@@ -4,18 +4,19 @@
   pkgs,
   ...
 }:
+with lib;
 {
   options = {
-    gpg.enable = lib.mkEnableOption "enables gpg module";
+    gpg.enable = mkEnableOption "enables gpg module";
   };
 
-  config = lib.mkIf config.gpg.enable {
+  config = mkIf config.gpg.enable {
     home = {
       packages = with pkgs; [
         pinentry-qt
       ];
     }
-    // lib.optionalAttrs config.impermanence.enable {
+    // optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".gnupg"
       ];
@@ -29,7 +30,10 @@
 
     services.gpg-agent = {
       enable = true;
-      pinentry.package = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-curses;
     };
+
+    # Force-disable the default user sockets so they don't block your forwarded tunnel
+    systemd.user.services.gpg-agent.Unit.RefuseManualStart = mkForce false;
   };
 }
