@@ -1,12 +1,16 @@
 {
+  config,
   device,
   hostname,
   inputs,
+  nixos-hardware,
   username,
   ...
 }:
 {
   imports = [
+    nixos-hardware.nixosModules.dell-inspiron-7559
+
     ../common
 
     ./hardware-configuration.nix
@@ -17,6 +21,7 @@
 
   boot = {
     kernelParams = [
+      "acpi_backlight=native"
       "resume_offset=533760" # Retrieved by running `btrfs inspect-internal map-swapfile -r /mnt/swap/swapfile`
     ];
 
@@ -51,6 +56,7 @@
 
   # Enable nvidia module
   nvidia.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   environment = {
     # Impermanence

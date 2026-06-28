@@ -5,6 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,6 +80,7 @@
       nixpkgs,
       home-manager,
       flake-parts,
+      nixos-hardware,
       ...
     }@inputs:
     let
@@ -105,6 +111,7 @@
           hostname = "raphtalia";
           device = "/dev/disk/by-id/wwn-0x5002538700000000";
           username = "m3l6h";
+          nixos-hardware = nixos-hardware;
         }
       ];
 

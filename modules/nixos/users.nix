@@ -30,6 +30,7 @@
       extraGroups = [
         "dialout" # Allow access to serial device
         "networkmanager"
+        "video" # Allow user to control brightness
         "wheel" # Enable 'sudo' for the user
       ];
       shell = lib.mkIf config.users.zsh.enable pkgs.zsh;

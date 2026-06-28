@@ -1,9 +1,10 @@
-{ config, lib, ... }: {
+{ config, lib, ... }: with lib;
+{
   options = {
-    nvidia.enable = lib.mkEnableOption "enables nvidia module";
+    nvidia.enable = mkEnableOption "enables nvidia module";
   };
 
-  config = lib.mkIf config.nvidia.enable {
+  config = mkIf config.nvidia.enable {
     # Use proprietary drivers
     nixpkgs.config.allowUnfree = true;
 
@@ -21,7 +22,7 @@
     ];
 
     # Load nvidia driver for xorg and wayland
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware = {
       # Enable OpenGL
@@ -40,7 +41,7 @@
         nvidiaSettings = true;
 
         # Nvidia driver
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = mkDefault config.boot.kernelPackages.nvidiaPackages.stable;
 
         # For suspend/wakeup
         powerManagement = {
@@ -48,9 +49,8 @@
         };
 
         # Disable open-dkms due to this bug: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/472
-        open = false;
+        open = mkDefault false;
       };
     };
   };
 }
-

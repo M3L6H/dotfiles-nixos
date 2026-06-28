@@ -3,6 +3,7 @@
   imports = [
     ./bat.nix
     ./battery.nix
+    ./brightness.nix
     ./chafa.nix
     ./copilot.nix
     ./direnv.nix
@@ -37,6 +38,7 @@
 
   utils.bat.enable = lib.mkDefault false;
   utils.battery.enable = lib.mkDefault false;
+  utils.brightness.enable = lib.mkDefault false;
   utils.chafa.enable = lib.mkDefault false;
   utils.copilot.enable = lib.mkDefault false;
   utils.direnv.enable = lib.mkDefault false;

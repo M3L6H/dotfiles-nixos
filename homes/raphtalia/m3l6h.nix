@@ -88,6 +88,9 @@
   # Enable battery utils
   utils.battery.enable = true;
 
+  # Enable brightness controls
+  utils.brightness.enable = true;
+
   # Enable copilot cli
   utils.copilot.enable = true;
 

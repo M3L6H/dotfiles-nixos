@@ -211,6 +211,8 @@ Breakdown of the included modules.
     - utils.bat.enable `boolean` - Enables the module
   - [battery](modules/home-manager/utils/battery.nix) - Install battery utils
     - utils.battery.enable `boolean` - Enables the module
+  - [brightness](modules/home-manager/utils/brightness.nix) - Install brightness utils
+    - utils.brightness.enable `boolean` - Enables the module
   - [chafa](modules/home-manager/utils/chafa.nix) - Install chafa
     - utils.chafa.enable `boolean` - Enables the module
   - [copilot](modules/home-manager/utils/copilot.nix) - Install copilot cli
