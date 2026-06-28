@@ -81,6 +81,9 @@
   # Enable krita
   software.krita.enable = false;
 
+  # Enable mpv
+  software.mpv.enable = true;
+
   # Enable obs
   software.obs.enable = true;
 

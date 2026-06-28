@@ -19,6 +19,7 @@
     ./sddm.nix
     ./sops.nix
     ./users.nix
+    ./vpn.nix
   ];
 
   config.ai.enable = lib.mkDefault false;
@@ -35,4 +36,5 @@
   config.ssh.enable = lib.mkDefault false;
   config.sops.enable = lib.mkDefault true;
   config.users.enable = lib.mkDefault true;
+  config.vpn.enable = lib.mkDefault true;
 }

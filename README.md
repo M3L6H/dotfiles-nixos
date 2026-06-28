@@ -183,6 +183,8 @@ Breakdown of the included modules.
     - software.freecad.enable `boolean` - Enables the module
   - [krita](modules/home-manager/software/krita.nix) - Enables krita
     - software.krita.enable `boolean` - Enables the module
+  - [mpv](modules/home-manager/software/mpv.nix) - Enables mpv
+    - software.mpv.enable `boolean` - Enables the module
   - [obs](modules/home-manager/software/obs.nix) - Enables obs studio
     - software.obs.enable `boolean` - Enables the module
   - [prusa-slicer](modules/home-manager/software/prusa-slicer.nix) - Enables prusa-slicer
@@ -322,6 +324,9 @@ Breakdown of the included modules.
 - [users](modules/nixos/users.nix) - Create default user
   - users.enable `boolean` - Enables the module
   - users.zsh.enable `boolean` - Enables zsh as the default shell (must be done at the system level)
+- [vpn](modules/nixos/vpn.nix) - Enables vpn
+  - vpn.enable `boolean` - Enables the module
+  - vpn.torrent.enable `boolean` - Enables the torrent module
 
 ## cheatsheet
 

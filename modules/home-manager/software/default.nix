@@ -6,6 +6,7 @@
     ./firefox.nix
     ./freecad.nix
     ./krita.nix
+    ./mpv.nix
     ./obs.nix
     ./prusa-slicer.nix
     ./tag-studio.nix
@@ -17,6 +18,7 @@
   software.firefox.enable = lib.mkDefault false;
   software.freecad.enable = lib.mkDefault false;
   software.krita.enable = lib.mkDefault false;
+  software.mpv.enable = lib.mkDefault false;
   software.obs.enable = lib.mkDefault false;
   software.prusa-slicer.enable = lib.mkDefault false;
   software.tag-studio.enable = lib.mkDefault false;
