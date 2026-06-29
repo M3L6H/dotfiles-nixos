@@ -938,11 +938,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1782514349,
-        "narHash": "sha256-H1X1Nl1j64F7Uxn7GCW0b9v36DvDKU9sfmgp7wtDCTs=",
+        "lastModified": 1782678808,
+        "narHash": "sha256-LgEkJaAQOj0cpNjmjnrWfQTvFHSiZjbIaL3HMLDMdGs=",
         "owner": "m3l6h",
         "repo": "dotfiles-neovim",
-        "rev": "98527cbd99491dcc871edb13163d9f4ceebaa200",
+        "rev": "a693af330068a3b7172fc2a63d03412d30436ec1",
         "type": "github"
       },
       "original": {
