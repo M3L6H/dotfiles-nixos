@@ -13,6 +13,7 @@ with lib;
   config = mkIf config.container-engine.enable {
     virtualisation = {
       containers.enable = true;
+      docker.enable = true;
       podman = {
         enable = true;
         dockerCompat = true;
@@ -22,6 +23,7 @@ with lib;
     };
 
     users.users."${username}".extraGroups = [
+      "docker"
       "podman"
     ];
   };
