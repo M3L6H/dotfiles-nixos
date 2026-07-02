@@ -1,4 +1,10 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options = with lib; {
     hyprland.enable = lib.mkEnableOption "enables hyprland module";
@@ -39,6 +45,14 @@
       enable = true;
 
       configType = "lua";
+
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
+      plugins = [
+        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+      ];
 
       settings = {
         # Taken from https://wiki.hyprland.org/Nvidia/#environment-variables

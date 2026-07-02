@@ -523,19 +523,16 @@
       },
       "locked": {
         "lastModified": 1782977902,
-        "narHash": "sha256-2LwEnr184uOaly/HFGsjxVPf555W21qOuHc7zFbuv/Y=",
-        "ref": "refs/heads/main",
+        "narHash": "sha256-+tfo+W3dIqHTgnXsC0dpkk66T2L43DUxJV6SUiKu90Y=",
+        "owner": "hyprwm",
+        "repo": "Hyprland",
         "rev": "9350e3410bd776385cb597ec45ebadaf581b634a",
-        "revCount": 7542,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/hyprwm/Hyprland"
+        "type": "github"
       },
       "original": {
-        "ref": "refs/heads/main",
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/hyprwm/Hyprland"
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "type": "github"
       }
     },
     "hyprland-guiutils": {
@@ -603,15 +600,15 @@
       "locked": {
         "lastModified": 1782769258,
         "narHash": "sha256-HAhqQOoz4S0gzIOMnClL49B+rMT7zdp3UDWeqxtMs/k=",
-        "ref": "refs/heads/main",
+        "owner": "hyprwm",
+        "repo": "hyprland-plugins",
         "rev": "71b8953d7d92dbebe87a6ff9895bdd30e7495873",
-        "revCount": 414,
-        "type": "git",
-        "url": "https://github.com/hyprwm/hyprland-plugins"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://github.com/hyprwm/hyprland-plugins"
+        "owner": "hyprwm",
+        "repo": "hyprland-plugins",
+        "type": "github"
       }
     },
     "hyprland-protocols": {
@@ -938,11 +935,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1782995651,
-        "narHash": "sha256-XkzRpTVIEGv9SkN032sqQXSIKViw0HsXYftw/0oTo0k=",
+        "lastModified": 1783008320,
+        "narHash": "sha256-W2djCqb24gfg4GkdB2NvK8UZRgS8DZa4vQXRujHq86o=",
         "owner": "m3l6h",
         "repo": "dotfiles-neovim",
-        "rev": "d4a9a4d62ed39303f499d46f935111630d5151a5",
+        "rev": "209691f69f811a8635e5afb6a92decd5f9f5a4a4",
         "type": "github"
       },
       "original": {

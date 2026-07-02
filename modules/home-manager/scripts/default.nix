@@ -3,6 +3,7 @@
   imports = [
     ./conditional-lock.nix
     ./conditional-suspend.nix
+    ./dice.nix
     ./fs-diff.nix
     ./home-manager-wrapper.nix
     ./nix-rebuild-wrapper.nix

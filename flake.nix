@@ -26,10 +26,10 @@
       url = "git+https://github.com/hyprwm/hyprcursor?ref=refs%2Fheads%2Fmain";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?ref=refs%2Fheads%2Fmain&submodules=1";
+      url = "github:hyprwm/Hyprland";
     };
     hyprland-plugins = {
-      url = "git+https://github.com/hyprwm/hyprland-plugins";
+      url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
 

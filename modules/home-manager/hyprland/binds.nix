@@ -141,146 +141,32 @@ with lib;
               { description = "Grow window horizontally"; }
             ];
           }
-          {
-            _args = [
-              "SUPER + 1"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 1 })")
-              { description = "Focus workspace 1"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 2"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 2 })")
-              { description = "Focus workspace 2"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 3"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 3 })")
-              { description = "Focus workspace 3"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 4"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 4 })")
-              { description = "Focus workspace 4"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 5"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 5 })")
-              { description = "Focus workspace 5"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 6"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 6 })")
-              { description = "Focus workspace 6"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 7"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 7 })")
-              { description = "Focus workspace 7"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 8"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 8 })")
-              { description = "Focus workspace 8"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 9"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 9 })")
-              { description = "Focus workspace 9"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + 0"
-              (generators.mkLuaInline "hl.dsp.focus({ workspace = 0 })")
-              { description = "Focus workspace 0"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 1"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 1, follow = true })")
-              { description = "Move window to workspace 1"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 2"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 2, follow = true })")
-              { description = "Move window to workspace 2"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 3"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 3, follow = true })")
-              { description = "Move window to workspace 3"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 4"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 4, follow = true })")
-              { description = "Move window to workspace 4"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 5"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 5, follow = true })")
-              { description = "Move window to workspace 5"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 6"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 6, follow = true })")
-              { description = "Move window to workspace 6"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 7"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 7, follow = true })")
-              { description = "Move window to workspace 7"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 8"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 8, follow = true })")
-              { description = "Move window to workspace 8"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 9"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 9, follow = true })")
-              { description = "Move window to workspace 9"; }
-            ];
-          }
-          {
-            _args = [
-              "SUPER + SHIFT + 0"
-              (generators.mkLuaInline "hl.dsp.window.move({ workspace = 0, follow = true })")
-              { description = "Move window to workspace 0"; }
-            ];
-          }
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = toString i;
+            in
+            [
+              {
+                _args = [
+                  "SUPER + ${ws}"
+                  (generators.mkLuaInline "hl.dsp.focus({ workspace = ${ws} })")
+                  { description = "Focus workspace ${ws}"; }
+                ];
+              }
+              {
+                _args = [
+                  "SUPER + SHIFT + ${ws}"
+                  (generators.mkLuaInline "hl.dsp.window.move({ workspace = ${ws}, follow = true })")
+                  { description = "Move window to workspace ${ws}"; }
+                ];
+              }
+            ]
+          ) 9
+        ))
+        ++ [
           {
             _args = [
               "XF86AudioLowerVolume"
