@@ -9,7 +9,7 @@ let
   nordVpnPkg = pkgs.callPackage (
     {
       autoPatchelfHook,
-      buildFHSEnvChroot,
+      buildFHSEnv,
       dpkg,
       fetchurl,
       lib,
@@ -71,7 +71,7 @@ let
         '';
       };
 
-      nordVPNfhs = buildFHSEnvChroot {
+      nordVPNfhs = buildFHSEnv {
         name = "nordvpnd";
         runScript = "nordvpnd";
 
