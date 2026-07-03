@@ -3,16 +3,23 @@
   lib,
   ...
 }:
+with lib;
 {
   options = {
-    utils.direnv.enable = lib.mkEnableOption "enables direnv module";
+    utils.direnv.enable = mkEnableOption "enables direnv module";
   };
 
-  config = lib.mkIf config.utils.direnv.enable {
+  config = mkIf config.utils.direnv.enable {
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+    };
+
+    home = optionalAttrs config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".local/share/direnv"
+      ];
     };
   };
 }
