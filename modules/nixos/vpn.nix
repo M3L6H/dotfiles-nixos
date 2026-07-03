@@ -38,9 +38,11 @@ with lib;
     };
 
     systemd.services.qbittorrent = {
-      after = [
-        "nordvpn.target" # Start after VPN
-      ];
+      after = mkForce [ ];
+      before = mkForce [ ];
+      startAt = mkForce [ ];
+      wantedBy = mkForce [ ];
+      wants = mkForce [ ];
 
       serviceConfig = {
         ProtectHome = mkForce false; # Unblock home directory
