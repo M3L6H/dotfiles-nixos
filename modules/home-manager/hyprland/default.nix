@@ -55,7 +55,7 @@ with lib;
         portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
 
         plugins = [
-          inputs.hyprland-plugins.packages.${system}.hyprfocus
+          # inputs.hyprland-plugins.packages.${system}.hyprfocus
         ];
 
         settings = {

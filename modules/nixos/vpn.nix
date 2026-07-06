@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   username,
   ...
 }:
@@ -11,14 +12,40 @@ with lib;
     vpn.torrent.enable = lib.mkEnableOption "enables torrent module";
   };
 
-  imports = [
-    ./nordvpn.nix
-  ];
-
   config = mkIf config.vpn.enable {
+    environment.systemPackages = with pkgs; [
+      nordvpn
+    ];
+
     vpn.torrent.enable = lib.mkDefault true;
 
-    custom.services.nordvpn.enable = true;
+    networking.firewall.checkReversePath = "loose";
+
+    users.groups.nordvpn = { };
+
+    systemd.services.nordvpnd = {
+      description = "NordVPN daemon.";
+      serviceConfig = {
+        ExecStart = "${pkgs.nordvpn}/bin/nordvpnd";
+        ExecStartPre = pkgs.writeShellScript "nordvpn-start" ''
+          mkdir -m 700 -p /var/lib/nordvpn;
+          if [ -z "$(ls -A /var/lib/nordvpn)" ]; then
+            cp -r ${pkgs.nordvpn}/var/lib/nordvpn/* /var/lib/nordvpn;
+          fi
+        '';
+        NonBlocking = true;
+        KillMode = "process";
+        Restart = "on-failure";
+        RestartSec = 5;
+        RuntimeDirectory = "nordvpn";
+        RuntimeDirectoryMode = "0750";
+        Group = "nordvpn";
+      };
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+    };
+
     users.users."${username}".extraGroups = [
       "nordvpn"
     ]

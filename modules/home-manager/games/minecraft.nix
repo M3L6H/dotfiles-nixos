@@ -18,7 +18,7 @@ with lib;
 
         src = pkgs.fetchurl {
           url = "https://github.com/PrismLauncher/Themes/releases/latest/download/Kanagawa-theme.zip";
-          hash = "sha256-6NIwXhKJiWFLqRkWXmiSmlHutQmeXflIlmj7jOiD1bY=";
+          hash = "sha256-HabWPyWdPaQZAh/Ozhe8zAqvRwfnpDSjl9W+wydhaRI=";
         };
 
         nativeBuildInputs = [ pkgs.unzip ];
