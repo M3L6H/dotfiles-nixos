@@ -45,7 +45,7 @@ with lib;
           }
           {
             _args = [
-              "SUPER + ALT + Q"
+              "SUPER + CTRL + Q"
               (generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprlock\")")
               { description = "Lock computer"; }
             ];
