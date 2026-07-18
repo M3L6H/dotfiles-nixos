@@ -173,6 +173,8 @@ Breakdown of the included modules.
   - [clip-mngr](modules/home-manager/services/clip-mngr.nix) - Systemd clipboard manager
     - services.clip-mngr.enable `boolean` - Enables the module
 - [software](modules/home-manager/software) - Software submodule
+  - [anki](modules/home-manager/software/anki.nix) - Spaced-repetition flashcards
+    - software.anki.enable `boolean` - Enables the module
   - [bazecor](modules/home-manager/software/bazecor.nix) - Graphical configurator for Dygma products
     - software.bazecor.enable `boolean` - Enables the module
   - [digikam](modules/home-manager/software/digikam) - Image management software

@@ -12,9 +12,9 @@ with lib;
   config = mkIf config.services.clip-mngr.enable {
     services.clipse = {
       enable = true;
-      historySize = 200;
-      imageDisplay = {
-        type = "kitty";
+      settings = {
+        maxHistory = 200;
+        imageDisplay = "kitty";
       };
       theme = {
         useCustomTheme = true;

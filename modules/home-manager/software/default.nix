@@ -2,6 +2,7 @@
 {
   imports = [
     ./digikam
+    ./anki.nix
     ./bazecor.nix
     ./firefox.nix
     ./freecad.nix
@@ -14,6 +15,7 @@
   ];
 
   software.digikam.enable = lib.mkDefault false;
+  software.anki.enable = lib.mkDefault false;
   software.bazecor.enable = lib.mkDefault false;
   software.firefox.enable = lib.mkDefault false;
   software.freecad.enable = lib.mkDefault false;

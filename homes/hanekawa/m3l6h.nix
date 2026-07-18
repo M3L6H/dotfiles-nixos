@@ -69,6 +69,9 @@
   # Enable clipboard manager service
   services.clip-mngr.enable = true;
 
+  # Enable anki
+  software.anki.enable = true;
+
   # Enable bazecor
   software.bazecor.enable = false;
 

@@ -67,6 +67,9 @@
   # Enable clipboard manager service
   services.clip-mngr.enable = true;
 
+  # Enable anki
+  software.anki.enable = true;
+
   # Enable mpv
   software.mpv.enable = true;
 
