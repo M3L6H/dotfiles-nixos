@@ -11,8 +11,15 @@ with lib;
   };
 
   config = mkIf config.software.anki.enable {
-    home.packages = with pkgs; [
-      anki-bin
-    ];
+    home = {
+      packages = with pkgs; [
+        anki-bin
+      ];
+    }
+    // lib.optionalAttrs config.impermanence.enable {
+      persistence."/persist".directories = [
+        ".local/share/Anki2"
+      ];
+    };
   };
 }

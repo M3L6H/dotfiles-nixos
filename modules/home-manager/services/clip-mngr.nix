@@ -14,7 +14,16 @@ with lib;
       enable = true;
       settings = {
         maxHistory = 200;
-        imageDisplay = "kitty";
+        keyBindings = {
+          down = "j";
+          up = "k";
+        };
+        imageDisplay = {
+          type = "kitty";
+        };
+        autoPaste = {
+          enabled = true;
+        };
       };
       theme = {
         useCustomTheme = true;

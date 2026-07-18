@@ -46,6 +46,7 @@
           "alt+7=unbind" # We don't use tabs
           "alt+8=unbind" # We don't use tabs
           "alt+9=unbind" # We don't use tabs
+          "ctrl+v=paste_from_clipboard"
         ];
         copy-on-select = "clipboard";
         confirm-close-surface = "false";

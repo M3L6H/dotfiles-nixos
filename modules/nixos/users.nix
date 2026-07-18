@@ -29,12 +29,17 @@
       initialPassword = lib.mkIf (config.users.users."${username}".hashedPasswordFile == null) "0";
       extraGroups = [
         "dialout" # Allow access to serial device
+        "input"
         "networkmanager"
         "video" # Allow user to control brightness
         "wheel" # Enable 'sudo' for the user
       ];
       shell = lib.mkIf config.users.zsh.enable pkgs.zsh;
     };
+
+    services.udev.extraRules = ''
+      KERNEL=="uinput", MODE="777", GROUP="input", OPTIONS+="static_node=uinput"
+    '';
 
     # Mount
     fileSystems."/home/${username}/.local/share/PrismLauncher/instances" = {
