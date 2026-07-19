@@ -25,9 +25,14 @@ with lib;
       nerd-fonts.victor-mono
     ];
 
-    wayland.windowManager.mango.settings.bind = mkIf config.mango.enable [
-      "SUPER,F,spawn,${if config.terminal.emulator == "ghostty" then "ghostty" else "kitty"}"
-    ];
+    wayland.windowManager.mango.settings = mkIf config.mango.enable {
+      windowrule = [
+        "tags:2,appid:com.mitchellh.ghostty"
+      ];
+      bind = [
+        "SUPER,F,spawn,${if config.terminal.emulator == "ghostty" then "ghostty" else "kitty"}"
+      ];
+    };
 
     programs.ghostty = {
       enable = config.terminal.emulator == "ghostty";

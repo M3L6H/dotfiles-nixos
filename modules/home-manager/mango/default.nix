@@ -58,6 +58,8 @@ with lib;
         layer_animation_type_open = "fade";
         layer_animation_type_close = "fade";
 
+        new_is_master = 0;
+
         bind = [
           "SUPER,H,focusdir,left"
           "SUPER,J,focusdir,down"
@@ -74,7 +76,19 @@ with lib;
           "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ];
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              tag = toString i;
+            in
+            [
+              "SUPER,${tag},view,${tag}"
+              "SUPER+SHIFT,${tag},tag,${tag}"
+            ]
+          ) 9
+        ));
       };
       systemd = {
         enable = true;

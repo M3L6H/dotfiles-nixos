@@ -33,9 +33,14 @@ with lib;
       })
     ];
 
-    wayland.windowManager.mango.settings.bind = mkIf config.mango.enable [
-      "SUPER,D,spawn,vivaldi"
-    ];
+    wayland.windowManager.mango.settings = mkIf config.mango.enable {
+      windowrule = [
+        "tags:3,appid:vivaldi-stable"
+      ];
+      bind = [
+        "SUPER,D,spawn,vivaldi"
+      ];
+    };
 
     home = {
       packages = with pkgs; [
