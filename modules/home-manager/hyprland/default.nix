@@ -25,8 +25,6 @@ with lib;
     ./hyprlock.nix
     ./hyprshot.nix
     ./layer-rules.nix
-    ./mako.nix
-    ./wallpaper.nix
     ./workspaces.nix
   ];
 
@@ -35,9 +33,6 @@ with lib;
       system = pkgs.stdenv.hostPlatform.system;
     in
     mkIf config.hyprland.enable {
-      wallpaper.mpvpaper.enable = mkDefault false;
-      wallpaper.awww.enable = mkDefault false;
-
       home.file.".config/electron-flags.conf".text = ''
         --enable-features=UseOzonePlatform
         --ozone-platform=wayland

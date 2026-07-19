@@ -22,6 +22,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprcursor = {
       url = "git+https://github.com/hyprwm/hyprcursor?ref=refs%2Fheads%2Fmain";
     };
@@ -92,11 +97,12 @@
         config.allowUnfree = true;
       };
 
-      modules = [
-        inputs.disko.nixosModules.default
-        inputs.home-manager.nixosModules.default
-        inputs.impermanence.nixosModules.impermanence
-        inputs.sops-nix.nixosModules.sops
+      modules = with inputs; [
+        disko.nixosModules.default
+        home-manager.nixosModules.default
+        impermanence.nixosModules.impermanence
+        mangowm.nixosModules.mango
+        sops-nix.nixosModules.sops
       ];
 
       my-systems = [

@@ -4,12 +4,13 @@
   pkgs,
   ...
 }:
+with lib;
 {
   options = {
-    software.vivaldi.enable = lib.mkEnableOption "enables vivaldi module";
+    software.vivaldi.enable = mkEnableOption "enables vivaldi module";
   };
 
-  config = lib.mkIf config.software.vivaldi.enable {
+  config = mkIf config.software.vivaldi.enable {
     nixpkgs.config.allowUnfree = true;
     nixpkgs.overlays = [
       (final: prev: {
@@ -32,12 +33,16 @@
       })
     ];
 
+    wayland.windowManager.mango.settings.bind = mkIf config.mango.enable [
+      "SUPER,D,spawn,vivaldi"
+    ];
+
     home = {
       packages = with pkgs; [
         vivaldi
       ];
     }
-    // lib.optionalAttrs config.impermanence.enable {
+    // optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".config/vivaldi"
         ".local/lib/vivaldi"

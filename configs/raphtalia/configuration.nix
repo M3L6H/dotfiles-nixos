@@ -52,7 +52,10 @@
   bluetooth.enable = true;
 
   # Enable hyprland module
-  hyprland.enable = true;
+  hyprland.enable = false;
+
+  # Enable mango module
+  mango.enable = true;
 
   # Enable nvidia module
   nvidia.enable = true;

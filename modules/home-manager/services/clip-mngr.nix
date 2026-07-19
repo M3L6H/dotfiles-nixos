@@ -15,8 +15,8 @@ with lib;
       settings = {
         maxHistory = 200;
         keyBindings = {
-          down = "j";
-          up = "k";
+          down = "alt+j";
+          up = "alt+k";
         };
         imageDisplay = {
           type = "kitty";

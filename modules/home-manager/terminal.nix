@@ -4,8 +4,9 @@
   pkgs,
   ...
 }:
+with lib;
 {
-  options = with lib; {
+  options = {
     terminal.enable = mkEnableOption "enables terminal module";
     terminal.emulator = mkOption {
       default = "ghostty";
@@ -19,9 +20,13 @@
     };
   };
 
-  config = lib.mkIf config.terminal.enable {
+  config = mkIf config.terminal.enable {
     home.packages = with pkgs; [
       nerd-fonts.victor-mono
+    ];
+
+    wayland.windowManager.mango.settings.bind = mkIf config.mango.enable [
+      "SUPER,F,spawn,${if config.terminal.emulator == "ghostty" then "ghostty" else "kitty"}"
     ];
 
     programs.ghostty = {
@@ -47,6 +52,7 @@
           "alt+8=unbind" # We don't use tabs
           "alt+9=unbind" # We don't use tabs
           "ctrl+v=paste_from_clipboard"
+          "ctrl+shift+v=unbind"
         ];
         copy-on-select = "clipboard";
         confirm-close-surface = "false";

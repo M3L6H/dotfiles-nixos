@@ -136,7 +136,7 @@ Breakdown of the included modules.
 - [games](/modules/home-manager/games) - Central module for all games
   - [minecraft](/modules/home-manager/games/minecraft.nix) - Installs minecraft via prismlauncher
     - games.minecraft.enable `boolean` - Enables the module
-- [hyprland](modules/home-manager/hyprland) - Hyprland submodule
+- [hyprland](modules/home-manager/hyprland/default.nix) - Hyprland submodule
   - hyprland.enable `boolean` - Enables the module and its submodules
   - [eww](modules/home-manager/hyprland/eww) - Eww configuration and scripts
   - [rofi](modules/home-manager/hyprland/rofi) - Configures rofi
@@ -147,10 +147,9 @@ Breakdown of the included modules.
   - [hyprshot](modules/home-manager/hyprland/hyprshot.nix) - Configures hyprshot
   - [layer-rules](modules/home-manager/hyprland/layer-rules.nix) - Configures layerrules
   - [monitors](modules/home-manager/hyprland/monitors.nix) - Configures monitors
-  - [wallpaper](modules/home-manager/hyprland/wallpaper.nix) - Configures wallpapers
-    - wallpaper.mpvpaper.enable `boolean` - Enable mpvpaper video wallpaper
-    - wallpaper.awww.enable `boolean` - Enable awww image wallpaper
   - [workspaces](modules/home-manager/hyprland/workspaces.nix) - Configures workspaces
+- [mango](modules/home-manager/mango/default.nix) - Mango submodule
+  - mango.enable `boolean` - Enables the module and its submodules
 - [scripts](modules/home-manager/scripts) - Scripts submodule
   - [conditional-lock](modules/home-manager/scripts/conditional-lock.nix) - When called will lock the system as long as ~/.local/state/no-lock is not present
     - scripts.conditional-lock.enable `boolean` - Enables the module
@@ -289,6 +288,9 @@ Breakdown of the included modules.
     - tmux.tmuxinator.enable `boolean` - Enables tmuxinator
 - [user-dirs](modules/home-manager/user-dirs.nix) - Custom user dirs
   - user-dirs.enable `boolean` - Enables the module
+- [wallpaper](modules/home-manager/wallpaper.nix) - Configures wallpapers
+  * wallpaper.mpvpaper.enable `boolean` - Enable mpvpaper video wallpaper
+  * wallpaper.awww.enable `boolean` - Enable awww image wallpaper
 - [zsh](modules/home-manager/zsh/default.nix) - Configure zsh
   - zsh.enable `boolean` - Enables the module
   - zsh.zoxide.enable `boolean` - Enables zoxide

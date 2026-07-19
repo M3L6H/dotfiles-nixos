@@ -4,27 +4,32 @@
   pkgs,
   ...
 }:
+with lib;
 {
   options = {
-    software.firefox.enable = lib.mkEnableOption "enables firefox module";
+    software.firefox.enable = mkEnableOption "enables firefox module";
   };
 
   config =
     let
       enable = config.software.firefox.enable;
     in
-    lib.mkIf enable {
+    mkIf enable {
       programs.firefox = {
         enable = true;
         package = pkgs.firefox-esr;
       };
+
+      wayland.windowManager.mango.settings.bind = mkIf config.mango.enable [
+        "SUPER,D,spawn,firefox"
+      ];
 
       home = {
         sessionVariables = {
           MOZ_ENABLE_WAYLAND = 1;
         };
       }
-      // lib.optionalAttrs config.impermanence.enable {
+      // optionalAttrs config.impermanence.enable {
         persistence."/persist".directories = [
           ".mozilla/firefox"
         ];

@@ -23,7 +23,10 @@
   gpg.enable = true;
 
   # Enable management of hyprland through home-manager
-  hyprland.enable = true;
+  hyprland.enable = false;
+
+  # Enable management of mango through home-manager
+  mango.enable = true;
 
   # Enable custom neovim flake
   neovim.enable = true;
@@ -139,5 +142,10 @@
       position = "0x0";
       scale = "2";
     }
+  ];
+
+  # Mango stuff
+  wayland.windowManager.mango.settings.monitorrule = [
+    "name:eDP-1,width:3840,height:2160,refresh:60,x:0,y:0,scale:2"
   ];
 }

@@ -23,6 +23,7 @@
     };
 
     programs.hyprlock.enable = true;
+    security.pam.services.hyprland.enableGnomeKeyring = true;
 
     environment.sessionVariables = {
       # Hint electron apps to use wayland
@@ -33,29 +34,12 @@
       # Enable compatibility between the EGL API and the Wayland protocol
       egl-wayland
 
-      # Wallpaper engine
-      mpvpaper # For video wallpapers
-      awww
-
       # App launcher
       rofi
 
       # Authentication
       hyprpolkitagent
-
-      # Networking
-      networkmanagerapplet
     ];
-
-    services = {
-      gnome.gnome-keyring.enable = true;
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-      };
-    };
 
     # Hyprland in nixos by default will use xdg-desktop-portal-hyprland for its
     # portalPackage. This is here because the hyprland portal does not provide
@@ -63,25 +47,6 @@
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    };
-
-    security = {
-      pam.services.hyprland.enableGnomeKeyring = true;
-      polkit.enable = true;
-    };
-
-    systemd.user.services.awww-daemon = {
-      description = "awww-daemon";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.awww}/bin/awww-daemon";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
     };
   };
 }

@@ -6,7 +6,7 @@
 }:
 with lib;
 {
-  config = mkIf config.hyprland.enable {
+  config = {
     home.packages = with pkgs; [
       # Notifications
       mako
