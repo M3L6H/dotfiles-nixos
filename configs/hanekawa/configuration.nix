@@ -47,6 +47,12 @@
 
   networking.hostName = hostname;
 
+  # Enable hyprland module
+  hyprland.enable = false;
+
+  # Enable mango module
+  mango.enable = true;
+
   swapDevices = [
     {
       device = "/swapfile";

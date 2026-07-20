@@ -17,7 +17,10 @@
   gpg.enable = true;
 
   # Enable management of hyprland through home-manager
-  hyprland.enable = true;
+  hyprland.enable = false;
+
+  # Enable management of mango through home-manager
+  mango.enable = true;
 
   # Enable custom neovim flake
   neovim.enable = true;
