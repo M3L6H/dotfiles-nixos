@@ -34,11 +34,11 @@ with lib;
     ];
 
     wayland.windowManager.mango.settings = mkIf config.mango.enable {
-      windowrule = [
-        "tags:3,appid:vivaldi-stable"
-      ];
       bind = [
         "SUPER,D,spawn,vivaldi"
+      ];
+      windowrule = [
+        "tags:3,appid:vivaldi-stable"
       ];
     };
 

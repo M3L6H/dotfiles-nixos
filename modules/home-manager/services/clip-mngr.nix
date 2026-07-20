@@ -26,7 +26,7 @@ with lib;
         };
       };
       theme = {
-        useCustomTheme = true;
+        useCustomTheme = false;
         DimmedDesc = "#9e9b93";
         DimmedTitle = "#a6a69c";
         FilteredMatch = "#b6927b";
@@ -43,8 +43,8 @@ with lib;
       };
     };
 
-    wayland.windowManager = mkIf config.hyprland.enable {
-      hyprland.settings = {
+    wayland.windowManager = {
+      hyprland.settings = mkIf config.hyprland.enable {
         bind = [
           {
             _args = [
@@ -66,6 +66,15 @@ with lib;
               "652"
             ];
           }
+        ];
+      };
+
+      mango.settings = mkIf config.mango.enable {
+        bind = [
+          "SUPER+SHIFT,C,spawn,${config.terminal.emulator} --class=com.example.clipse -e 'clipse'"
+        ];
+        windowrule = [
+          "isfloating:1,width:622,height:652,appid:com.example.clipse"
         ];
       };
     };

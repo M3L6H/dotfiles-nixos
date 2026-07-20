@@ -89,6 +89,10 @@ with lib;
             ]
           ) 9
         ));
+
+        source-optional = mkIf config.autoTheme.enable [
+          "~/.config/mango/colors.conf"
+        ];
       };
       systemd = {
         enable = true;

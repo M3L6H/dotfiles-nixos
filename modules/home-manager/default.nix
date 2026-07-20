@@ -2,6 +2,7 @@
 with lib;
 {
   imports = [
+    ./autoTheme
     ./games
     ./hyprland
     ./mango
@@ -23,6 +24,7 @@ with lib;
     ./zsh.nix
   ];
 
+  autoTheme.enable = mkDefault false;
   hyprland.enable = mkDefault false;
   mango.enable = mkDefault false;
 

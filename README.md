@@ -133,6 +133,8 @@ Breakdown of the included modules.
 
 ### [home-manager](modules/home-manager) - Home Manager modules
 
+- [autoTheme](/modules/home-manager/autoTheme/default.nix) - Module for auto theming
+  - autoTheme.enable `boolean` - Enables the module and its submodules
 - [games](/modules/home-manager/games) - Central module for all games
   - [minecraft](/modules/home-manager/games/minecraft.nix) - Installs minecraft via prismlauncher
     - games.minecraft.enable `boolean` - Enables the module

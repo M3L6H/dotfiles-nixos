@@ -22,11 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mangowm = {
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprcursor = {
       url = "git+https://github.com/hyprwm/hyprcursor?ref=refs%2Fheads%2Fmain";
     };
@@ -61,6 +56,13 @@
       url = "github:m3l6h/dotfiles-zsh";
       # url = "/home/m3l6h/files/dev/m3l6h/dotfiles-zsh";
     };
+
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    matugen.url = "github:InioX/Matugen";
 
     phinger = {
       url = "github:Jappie3/hyprcursor-phinger";

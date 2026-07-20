@@ -19,6 +19,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Enable automatic theming
+  autoTheme.enable = true;
+
   # Enable GPG keys
   gpg.enable = true;
 
