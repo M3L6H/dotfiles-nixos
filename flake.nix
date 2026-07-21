@@ -49,6 +49,7 @@
 
     m3l6h-tmux = {
       url = "github:m3l6h/dotfiles-tmux";
+      # url = "/home/m3l6h/files/dev/m3l6h/dotfiles-tmux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
