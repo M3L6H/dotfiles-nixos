@@ -21,6 +21,12 @@ with lib;
         output_path = '~/.config/mango/colors.conf'
         post_hook = '>/dev/null 2>&1 mmsg dispatch reload_config'
       '';
+
+      rofiConf = ''
+        [templates.rofi]
+        input_path = '~/${confRoot}/rofi.rasi'
+        output_path = '~/.config/rofi/colors.rasi'
+      '';
     in
     mkIf config.autoTheme.enable {
       home.packages = with pkgs; [
@@ -31,8 +37,10 @@ with lib;
         [config]
 
         ${if config.mango.enable then mangoConf else ""}
+        ${if config.rofi.enable then rofiConf else ""}
       '';
 
-      home.file."${confRoot}/mango.conf".source = mkIf config.mango.enable ./mango.conf;
+      home.file."${confRoot}/mango.conf".source = mkIf config.mango.enable ./templates/mango.conf;
+      home.file."${confRoot}/rofi.rasi".source = mkIf config.mango.enable ./templates/rofi.rasi;
     };
 }

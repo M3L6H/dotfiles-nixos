@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+if [ -n "$1" ]; then
+            # If we selected a specific wallpaper, then display it
+            if [ -n "$selection" ]; then
+              systemctl --user stop mpvpaper.service
+
+              # If we selected a video wallpaper, use mpvpaper
+              if [ "''${selection#*.}" = 'mp4' ]; then
+                echo "VIDEO=$selection" > "''${HOME}/.local/state/mpvpaper"
+                systemctl --user start mpvpaper.service
+              # Otherwise use awww
+              else
+                for monitor in ${config.wallpaper.monitors}; do
+                  awww img -o "$monitor" --transition-type center "$selection"
+                  sleep 1
+                done
+                ${if config.autoTheme.enable then autoThemeScript else ""}
+                echo "$selection" > "''${HOME}/.config/wallpaper/wallpaper"
+                rm "''${HOME}/.config/wallpaper/lockscreen"
+                ln -s "$selection" "''${HOME}/.config/wallpaper/lockscreen"
+              fi
+            # Otherwise toggle between video and image wallpaper
+            elif ! systemctl is-active --quiet --user mpvpaper.service; then
+              systemctl --user start mpvpaper.service
+            else
+              systemctl --user stop mpvpaper.service
+            fi
+  exit 0
+fi
+
+shopt -s extglob
+
+first=true
+
+for f in ~/files/images/wallpaper/!(*.json); do
+  [ -f "$f" ] || continue
+
+  if "$first"; then
+    rofi-preview.sh "$f"
+    first=false
+  fi
+
+  name="$(basename "$f")"
+
+  echo -ne "${f}\0display\x1f${name}\0icon\x1fthumbnail://${f}\n"
+done

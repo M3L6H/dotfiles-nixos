@@ -6,6 +6,7 @@ with lib;
     ./games
     ./hyprland
     ./mango
+    ./rofi
     ./scripts
     ./services
     ./software
@@ -27,6 +28,7 @@ with lib;
   autoTheme.enable = mkDefault false;
   hyprland.enable = mkDefault false;
   mango.enable = mkDefault false;
+  rofi.enable = mkDefault true;
 
   gpg.enable = mkDefault false;
   impermanence.enable = mkDefault true;

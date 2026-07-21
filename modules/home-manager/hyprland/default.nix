@@ -17,7 +17,6 @@ with lib;
   };
 
   imports = [
-    ./rofi
     ./binds.nix
     ./eww.nix
     ./hyprcursor.nix

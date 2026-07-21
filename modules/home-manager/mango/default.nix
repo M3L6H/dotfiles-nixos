@@ -71,8 +71,6 @@ with lib;
           "SUPER+SHIFT,Q,killclient,force"
           "SUPER+ALT+CTRL+SHIFT,Q,quit"
 
-          "SUPER,Space,spawn,rofi -show drun"
-
           "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"

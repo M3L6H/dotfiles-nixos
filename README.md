@@ -140,8 +140,6 @@ Breakdown of the included modules.
     - games.minecraft.enable `boolean` - Enables the module
 - [hyprland](modules/home-manager/hyprland/default.nix) - Hyprland submodule
   - hyprland.enable `boolean` - Enables the module and its submodules
-  - [eww](modules/home-manager/hyprland/eww) - Eww configuration and scripts
-  - [rofi](modules/home-manager/hyprland/rofi) - Configures rofi
   - [binds](modules/home-manager/hyprland/binds.nix) - Sets hyprland keybinds
   - [eww](modules/home-manager/hyprland/eww.nix) - Configues eww
   - [hypridle](modules/home-manager/hyprland/hypridle.nix) - Configures hypridle
@@ -152,6 +150,8 @@ Breakdown of the included modules.
   - [workspaces](modules/home-manager/hyprland/workspaces.nix) - Configures workspaces
 - [mango](modules/home-manager/mango/default.nix) - Mango submodule
   - mango.enable `boolean` - Enables the module and its submodules
+- [rofi](modules/home-manager/rofi/default.nix) - Rofi submodule
+  - rofi.enable `boolean` - Enables the module
 - [scripts](modules/home-manager/scripts) - Scripts submodule
   - [conditional-lock](modules/home-manager/scripts/conditional-lock.nix) - When called will lock the system as long as ~/.local/state/no-lock is not present
     - scripts.conditional-lock.enable `boolean` - Enables the module
