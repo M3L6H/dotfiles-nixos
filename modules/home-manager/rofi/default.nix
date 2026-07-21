@@ -27,32 +27,35 @@
         text = ''
           #!/usr/bin/env bash
 
-          if [ -n "$1" ]; then
-            # If we selected a specific wallpaper, then display it
-            if [ -n "$selection" ]; then
-              systemctl --user stop mpvpaper.service
+          change_wp() {
+            exec 0<&- # Close stdin
+            exec >/dev/null 2>&1
 
-              # If we selected a video wallpaper, use mpvpaper
-              if [ "''${selection#*.}" = 'mp4' ]; then
-                echo "VIDEO=$selection" > "''${HOME}/.local/state/mpvpaper"
-                systemctl --user start mpvpaper.service
-              # Otherwise use awww
-              else
-                for monitor in ${config.wallpaper.monitors}; do
-                  awww img -o "$monitor" --transition-type center "$selection"
-                  sleep 1
-                done
-                ${if config.autoTheme.enable then autoThemeScript else ""}
-                echo "$selection" > "''${HOME}/.config/wallpaper/wallpaper"
-                rm "''${HOME}/.config/wallpaper/lockscreen"
-                ln -s "$selection" "''${HOME}/.config/wallpaper/lockscreen"
-              fi
-            # Otherwise toggle between video and image wallpaper
-            elif ! systemctl is-active --quiet --user mpvpaper.service; then
+            selection="$1"
+
+            systemctl --user stop mpvpaper.service
+
+            # If we selected a video wallpaper, use mpvpaper
+            if [ "''${selection#*.}" = 'mp4' ]; then
+              echo "VIDEO=$selection" > "''${HOME}/.local/state/mpvpaper"
               systemctl --user start mpvpaper.service
+            # Otherwise use awww
             else
-              systemctl --user stop mpvpaper.service
+              for monitor in ${config.wallpaper.monitors}; do
+                awww img -o "$monitor" --transition-type center "$selection"
+                sleep 1
+              done
+              ${if config.autoTheme.enable then autoThemeScript else ""}
+              echo "$selection" > "''${HOME}/.config/wallpaper/wallpaper"
+              rm "''${HOME}/.config/wallpaper/lockscreen"
+              ln -s "$selection" "''${HOME}/.config/wallpaper/lockscreen"
             fi
+          }
+
+          if [ -n "$1" ]; then
+            (change_wp "$1") &
+            disown $!
+
             exit 0
           fi
 

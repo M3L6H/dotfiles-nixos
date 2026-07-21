@@ -55,12 +55,10 @@
   wallpaper.awww.enable = true;
 
   # Wallpaper init script
-  wallpaper.initScript = "${pkgs.writeShellScript "awww-init-wallpaper" ''
-    #!/run/current-system/sw/bin/bash
-
+  wallpaper.initScript = ''
     sleep 2 # Delay to ensure Wayland is ready
     ${pkgs.awww}/bin/awww img -t fade -o eDP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
-  ''}";
+  '';
 
   wallpaper.monitors = "eDP-1";
 

@@ -13,12 +13,13 @@ with lib;
       libnotify
     ];
 
-    home.file.".config/mako/config" = {
-      source = ./mako.ini;
+    home.file.".config/mako" = {
+      source = ./config;
+      recursive = true;
     };
 
-    wayland.windowManager = mkIf config.hyprland.enable {
-      hyprland.settings.bind = [
+    wayland.windowManager = {
+      hyprland.settings.bind = mkIf config.hyprland.enable [
         {
           _args = [
             "SUPER + M"
@@ -26,6 +27,9 @@ with lib;
             { description = "Dismiss notifications"; }
           ];
         }
+      ];
+      mango.settings.bind = mkIf config.mango.enable [
+        "SUPER,M,spawn,makoctl dismiss -a"
       ];
     };
   };

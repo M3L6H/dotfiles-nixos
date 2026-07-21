@@ -6,6 +6,7 @@ with lib;
     ./games
     ./hyprland
     ./mango
+    ./notify
     ./rofi
     ./scripts
     ./services
@@ -17,7 +18,6 @@ with lib;
     ./gpg.nix
     ./impermanence.nix
     ./neovim.nix
-    ./notify.nix
     ./user-dirs.nix
     ./terminal.nix
     ./tmux.nix

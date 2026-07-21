@@ -15,6 +15,13 @@ with lib;
     let
       confRoot = ".config/matugen";
 
+      makoConf = ''
+        [templates.mako]
+        input_path = '~/${confRoot}/mako'
+        output_path = '~/.config/mako/mako-colors'
+        post_hook = 'makoctl reload'
+      '';
+
       mangoConf = ''
         [templates.mango]
         input_path = '~/${confRoot}/mango.conf'
@@ -36,10 +43,12 @@ with lib;
       home.file."${confRoot}/config.toml".text = ''
         [config]
 
+        ${makoConf}
         ${if config.mango.enable then mangoConf else ""}
         ${if config.rofi.enable then rofiConf else ""}
       '';
 
+      home.file."${confRoot}/mako".source = ./templates/mako;
       home.file."${confRoot}/mango.conf".source = mkIf config.mango.enable ./templates/mango.conf;
       home.file."${confRoot}/rofi.rasi".source = mkIf config.mango.enable ./templates/rofi.rasi;
     };

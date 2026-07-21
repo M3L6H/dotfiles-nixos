@@ -13,6 +13,9 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Enable automatic theming
+  autoTheme.enable = true;
+
   # Enable GPG keys
   gpg.enable = true;
 
@@ -47,16 +50,14 @@
   wallpaper.awww.enable = true;
 
   # Wallpaper init script
-  wallpaper.initScript = "${pkgs.writeShellScript "awww-init-wallpaper" ''
-    #!/run/current-system/sw/bin/bash
-
+  wallpaper.initScript = ''
     sleep 2 # Delay to ensure Wayland is ready
     ${pkgs.awww}/bin/awww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
     sleep 1
     ${pkgs.awww}/bin/awww img -t fade -o HDMI-A-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
     sleep 1
     ${pkgs.awww}/bin/awww img -t fade -o DP-2 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
-  ''}";
+  '';
 
   wallpaper.monitors = "DP-1 HDMI-A-1 DP-2";
 
@@ -179,4 +180,11 @@
       }
     ];
   };
+
+  # Mango stuff
+  wayland.windowManager.mango.settings.monitorrule = [
+    "name:DP-1,width:1920,height:1080,refresh:60,x:0,y:0,scale:1"
+    "name:DP-2,width:3840,height:2160,refresh:60,x:1920,y:0,scale:2"
+    "name:HDMI-A-1,width:1920,height:1080,refresh:60,x:3840,y:0,scale:1"
+  ];
 }

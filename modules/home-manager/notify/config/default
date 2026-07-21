@@ -1,0 +1,6 @@
+[urgency=low]
+border-color=#393836d9
+
+[urgency=high]
+border-color=#c4746ed9
+default-timeout=0

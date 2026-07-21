@@ -1,4 +1,7 @@
-@import "colors.rasi"
+/* Default colors */
+@import "default-colors.rasi"
+
+?import "colors.rasi"
 
 * {
   font: "VictorMono Nerd Font Propo 10";

@@ -17,6 +17,10 @@ with lib;
 
     wallpaper.initScript = mkOption {
       description = "Script to run on boot to initialize the wallpapers";
+      type = types.str;
+      example = ''
+        ${pkgs.awww}/bin/awww img -t fade -o DP-1 "$(cat "''${HOME}/.config/wallpaper/wallpaper")"
+      '';
     };
 
     wallpaper.monitors = mkOption {
@@ -74,23 +78,40 @@ with lib;
           };
         };
 
-        awww-init-wallpaper = mkIf config.wallpaper.awww.enable {
-          Unit = {
-            Description = "awww-init-wallpaper";
-            Wants = [ "awww-daemon.service" ];
-            After = [ "awww-daemon.service" ];
+        awww-init-wallpaper =
+          let
+            autoThemeScript = ''
+              wp="$(cat "''${HOME}/.config/wallpaper/wallpaper")"
+              confFile="''${wp%.*}.json"
+              if ! [ -f "$confFile" ]; then
+                matugen image "$wp" --json hex -t scheme-smart --prefer less-saturation > "$confFile"
+              fi
+              matugen json "$confFile"
+            '';
+          in
+          mkIf config.wallpaper.awww.enable {
+            Unit = {
+              Description = "awww-init-wallpaper";
+              Wants = [ "awww-daemon.service" ];
+              After = [ "awww-daemon.service" ];
+            };
+            Install = {
+              WantedBy = [ "awww-daemon.service" ];
+            };
+            Service = {
+              Type = "oneshot";
+              ExecStart = "${pkgs.writeShellScript "awww-init-wallpaper" ''
+                #!/run/current-system/sw/bin/bash
+
+                ${config.wallpaper.initScript}
+
+                ${if config.autoTheme.enable then autoThemeScript else ""}
+              ''}";
+              Restart = "on-failure";
+              RestartSec = 1;
+              TimeoutStopSec = 10;
+            };
           };
-          Install = {
-            WantedBy = [ "awww-daemon.service" ];
-          };
-          Service = {
-            Type = "oneshot";
-            ExecStart = config.wallpaper.initScript;
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
-          };
-        };
 
         mpvpaper-pre = {
           Unit = {
