@@ -3,6 +3,10 @@
 
 ?import "colors.rasi"
 
+configuration {
+  show-icons: true;
+}
+
 * {
   font: "VictorMono Nerd Font Propo 10";
   background: @surface-container;
@@ -18,7 +22,8 @@ window {
   location: center;
   anchor: center;
   fullscreen: false;
-  width: 1000px;
+  width: 50%;
+  height: 70%;
   x-offset: 0px;
   y-offset: 0px;
 
@@ -32,16 +37,24 @@ mainbox {
   enabled: true;
   spacing: 0px;
   background-color: transparent;
-  orientation: horizontal;
-  children: [ "imagebox", "listbox" ];
+  orientation: vertical;
+  children: [ "inputbar", "listbox", "icon-current-entry" ];
 }
 
-imagebox {
-  padding: 20px;
-  background-color: transparent;
-  background-image: url("~/.config/rofi/images/preview.png", height);
+/*
+sidebox {
+  width: calc(60%);
+  spacing: 20px;
   orientation: vertical;
-  children: [ "inputbar", "dummy", "mode-switcher" ];
+  background-color: transparent;
+  children: [ "inputbar", "icon-current-entry" ];
+}
+*/
+
+icon-current-entry {
+  padding: 20px;
+  expand: false;
+  background-color: transparent;
 }
 
 listbox {
@@ -50,10 +63,6 @@ listbox {
   background-color: transparent;
   orientation: vertical;
   children: [ "message", "listview" ];
-}
-
-dummy {
-  background-color: transparent;
 }
 
 /*****----- Inputbar -----*****/
@@ -84,36 +93,16 @@ entry {
   placeholder-color: inherit;
 }
 
-/*****----- Mode Switcher -----*****/
-mode-switcher{
-  enabled: true;
-  spacing: 20px;
-  background-color: transparent;
-  text-color: @foreground;
-}
-
-button {
-  padding: 15px;
-  border-radius: 10px;
-  background-color: @background-alt;
-  text-color: inherit;
-  cursor: pointer;
-}
-
-button selected {
-  background-color: @selected;
-  text-color: @foreground;
-}
-
 /*****----- Listview -----*****/
 listview {
   enabled: true;
-  columns: 1;
-  lines: 8;
+  columns: 8;
+  lines: 1;
   cycle: true;
-  dynamic: true;
+  dynamic: false;
   scrollbar: false;
   layout: vertical;
+  flow: horizontal;
   reverse: false;
   fixed-height: true;
   fixed-columns: true;
@@ -127,12 +116,14 @@ listview {
 /*****----- Elements -----*****/
 element {
   enabled: true;
-  spacing: 15px;
-  padding: 8px;
+  spacing: 2px;
+  padding: 4px;
   border-radius: 10px;
   background-color: transparent;
   text-color: @foreground;
   cursor: pointer;
+  children: [ "element-icon", "element-text" ];
+  orientation: vertical;
 }
 
 element normal.normal {
@@ -168,7 +159,7 @@ element selected.active {
 element-icon {
   background-color: transparent;
   text-color: inherit;
-  size: 32px;
+  size: 4em;
   cursor: inherit;
 }
 
@@ -177,7 +168,7 @@ element-text {
   text-color: inherit;
   cursor: inherit;
   vertical-align: 0.5;
-  horizontal-align: 0.0;
+  horizontal-align: 0.5;
 }
 
 /*****----- Message -----*****/

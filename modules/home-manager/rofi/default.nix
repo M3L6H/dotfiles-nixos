@@ -73,7 +73,7 @@
 
             name="$(basename "$f")"
 
-            echo -ne "''${f}\0display\x1f''${name}\0icon\x1fthumbnail://''${f}\n"
+            echo -ne "''${f}\0display\x1f''${name}\x1ficon\x1f''${f}\n"
           done
         '';
 

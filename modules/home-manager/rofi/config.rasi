@@ -74,8 +74,8 @@ configuration {
 /*	kb-move-end: "Control+e";*/
 /*	kb-move-word-back: "Alt+b,Control+Left";*/
 /*	kb-move-word-forward: "Alt+f,Control+Right";*/
-/*	kb-move-char-back: "Left,Control+b";*/
-  kb-move-char-forward: "Right";
+	kb-move-char-back: "Alt+h,Left,Control+b";
+  kb-move-char-forward: "Alt+l,Right";
 /*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
 /*	kb-remove-word-forward: "Control+Alt+d";*/
   kb-remove-char-forward: "Delete";
