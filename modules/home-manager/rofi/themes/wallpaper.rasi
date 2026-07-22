@@ -15,6 +15,7 @@ configuration {
   selected: @primary;
   active: @secondary;
   urgent: @error;
+  border: 2;
 }
 
 window {
@@ -22,8 +23,6 @@ window {
   location: center;
   anchor: center;
   fullscreen: false;
-  width: 50%;
-  height: 70%;
   x-offset: 0px;
   y-offset: 0px;
 
@@ -41,25 +40,17 @@ mainbox {
   children: [ "inputbar", "listbox", "icon-current-entry" ];
 }
 
-/*
-sidebox {
-  width: calc(60%);
-  spacing: 20px;
-  orientation: vertical;
-  background-color: transparent;
-  children: [ "inputbar", "icon-current-entry" ];
-}
-*/
-
 icon-current-entry {
-  padding: 20px;
-  expand: false;
+  margin: 0px;
+  padding: 0px;
+  size: 50%;
+  expand: true;
   background-color: transparent;
 }
 
 listbox {
   spacing: 20px;
-  padding: 20px;
+  padding: 0px;
   background-color: transparent;
   orientation: vertical;
   children: [ "message", "listview" ];
@@ -96,7 +87,7 @@ entry {
 /*****----- Listview -----*****/
 listview {
   enabled: true;
-  columns: 8;
+  columns: 5;
   lines: 1;
   cycle: true;
   dynamic: false;
@@ -104,6 +95,7 @@ listview {
   layout: vertical;
   flow: horizontal;
   reverse: false;
+  expand: false;
   fixed-height: true;
   fixed-columns: true;
 

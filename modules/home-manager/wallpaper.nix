@@ -38,7 +38,7 @@ with lib;
         text = ''
           #!/usr/bin/env sh
 
-          rofi -show wp -modes 'wp:rofi-wallpaper.sh' -show-icons -theme wallpaper -on-selection-changed 'rofi-preview.sh'
+          rofi -show wp -modes 'wp:rofi-wallpaper.sh' -show-icons -theme wallpaper
         '';
       };
 

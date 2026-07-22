@@ -5,11 +5,11 @@
   };
 
   config = mkIf config.rofi.enable {
-    home.file.".local/bin" = {
-      source = ./scripts;
-      executable = true;
-      recursive = true;
-    };
+    # home.file.".local/bin" = {
+    #   source = ./scripts;
+    #   executable = true;
+    #   recursive = true;
+    # };
 
     home.file.".local/bin/rofi-wallpaper.sh" =
       let
