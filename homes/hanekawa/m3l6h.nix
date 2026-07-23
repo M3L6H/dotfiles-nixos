@@ -28,6 +28,9 @@
   # Enable custom neovim flake
   neovim.enable = true;
 
+  # Enable quickshell
+  quickshell.enable = true;
+
   # Enable terminal
   terminal.enable = true;
 

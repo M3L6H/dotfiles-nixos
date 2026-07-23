@@ -7,6 +7,7 @@ with lib;
     ./hyprland
     ./mango
     ./notify
+    ./quickshell
     ./rofi
     ./scripts
     ./services
@@ -28,7 +29,8 @@ with lib;
   autoTheme.enable = mkDefault false;
   hyprland.enable = mkDefault false;
   mango.enable = mkDefault false;
-  rofi.enable = mkDefault true;
+  quickshell.enable = mkDefault false;
+  rofi.enable = mkDefault false;
 
   gpg.enable = mkDefault false;
   impermanence.enable = mkDefault true;
