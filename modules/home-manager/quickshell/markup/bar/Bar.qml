@@ -28,6 +28,7 @@ Item {
             right: parent.right
         }
 
+        Components.Wifi {}
         Components.Battery {}
         Components.DateTime {}
     }
