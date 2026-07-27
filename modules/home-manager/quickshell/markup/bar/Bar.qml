@@ -37,7 +37,7 @@ Item {
             radius: height / 2
 
             Layout.margins: 6
-            Layout.preferredHeight: rightBarLayout.implicitHeight
+            Layout.fillHeight: true
             Layout.preferredWidth: rightBarLayout.implicitWidth
             Layout.minimumWidth: height
 

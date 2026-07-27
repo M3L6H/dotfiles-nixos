@@ -12,7 +12,7 @@ Item {
     property int percentage
 
     Layout.alignment: Qt.AlignCenter
-    Layout.preferredHeight: batText.implicitHeight
+    Layout.fillHeight: true
     Layout.preferredWidth: batText.implicitWidth
     Layout.rightMargin: 16
     Layout.leftMargin: 16
@@ -42,7 +42,7 @@ Item {
     }
 
     Text {
-      id: batText
+        id: batText
 
         font {
             family: "VictorMono Nerd Font Propo 10"

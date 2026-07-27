@@ -11,7 +11,6 @@ Rectangle {
     id: tagsRoot
 
     readonly property int hPadding: 8
-    readonly property int vPadding: 4
 
     readonly property var tagNames: ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
 
@@ -22,15 +21,16 @@ Rectangle {
     radius: height / 2
 
     Layout.margins: 6
-    Layout.preferredHeight: tagsLayout.implicitHeight + (2 * vPadding)
+    Layout.fillHeight: true
     Layout.preferredWidth: tagsLayout.implicitWidth + (2 * hPadding)
 
     RowLayout {
         id: tagsLayout
 
         x: parent.hPadding
-        y: parent.vPadding
         spacing: 4
+
+        anchors.verticalCenter: parent.verticalCenter
 
         Repeater {
             model: tagsModel
