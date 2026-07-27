@@ -24,8 +24,11 @@ Rectangle {
         Item {
             id: batteryRoot
 
+            readonly property int maxSamples: 10
+
             property bool charging
             property int percentage
+            property var remainingSamples: []
             property int remaining
 
             Layout.alignment: Qt.AlignCenter
@@ -63,7 +66,15 @@ Rectangle {
                         const parts = data.split(':');
                         const h = parseInt(parts[0]);
                         const m = parseInt(parts[1]);
-                        batteryRoot.remaining = h * 60 + m;
+                        const remainingRaw = h * 60 + m;
+
+                        batteryRoot.remainingSamples.push(remainingRaw);
+
+                        if (batteryRoot.remainingSamples.length > batteryRoot.maxSamples) {
+                            batteryRoot.remainingSamples.shift();
+                        }
+
+                        batteryRoot.remaining = batteryRoot.remainingSamples.reduce((acc, curr) => acc + curr, 0) / batteryRoot.remainingSamples.length;
                     }
                 }
             }
