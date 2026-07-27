@@ -9,34 +9,15 @@ Singleton {
     property alias base16: jsonAdapter.base16
     property alias palette: jsonAdapter.palette
 
-    Timer {
-        id: useDefault
-        interval: 0
-        repeat: false
-        onTriggered: {
-            colorFile.path = colorFile.fallbackPath;
-            colorFile.reload();
-        }
-    }
-
     FileView {
         id: colorFile
 
         property string primaryPath: Quickshell.env("HOME") + "/.local/state/quickshell/generated/colors.json"
-        property string fallbackPath: Quickshell.env("HOME") + "/.local/state/quickshell/generated/defaultColors.json"
 
         path: primaryPath
         watchChanges: true
 
         onFileChanged: this.reload()
-        onLoadFailed: () => {
-            if (colorFile.path === colorFile.primaryPath) {
-                console.warn("Could not find colors:", colorFile.primaryPath);
-                useDefault.start();
-            } else {
-                console.error("Could not find default colors:", colorFile.fallbackPath);
-            }
-        }
 
         onLoaded: () => {
             console.log("Loaded colors:", colorFile.path);
