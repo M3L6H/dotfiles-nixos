@@ -18,6 +18,7 @@ Item {
         }
 
         Components.Tags {}
+        Components.System {}
     }
 
     RowLayout {
@@ -27,25 +28,7 @@ Item {
             right: parent.right
         }
 
-        Rectangle {
-            id: systemRoot
-
-            readonly property int hPadding: 4
-            readonly property int vPadding: 2
-
-            color: Colors.md3.surface_container
-            radius: height / 2
-
-            Layout.margins: 6
-            Layout.fillHeight: true
-            Layout.preferredWidth: rightBarLayout.implicitWidth
-            Layout.minimumWidth: height
-
-            RowLayout {
-                id: rightBarLayout
-
-                Components.Battery {}
-            }
-        }
+        Components.Battery {}
+        Components.DateTime {}
     }
 }
