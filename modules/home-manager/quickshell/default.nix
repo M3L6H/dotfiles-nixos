@@ -13,15 +13,25 @@ with lib;
 
   config =
     let
+      pkg = inputs.quickshell.packages.${system}.default;
       system = pkgs.stdenv.hostPlatform.system;
     in
     mkIf config.quickshell.enable {
       home.packages = with pkgs; [
-        inputs.quickshell.packages.${system}.default
         qt6.qttools
         qt6.qtbase.dev
         qt6.qtdoc
       ];
+
+      programs.quickshell = {
+        enable = true;
+        package = pkg;
+
+        systemd = {
+          enable = true;
+          target = mkIf config.mango.enable "mango-session.target";
+        };
+      };
 
       home.file.".config/quickshell" = {
         source = ./markup;

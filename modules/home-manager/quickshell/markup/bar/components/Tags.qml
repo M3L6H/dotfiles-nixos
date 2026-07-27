@@ -11,7 +11,7 @@ Rectangle {
     id: tagsRoot
 
     readonly property int hPadding: 8
-    readonly property int vPadding: 2
+    readonly property int vPadding: 4
 
     readonly property var tagNames: ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
 

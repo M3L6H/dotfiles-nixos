@@ -27,9 +27,6 @@ with lib;
           "nm-applet &"
           "systemctl --user reset-failed"
           "systemctl --user start mango-session.target"
-        ]
-        ++ optionals config.quickshell.enable [
-          "qs &"
         ];
 
         xkb_rules_options = "caps:escape";
@@ -40,7 +37,7 @@ with lib;
         focus_cross_monitor = 1;
         exchange_cross_monitor = 1;
 
-        borderpx = 4;
+        borderpx = 2;
         gappih = 4;
         gappiv = 4;
         gappoh = 8;

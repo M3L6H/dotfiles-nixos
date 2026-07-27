@@ -6,9 +6,7 @@ import "components" as Components
 Item {
     id: bar
 
-    implicitHeight: 36
-    anchors.left: parent.left
-    anchors.right: parent.right
+    anchors.fill: parent
 
     RowLayout {
         anchors {

@@ -9,21 +9,41 @@ Singleton {
     property alias base16: jsonAdapter.base16
     property alias palette: jsonAdapter.palette
 
+    Timer {
+        id: useDefault
+        interval: 0
+        repeat: false
+        onTriggered: {
+            colorFile.path = colorFile.fallbackPath;
+            colorFile.reload();
+        }
+    }
+
     FileView {
         id: colorFile
-        path: Quickshell.env("HOME") + "/.local/state/quickshell/generated/colors.json"
+
+        property string primaryPath: Quickshell.env("HOME") + "/.local/state/quickshell/generated/colors.json"
+        property string fallbackPath: Quickshell.env("HOME") + "/.local/state/quickshell/generated/defaultColors.json"
+
+        path: primaryPath
         watchChanges: true
-        onFileChanged: reload()
+
+        onFileChanged: this.reload()
         onLoadFailed: () => {
-            console.warn("colors.json not found. Falling back to defaultColors.json");
-            colorFile.path = Quickshell.env("HOME") + "/.local/state/quickshell/generated/defaultColors.json";
+            if (colorFile.path === colorFile.primaryPath) {
+                console.warn("Could not find colors:", colorFile.primaryPath);
+                useDefault.start();
+            } else {
+                console.error("Could not find default colors:", colorFile.fallbackPath);
+            }
         }
+
         onLoaded: () => {
             console.log("Loaded colors:", colorFile.path);
         }
 
         // qmllint disable unresolved-type
-        JsonAdapter {
+        adapter: JsonAdapter {
             id: jsonAdapter
 
             readonly property Md3 md3: Md3 {}

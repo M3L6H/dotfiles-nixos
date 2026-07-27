@@ -33,6 +33,7 @@ with lib;
         [templates.quickshell]
         input_path = '~/${confRoot}/quickshell.json'
         output_path = '~/.local/state/quickshell/generated/colors.json'
+        post_hook = 'systemctl --user reload quickshell'
       '';
 
       rofiConf = ''

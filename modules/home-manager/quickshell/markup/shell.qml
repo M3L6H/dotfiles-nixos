@@ -1,5 +1,7 @@
-import Quickshell // for PanelWindow
-import QtQuick // for Text
+import QtQuick
+import QtQuick.Layouts
+
+import Quickshell
 
 import "bar" as Bar
 
@@ -14,7 +16,7 @@ ShellRoot {
 
         color: "transparent"
 
-        implicitHeight: 30
+        implicitHeight: 36
 
         Bar.Bar {}
     }
