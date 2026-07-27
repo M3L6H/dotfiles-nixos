@@ -34,6 +34,9 @@
   # Enable custom neovim flake
   neovim.enable = true;
 
+  # Enable quickshell
+  quickshell.enable = true;
+
   # Enable terminal
   terminal.enable = true;
 
@@ -112,6 +115,9 @@
 
   # Enable gh util
   utils.gh.enable = true;
+
+  # Enable lsof util
+  utils.jq.enable = true;
 
   # Enable lsof util
   utils.lsof.enable = true;

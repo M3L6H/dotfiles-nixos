@@ -29,6 +29,12 @@ with lib;
         post_hook = '>/dev/null 2>&1 mmsg dispatch reload_config'
       '';
 
+      quickshellConf = ''
+        [templates.quickshell]
+        input_path = '~/${confRoot}/quickshell.json'
+        output_path = '~/.local/state/quickshell/generated/colors.json'
+      '';
+
       rofiConf = ''
         [templates.rofi]
         input_path = '~/${confRoot}/rofi.rasi'
@@ -45,11 +51,14 @@ with lib;
 
         ${makoConf}
         ${if config.mango.enable then mangoConf else ""}
+        ${if config.quickshell.enable then quickshellConf else ""}
         ${if config.rofi.enable then rofiConf else ""}
       '';
 
       home.file."${confRoot}/mako".source = ./templates/mako;
       home.file."${confRoot}/mango.conf".source = mkIf config.mango.enable ./templates/mango.conf;
+      home.file."${confRoot}/quickshell.json".source =
+        mkIf config.quickshell.enable ./templates/quickshell.json;
       home.file."${confRoot}/rofi.rasi".source = mkIf config.mango.enable ./templates/rofi.rasi;
     };
 }

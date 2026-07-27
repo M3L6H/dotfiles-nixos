@@ -11,19 +11,23 @@ with lib;
     quickshell.enable = mkEnableOption "enable quickshell module";
   };
 
-  imports = [
-    ./tags
-  ];
-
   config =
     let
       system = pkgs.stdenv.hostPlatform.system;
     in
     mkIf config.quickshell.enable {
-      home.packages = [
+      home.packages = with pkgs; [
         inputs.quickshell.packages.${system}.default
+        qt6.qttools
+        qt6.qtbase.dev
+        qt6.qtdoc
       ];
 
-      home.file.".config/quickshell/shell.qml".source = ./shell.qml;
+      home.file.".config/quickshell" = {
+        source = ./markup;
+        recursive = true;
+      };
+
+      home.file.".local/state/quickshell/generated/defaultColors.json".source = ./defaultColors.json;
     };
 }

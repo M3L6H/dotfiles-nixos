@@ -27,6 +27,9 @@ with lib;
           "nm-applet &"
           "systemctl --user reset-failed"
           "systemctl --user start mango-session.target"
+        ]
+        ++ optionals config.quickshell.enable [
+          "qs &"
         ];
 
         xkb_rules_options = "caps:escape";
@@ -37,7 +40,11 @@ with lib;
         focus_cross_monitor = 1;
         exchange_cross_monitor = 1;
 
-        borderpx = 2;
+        borderpx = 4;
+        gappih = 4;
+        gappiv = 4;
+        gappoh = 8;
+        gappov = 8;
 
         cursor_size = 32;
         cursor_theme = "phinger-cursors-dark";
@@ -79,11 +86,13 @@ with lib;
           builtins.genList (
             i:
             let
-              tag = toString i;
+              tag = toString (i + 1);
             in
             [
               "SUPER,${tag},view,${tag}"
+              "SUPER+CTRL,${tag},toggleview,${tag}"
               "SUPER+SHIFT,${tag},tag,${tag}"
+              "SUPER+CTRL+SHIFT,${tag},toggletag,${tag}"
             ]
           ) 9
         ));
