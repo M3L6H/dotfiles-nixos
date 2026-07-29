@@ -210,7 +210,7 @@ Rectangle {
 
     Process {
         id: togglePanel
-        command: ["qs", "-p", "/etc/nixos/modules/home-manager/quickshell/markup", "ipc", "call", "panelRoot", "toggleOpen"]
+        command: ["qs", "ipc", "call", "panelRoot", "toggleOpen"]
     }
 
     Behavior on bottomLeftRadius {

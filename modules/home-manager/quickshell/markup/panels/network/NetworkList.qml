@@ -4,8 +4,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import ".."
-import "../services" as Services
+import "../.."
+import "../../services" as Services
 
 ScrollView {
     id: networksScroll

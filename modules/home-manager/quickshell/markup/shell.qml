@@ -1,13 +1,12 @@
 import QtQuick
-import QtQuick.Layouts
 
 import Quickshell
 
 import "bar" as Bar
-import "panels" as Panels
+import "panels/network" as Network
 
 ShellRoot {
-    Panels.NetworkPanel {
+    Network.NetworkPanel {
         anchorWin: barWin
         anchorItem: bar.externalNetworkId
     }
