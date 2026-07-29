@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Io
 
 import "../.."
+import "../../services" as Services
 
 Rectangle {
     id: networkPill
@@ -139,7 +140,7 @@ Rectangle {
                         if (wifiRoot.ethernet) {
                             return '󰈀 ';
                         } else if (wifiRoot.wifi) {
-                            return `${getIcon(wifiRoot.strength, ['󰤨', '󰤥', '󰤢', '󰤟'])} ${wifiRoot.network}`;
+                            return `${Services.Network.fn.getIcon(wifiRoot.strength)} ${wifiRoot.network}`;
                         }
 
                         return '󰤮 ';
@@ -161,19 +162,6 @@ Rectangle {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: togglePanel.running = true
-                    }
-
-                    function getIcon(strength, icons) {
-                        const step = 100 / icons.length;
-                        let currPct = 100 - step;
-                        for (const icon of icons) {
-                            if (strength > currPct) {
-                                return icon;
-                            }
-                            currPct -= step;
-                        }
-
-                        return '󰤯';
                     }
                 }
 

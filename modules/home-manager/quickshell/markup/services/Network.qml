@@ -7,6 +7,8 @@ import Quickshell
 Singleton {
     id: networkSvc
 
+    readonly property var icons: ['󰤨', '󰤥', '󰤢', '󰤟']
+
     property alias fn: fn
     property alias networksModel: networksModel
 
@@ -69,7 +71,6 @@ Singleton {
                         security: security?.split(' ') ?? []
                     };
 
-
                     if (networksModel.count <= i) {
                         networksModel.append(network);
                     } else {
@@ -97,6 +98,19 @@ Singleton {
             }
 
             isWifiOnProc.exec(["sh", "-c", "nmcli radio wifi"]);
+        }
+
+        function getIcon(strength: int): string {
+            const step = 100 / networkSvc.icons.length;
+            let currPct = 100 - step;
+            for (const icon of networkSvc.icons) {
+                if (strength > currPct) {
+                    return icon;
+                }
+                currPct -= step;
+            }
+
+            return '󰤯';
         }
 
         function listNetworks() {

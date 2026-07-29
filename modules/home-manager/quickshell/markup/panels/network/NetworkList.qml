@@ -31,6 +31,7 @@ ScrollView {
 
             required property string ssid
             required property string rate
+            required property int signal
 
             color: entryMouseArea.containsMouse ? Colors.md3.inverse_surface : "transparent"
 
@@ -61,11 +62,11 @@ ScrollView {
 
                     color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
                     elide: Qt.ElideRight
-                    text: networkEntry.ssid
+                    text: `${Services.Network.fn.getIcon(networkEntry.signal)}  ${networkEntry.ssid}`
 
                     verticalAlignment: Text.AlignVCenter
 
-                    Layout.preferredWidth: 100
+                    Layout.preferredWidth: 120
                 }
 
                 Text {
@@ -78,6 +79,8 @@ ScrollView {
                     text: networkEntry.rate
 
                     verticalAlignment: Text.AlignVCenter
+
+                    Layout.preferredWidth: 50
                 }
             }
         }
