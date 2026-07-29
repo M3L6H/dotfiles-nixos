@@ -19,6 +19,8 @@ ScrollView {
     ListView {
         id: networksList
 
+        readonly property int scrollPadding: 12
+
         spacing: 4
 
         model: Services.Network.networksModel
@@ -36,7 +38,7 @@ ScrollView {
 
             color: entryMouseArea.containsMouse ? Colors.md3.inverse_surface : "transparent"
 
-            implicitWidth: networksList.width
+            implicitWidth: networksList.width - networksList.scrollPadding
             implicitHeight: 36
             radius: height / 2
 

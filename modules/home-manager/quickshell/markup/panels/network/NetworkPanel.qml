@@ -10,6 +10,7 @@ import "../../services" as Services
 PopupWindow {
     id: panelRoot
 
+    readonly property int coverage: 4
     readonly property int defaultHeight: 400
     readonly property real radius: anchorItem.height / 2
 
@@ -47,7 +48,7 @@ PopupWindow {
     color: "transparent"
 
     implicitWidth: 300
-    implicitHeight: 1
+    implicitHeight: defaultHeight
     visible: false
 
     MouseArea {
@@ -71,56 +72,63 @@ PopupWindow {
 
     // Filler
     Rectangle {
-        readonly property int coverage: 4
-
         anchors.right: parent.right
 
-        y: panelRoot.anchorItem.height - 4
+        y: panelRoot.anchorItem.height - panelRoot.coverage
         implicitWidth: panelRoot.anchorItem.width
-        implicitHeight: 2 * coverage
+        implicitHeight: 2 * panelRoot.coverage
 
         color: Colors.md3.surface_container
     }
 
     Rectangle {
-        id: panel
+        color: "transparent"
+        clip: true
 
-        readonly property int hPadding: 16
-        readonly property int vPadding: 12
-
-        y: panelRoot.anchorItem.height
+        y: panelRoot.anchorItem.height + panelRoot.coverage
         implicitWidth: parent.width
-        implicitHeight: panelRoot.defaultHeight - (panelRoot.radius * 2)
+        implicitHeight: panelRoot.defaultHeight - panelRoot.coverage
 
-        radius: panelRoot.radius
-        topRightRadius: 0
+        Rectangle {
+            id: panel
 
-        color: Colors.md3.surface_container
+            readonly property int hPadding: 16
+            readonly property int vPadding: 12
 
-        Behavior on implicitHeight {
-            NumberAnimation {
-                duration: 250
-                easing.type: Easing.InQuad
+            y: -implicitHeight
+            implicitWidth: parent.width
+            implicitHeight: panelRoot.defaultHeight - (panelRoot.radius * 2) - panelRoot.coverage
+
+            radius: panelRoot.radius
+            topRightRadius: 0
+
+            color: Colors.md3.surface_container
+
+            Behavior on y {
+                NumberAnimation {
+                    duration: 250
+                    easing.type: Easing.InQuad
+                }
             }
-        }
 
-        ColumnLayout {
-            x: panel.hPadding
-            y: panel.vPadding
+            ColumnLayout {
+                x: panel.hPadding
+                y: panel.vPadding
 
-            width: parent.implicitWidth - (2 * panel.hPadding)
-            height: parent.implicitHeight - (2 * panel.vPadding)
+                width: parent.implicitWidth - (2 * panel.hPadding)
+                height: parent.implicitHeight - (2 * panel.vPadding)
 
-            spacing: 12
+                spacing: 12
 
-            NetworkControl {}
-            NetworkList {}
+                NetworkControl {}
+                NetworkList {}
+            }
         }
     }
 
     Shape {
         x: parent.width - panelRoot.anchorItem.width - width
-        y: panelRoot.anchorItem.height - height
+        y: panelRoot.anchorItem.height - height + panelRoot.coverage
         implicitWidth: panelRoot.radius
         implicitHeight: panelRoot.radius
         ShapePath {
@@ -149,20 +157,20 @@ PopupWindow {
 
     NumberAnimation {
         id: openAnim
-        target: panelRoot
-        property: "implicitHeight"
-        from: 1
-        to: panelRoot.defaultHeight
+        target: panel
+        property: "y"
+        from: -panel.implicitHeight
+        to: 0
         easing.type: Easing.OutQuad
         duration: 500
     }
 
     NumberAnimation {
         id: closeAnim
-        target: panelRoot
-        property: "implicitHeight"
-        from: panelRoot.defaultHeight
-        to: 1
+        target: panel
+        property: "y"
+        from: 0
+        to: -panel.implicitHeight
         easing.type: Easing.InQuad
         duration: 500
 

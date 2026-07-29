@@ -114,7 +114,6 @@ Singleton {
         }
 
         function getSecurityIcon(security: string): string {
-            console.log(security, JSON.stringify(security));
             return {
                 wpa1: '󰣮',
                 wpa2: '󱎚',
