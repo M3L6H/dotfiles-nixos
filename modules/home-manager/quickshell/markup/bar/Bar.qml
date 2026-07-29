@@ -8,6 +8,8 @@ import "components" as Components
 Item {
     id: bar
 
+    property alias externalNetworkId: networkPill.externalId
+
     anchors.fill: parent
 
     RowLayout {
@@ -28,8 +30,10 @@ Item {
             right: parent.right
         }
 
-        Components.Network {}
         Components.Battery {}
+        Components.Network {
+            id: networkPill
+        }
         Components.DateTime {}
     }
 }

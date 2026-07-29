@@ -6,8 +6,16 @@ import Quickshell.Io
 import "../.."
 
 Rectangle {
+    id: networkPill
+
+    readonly property real defaultRadius: height / 2
+
+    property alias externalId: networkPill
+
     color: Colors.md3.surface_container
-    radius: height / 2
+    radius: defaultRadius
+    bottomLeftRadius: defaultRadius
+    bottomRightRadius: defaultRadius
 
     Layout.margins: 6
     Layout.leftMargin: 0
@@ -149,6 +157,12 @@ Rectangle {
 
                     Layout.preferredWidth: wifiRoot.wifi ? 100 : 16
 
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: togglePanel.running = true
+                    }
+
                     function getIcon(strength, icons) {
                         const step = 100 / icons.length;
                         let currPct = 100 - step;
@@ -191,6 +205,25 @@ Rectangle {
                     Layout.preferredWidth: implicitWidth
                 }
             }
+        }
+    }
+
+    Process {
+        id: togglePanel
+        command: ["qs", "-p", "/etc/nixos/modules/home-manager/quickshell/markup", "ipc", "call", "panelRoot", "toggleOpen"]
+    }
+
+    Behavior on bottomLeftRadius {
+        NumberAnimation {
+            easing.type: Easing.OutQuad
+            duration: 100
+        }
+    }
+
+    Behavior on bottomRightRadius {
+        NumberAnimation {
+            easing.type: Easing.OutQuad
+            duration: 100
         }
     }
 }
