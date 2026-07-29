@@ -140,7 +140,7 @@ Rectangle {
                         if (wifiRoot.ethernet) {
                             return '󰈀 ';
                         } else if (wifiRoot.wifi) {
-                            return `${Services.Network.fn.getIcon(wifiRoot.strength)} ${wifiRoot.network}`;
+                            return `${Services.Network.fn.getStrengthIcon(wifiRoot.strength)} ${wifiRoot.network}`;
                         }
 
                         return '󰤮 ';

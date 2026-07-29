@@ -7,7 +7,7 @@ import Quickshell
 Singleton {
     id: networkSvc
 
-    readonly property var icons: ['󰤨', '󰤥', '󰤢', '󰤟']
+    readonly property var strengthIcons: ['󰤨', '󰤥', '󰤢', '󰤟']
 
     property alias fn: fn
     property alias networksModel: networksModel
@@ -68,7 +68,7 @@ Singleton {
                         ssid,
                         rate: `${rateNum > 1000 ? Math.round(rateNum / 100) / 10 : rateNum} ${rateNum > 1000 ? 'Gbs' : 'Mbs'}`,
                         signal,
-                        security: security?.split(' ') ?? []
+                        security
                     };
 
                     if (networksModel.count <= i) {
@@ -100,10 +100,10 @@ Singleton {
             isWifiOnProc.exec(["sh", "-c", "nmcli radio wifi"]);
         }
 
-        function getIcon(strength: int): string {
-            const step = 100 / networkSvc.icons.length;
+        function getStrengthIcon(strength: int): string {
+            const step = 100 / networkSvc.strengthIcons.length;
             let currPct = 100 - step;
-            for (const icon of networkSvc.icons) {
+            for (const icon of networkSvc.strengthIcons) {
                 if (strength > currPct) {
                     return icon;
                 }
@@ -111,6 +111,15 @@ Singleton {
             }
 
             return '󰤯';
+        }
+
+        function getSecurityIcon(security: string): string {
+            console.log(security, JSON.stringify(security));
+            return {
+                wpa1: '󰣮',
+                wpa2: '󱎚',
+                wpa3: '󰗻'
+            }[security.toLowerCase()] ?? '󰣯';
         }
 
         function listNetworks() {

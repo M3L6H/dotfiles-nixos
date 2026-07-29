@@ -26,12 +26,13 @@ ScrollView {
         delegate: Rectangle {
             id: networkEntry
 
-            readonly property int hPadding: 8
+            readonly property int hPadding: 12
             readonly property int vPadding: 4
 
             required property string ssid
             required property string rate
             required property int signal
+            required property string security
 
             color: entryMouseArea.containsMouse ? Colors.md3.inverse_surface : "transparent"
 
@@ -53,6 +54,7 @@ ScrollView {
                 x: networkEntry.hPadding
                 y: networkEntry.vPadding
                 height: parent.height - (2 * networkEntry.vPadding)
+                width: parent.width - (2 * networkEntry.hPadding)
 
                 Text {
                     font {
@@ -62,7 +64,7 @@ ScrollView {
 
                     color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
                     elide: Qt.ElideRight
-                    text: `${Services.Network.fn.getIcon(networkEntry.signal)}  ${networkEntry.ssid}`
+                    text: `${Services.Network.fn.getStrengthIcon(networkEntry.signal)}  ${networkEntry.ssid}`
 
                     verticalAlignment: Text.AlignVCenter
 
@@ -81,6 +83,28 @@ ScrollView {
                     verticalAlignment: Text.AlignVCenter
 
                     Layout.preferredWidth: 50
+                }
+
+                Text {
+                    font {
+                        family: "VictorMono Nerd Font Propo 10"
+                        pointSize: 14
+                    }
+
+                    color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
+                    text: {
+                        const security = networkEntry.security.split(' ').filter(str => !!str);
+                        if (security.length === 0) {
+                            return '󰿆 ';
+                        }
+
+                        return security.map(s => Services.Network.fn.getSecurityIcon(s)).join(' ');
+                    }
+
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+
+                    Layout.fillWidth: true
                 }
             }
         }
