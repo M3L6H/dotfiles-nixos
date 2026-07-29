@@ -54,16 +54,21 @@ Singleton {
 
                 for (const line of lines) {
                     const [ssid, _, rate, signal, security] = line.split(/  +/);
-                    const network = {
-                        ssid,
-                        rate,
-                        signal,
-                        security: security?.split(' ') ?? []
-                    };
 
                     if (!ssid) {
                         continue;
                     }
+
+                    const rateParts = rate.split(" ");
+                    const rateNum = rateParts[0];
+
+                    const network = {
+                        ssid,
+                        rate: `${rateNum > 1000 ? Math.round(rateNum / 100) / 10 : rateNum} ${rateNum > 1000 ? 'Gbs' : 'Mbs'}`,
+                        signal,
+                        security: security?.split(' ') ?? []
+                    };
+
 
                     if (networksModel.count <= i) {
                         networksModel.append(network);

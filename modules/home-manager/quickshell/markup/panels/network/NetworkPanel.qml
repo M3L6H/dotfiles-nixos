@@ -10,7 +10,7 @@ import "../../services" as Services
 PopupWindow {
     id: panelRoot
 
-    readonly property int defaultHeight: 300
+    readonly property int defaultHeight: 400
     readonly property real radius: anchorItem.height / 2
 
     required property var anchorWin
@@ -46,7 +46,7 @@ PopupWindow {
 
     color: "transparent"
 
-    implicitWidth: 250
+    implicitWidth: 300
     implicitHeight: 1
     visible: false
 

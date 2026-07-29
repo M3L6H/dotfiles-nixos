@@ -30,6 +30,7 @@ ScrollView {
             readonly property int vPadding: 4
 
             required property string ssid
+            required property string rate
 
             color: entryMouseArea.containsMouse ? Colors.md3.inverse_surface : "transparent"
 
@@ -59,7 +60,22 @@ ScrollView {
                     }
 
                     color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
+                    elide: Qt.ElideRight
                     text: networkEntry.ssid
+
+                    verticalAlignment: Text.AlignVCenter
+
+                    Layout.preferredWidth: 100
+                }
+
+                Text {
+                    font {
+                        family: "VictorMono Nerd Font Propo 10"
+                        pointSize: 10
+                    }
+
+                    color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
+                    text: networkEntry.rate
 
                     verticalAlignment: Text.AlignVCenter
                 }
