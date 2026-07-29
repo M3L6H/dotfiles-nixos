@@ -33,91 +33,11 @@ Rectangle {
         Item {
             id: wifiRoot
 
-            readonly property int updateInterval: 2000
-            readonly property bool connected: ethernet || wifi
-
-            property bool ethernet
-            property bool wifi
-            property int strength
-            property string network
-            property bool vpn
-            property string vpnHost
-
             Layout.alignment: Qt.AlignCenter
             Layout.fillHeight: true
             Layout.preferredWidth: innerLayout.implicitWidth
             Layout.leftMargin: 2
             Layout.rightMargin: 2
-
-            Process {
-                id: wifiProc
-
-                command: ["sh", "-c", "nmcli d | awk '$2==\"wifi\"{ print $3 \" \" $4; }'"]
-
-                stdout: SplitParser {
-                    onRead: data => {
-                        const parts = data.split(" ");
-                        wifiRoot.wifi = parts[0] === 'connected';
-                        wifiRoot.network = parts[1];
-                    }
-                }
-            }
-
-            Process {
-                id: strengthProc
-
-                command: ["sh", "-c", "nmcli -f IN-USE,SIGNAL d wifi | grep '^*' | awk '{ print $2; }'"]
-
-                stdout: SplitParser {
-                    onRead: data => wifiRoot.strength = parseInt(data)
-                }
-            }
-
-            Process {
-                id: ethernetProc
-
-                command: ["sh", "-c", "nmcli d | awk '$2==\"ethernet\"{ print $3; }'"]
-
-                stdout: SplitParser {
-                    onRead: data => {
-                        wifiRoot.ethernet = data === 'connected';
-                    }
-                }
-            }
-
-            Process {
-                id: vpnProc
-
-                command: ["sh", "-c", "nordvpn status"]
-
-                stdout: StdioCollector {
-                    onStreamFinished: () => {
-                        const lines = text.split('\n');
-                        const details = {};
-
-                        for (const line of lines) {
-                            const [key, value] = line.split(': ');
-                            details[key.toLowerCase()] = value;
-                        }
-
-                        wifiRoot.vpn = details.status === 'Connected';
-                        wifiRoot.vpnHost = wifiRoot.vpn ? details.hostname.split('.')[0] : '';
-                    }
-                }
-            }
-
-            Timer {
-                interval: wifiRoot.updateInterval
-                running: true
-                repeat: true
-                triggeredOnStart: true
-                onTriggered: {
-                    wifiProc.running = true;
-                    strengthProc.running = true;
-                    ethernetProc.running = true;
-                    vpnProc.running = true;
-                }
-            }
 
             RowLayout {
                 id: innerLayout
@@ -133,14 +53,14 @@ Rectangle {
                         pointSize: 12
                     }
 
-                    color: wifiRoot.connected ? Colors.md3.secondary : Colors.md3.error
+                    color: Services.Network.isConnected ? Colors.md3.secondary : Colors.md3.error
                     clip: true
-                    elide: wifiRoot.wifi ? Text.ElideRight : Text.ElideNone
+                    elide: Services.Network.isWifi ? Text.ElideRight : Text.ElideNone
                     text: {
-                        if (wifiRoot.ethernet) {
+                        if (Services.Network.isEthernet) {
                             return '󰈀 ';
-                        } else if (wifiRoot.wifi) {
-                            return `${Services.Network.fn.getStrengthIcon(wifiRoot.strength)} ${wifiRoot.network}`;
+                        } else if (Services.Network.isWifi) {
+                            return `${Services.Network.fn.getStrengthIcon(Services.Network.strength)} ${Services.Network.network}`;
                         }
 
                         return '󰤮 ';
@@ -156,7 +76,7 @@ Rectangle {
                         }
                     }
 
-                    Layout.preferredWidth: wifiRoot.wifi ? 100 : 16
+                    Layout.preferredWidth: Services.Network.isWifi ? 100 : 16
 
                     MouseArea {
                         anchors.fill: parent
@@ -173,11 +93,11 @@ Rectangle {
                         pointSize: 12
                     }
 
-                    color: wifiRoot.vpn ? Colors.md3.secondary : Colors.md3.error
+                    color: Services.Network.isVpn ? Colors.md3.secondary : Colors.md3.error
                     clip: true
 
                     text: {
-                        return `󰖂 ${wifiRoot.vpn ? wifiRoot.vpnHost : ''}`;
+                        return `󰖂 ${Services.Network.isVpn ? Services.Network.vpnHost : ''}`;
                     }
 
                     horizontalAlignment: Text.AlignHCenter

@@ -53,6 +53,8 @@ ScrollView {
             RowLayout {
                 id: networkLayout
 
+                readonly property var textColor: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : networkEntry.ssid === Services.Network.network ? Colors.md3.tertiary : Colors.md3.on_surface
+
                 x: networkEntry.hPadding
                 y: networkEntry.vPadding
                 height: parent.height - (2 * networkEntry.vPadding)
@@ -64,7 +66,7 @@ ScrollView {
                         pointSize: 10
                     }
 
-                    color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
+                    color: networkLayout.textColor
                     elide: Qt.ElideRight
                     text: `${Services.Network.fn.getStrengthIcon(networkEntry.signal)}  ${networkEntry.ssid}`
 
@@ -79,7 +81,7 @@ ScrollView {
                         pointSize: 10
                     }
 
-                    color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
+                    color: networkLayout.textColor
                     text: networkEntry.rate
 
                     verticalAlignment: Text.AlignVCenter
@@ -93,7 +95,7 @@ ScrollView {
                         pointSize: 14
                     }
 
-                    color: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : Colors.md3.on_surface
+                    color: networkLayout.textColor
                     text: {
                         const security = networkEntry.security.split(' ').filter(str => !!str);
                         if (security.length === 0) {

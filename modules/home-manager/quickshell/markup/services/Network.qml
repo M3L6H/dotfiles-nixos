@@ -7,7 +7,9 @@ import Quickshell
 Singleton {
     id: networkSvc
 
+    readonly property bool isConnected: isEthernet || isWifi
     readonly property var strengthIcons: ['󰤨', '󰤥', '󰤢', '󰤟']
+    readonly property int updateInterval: 2000
 
     property alias fn: fn
     property alias networksModel: networksModel
@@ -16,8 +18,77 @@ Singleton {
     property bool isWifiChanging: false
     property bool isWifiListing: false
 
+    property bool isEthernet
+    property bool isWifi
+    property int strength
+    property string network
+    property bool isVpn
+    property string vpnHost
+
     ListModel {
         id: networksModel
+    }
+
+    Timer {
+        interval: networkSvc.updateInterval
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            connectionProc.running = true;
+            strengthProc.running = true;
+            vpnProc.running = true;
+        }
+    }
+
+    Process {
+        id: connectionProc
+
+        command: ["sh", "-c", "nmcli d | awk '$2==\"wifi\" || $2==\"ethernet\"{ print $2,$3,$4; }'"]
+
+        stdout: SplitParser {
+            onRead: data => {
+                const [type, status, network] = data.split(" ");
+                const connected = status === 'connected';
+                if (type === 'wifi') {
+                    networkSvc.isWifi = connected;
+                    networkSvc.network = network;
+                } else {
+                    networkSvc.isEthernet = connected;
+                }
+            }
+        }
+    }
+
+    Process {
+        id: strengthProc
+
+        command: ["sh", "-c", "nmcli -f IN-USE,SIGNAL d wifi | grep '^*' | awk '{ print $2; }'"]
+
+        stdout: SplitParser {
+            onRead: data => networkSvc.strength = parseInt(data)
+        }
+    }
+
+    Process {
+        id: vpnProc
+
+        command: ["sh", "-c", "nordvpn status"]
+
+        stdout: StdioCollector {
+            onStreamFinished: () => {
+                const lines = text.split('\n');
+                const details = {};
+
+                for (const line of lines) {
+                    const [key, value] = line.split(': ');
+                    details[key.toLowerCase()] = value;
+                }
+
+                networkSvc.isVpn = details.status.toLowerCase() === 'connected';
+                networkSvc.vpnHost = networkSvc.isVpn ? details.hostname.split('.')[0] : '';
+            }
+        }
     }
 
     Process {

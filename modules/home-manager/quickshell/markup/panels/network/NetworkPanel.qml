@@ -122,6 +122,15 @@ PopupWindow {
 
                 NetworkControl {}
                 NetworkList {}
+                Rectangle {
+                    color: Colors.md3.on_surface
+
+                    radius: Layout.preferredHeight / 2
+
+                    Layout.leftMargin: panel.hPadding
+                    Layout.preferredWidth: parent.width - (2 * panel.hPadding)
+                    Layout.preferredHeight: 4
+                }
             }
         }
     }
