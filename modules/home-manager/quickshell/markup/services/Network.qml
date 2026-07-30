@@ -18,12 +18,12 @@ Singleton {
     property bool isWifiChanging: false
     property bool isWifiListing: false
 
-    property bool isEthernet
-    property bool isWifi
-    property int strength
-    property string network
-    property bool isVpn
-    property string vpnHost
+    property bool isEthernet: false
+    property bool isWifi: false
+    property int strength: 0
+    property string network: ""
+    property bool isVpn: false
+    property string vpnHost: ""
 
     ListModel {
         id: networksModel
@@ -108,10 +108,6 @@ Singleton {
 
             if (running) {
                 networkSvc.isWifiOn = !networkSvc.isWifiOn;
-
-                if (!networkSvc.isWifiOn) {
-                    networksModel.clear();
-                }
             }
         }
     }

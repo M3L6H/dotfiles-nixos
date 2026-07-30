@@ -11,7 +11,6 @@ ScrollView {
     id: networksScroll
 
     clip: true
-    visible: Services.Network.isWifiOn
 
     Layout.fillHeight: true
     Layout.fillWidth: true
@@ -44,16 +43,26 @@ ScrollView {
 
             MouseArea {
                 id: entryMouseArea
+                enabled: Services.Network.isWifiOn
 
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                hoverEnabled: true
+                cursorShape: Services.Network.isWifiOn ? Qt.PointingHandCursor : Qt.ArrowCursor
+                hoverEnabled: Services.Network.isWifiOn
             }
 
             RowLayout {
                 id: networkLayout
 
-                readonly property var textColor: entryMouseArea.containsMouse ? Colors.md3.inverse_on_surface : networkEntry.ssid === Services.Network.network ? Colors.md3.tertiary : Colors.md3.on_surface
+                readonly property var textColor: {
+                    if (!Services.Network.isWifiOn) {
+                        return Colors.md3.surface_container_highest;
+                    } else if (entryMouseArea.containsMouse) {
+                        return Colors.md3.inverse_on_surface;
+                    } else if (networkEntry.ssid === Services.Network.network) {
+                        return Colors.md3.tertiary;
+                    }
+                    return Colors.md3.on_surface;
+                }
 
                 x: networkEntry.hPadding
                 y: networkEntry.vPadding

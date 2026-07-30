@@ -36,6 +36,7 @@ Rectangle {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
                 enabled: !Services.Network.isWifiChanging
+                onClicked: Services.Network.fn.toggleWifi()
             }
 
             Behavior on color {
