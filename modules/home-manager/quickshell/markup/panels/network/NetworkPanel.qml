@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
 import Quickshell.Io
+import Quickshell.Widgets
 
 import "../.."
 import "../../services" as Services
@@ -81,13 +82,13 @@ PopupWindow {
         color: Colors.md3.surface_container
     }
 
-    Rectangle {
+    ClippingRectangle {
         color: "transparent"
-        clip: true
 
+        topLeftRadius: panelRoot.radius
         y: panelRoot.anchorItem.height + panelRoot.coverage
         implicitWidth: parent.width
-        implicitHeight: panelRoot.defaultHeight - panelRoot.coverage
+        implicitHeight: panelRoot.defaultHeight - panelRoot.coverage - panelRoot.radius
 
         Rectangle {
             id: panel
@@ -171,8 +172,8 @@ PopupWindow {
         property: "y"
         from: -panel.implicitHeight
         to: 0
-        easing.type: Easing.OutQuad
-        duration: 500
+        easing.type: Easing.OutCubic
+        duration: 300
     }
 
     NumberAnimation {
@@ -181,8 +182,8 @@ PopupWindow {
         property: "y"
         from: 0
         to: -panel.implicitHeight
-        easing.type: Easing.InQuad
-        duration: 500
+        easing.type: Easing.InCubic
+        duration: 300
 
         onRunningChanged: {
             if (!running) {

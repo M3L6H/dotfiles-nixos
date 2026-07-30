@@ -118,7 +118,7 @@ Rectangle {
                         if (pct > currPct) {
                             return icon;
                         }
-                        currPct -= 5;
+                        currPct -= 10;
                     }
                 }
             }
