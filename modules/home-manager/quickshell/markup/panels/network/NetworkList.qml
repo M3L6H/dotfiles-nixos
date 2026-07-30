@@ -30,6 +30,9 @@ ScrollView {
             readonly property int hPadding: 12
             readonly property int vPadding: 4
 
+            readonly property var isCurrent: ssid === Services.Network.network
+            readonly property var entryEnabled: Services.Network.isWifiOn && !Services.Network.isWifiChanging
+
             required property string ssid
             required property string rate
             required property int signal
@@ -43,22 +46,30 @@ ScrollView {
 
             MouseArea {
                 id: entryMouseArea
-                enabled: Services.Network.isWifiOn
+                enabled: networkEntry.entryEnabled
 
                 anchors.fill: parent
-                cursorShape: Services.Network.isWifiOn ? Qt.PointingHandCursor : Qt.ArrowCursor
-                hoverEnabled: Services.Network.isWifiOn
+                cursorShape: networkEntry.entryEnabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+                hoverEnabled: networkEntry.entryEnabled
+
+                onClicked: {
+                    if (networkEntry.isCurrent) {
+                        Services.Network.fn.disconnect();
+                    } else {
+                        Services.Network.fn.connect(networkEntry.ssid);
+                    }
+                }
             }
 
             RowLayout {
                 id: networkLayout
 
                 readonly property var textColor: {
-                    if (!Services.Network.isWifiOn) {
+                    if (!networkEntry.entryEnabled) {
                         return Colors.md3.surface_container_highest;
                     } else if (entryMouseArea.containsMouse) {
                         return Colors.md3.inverse_on_surface;
-                    } else if (networkEntry.ssid === Services.Network.network) {
+                    } else if (networkEntry.isCurrent) {
                         return Colors.md3.tertiary;
                     }
                     return Colors.md3.on_surface;

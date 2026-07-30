@@ -42,6 +42,13 @@ Singleton {
     }
 
     Process {
+        id: connectProc
+        onRunningChanged: {
+            networkSvc.isWifiChanging = running;
+        }
+    }
+
+    Process {
         id: connectionProc
 
         command: ["sh", "-c", "nmcli d | awk '$2==\"wifi\" || $2==\"ethernet\"{ print $2,$3,$4; }'"]
@@ -165,6 +172,22 @@ Singleton {
             }
 
             isWifiOnProc.exec(["sh", "-c", "nmcli radio wifi"]);
+        }
+
+        function connect(ssid: string) {
+            if (networkSvc.isWifiChanging) {
+                return;
+            }
+
+            connectProc.exec(["sh", "-c", `nmcli d wifi connect ${ssid}`]);
+        }
+
+        function disconnect() {
+            if (networkSvc.isWifiChanging) {
+                return;
+            }
+
+            connectProc.exec(["sh", "-c", "nmcli d disconnect $(nmcli -f TYPE,DEVICE d | awk '$1==\"wifi\"{ print $2; }')"]);
         }
 
         function getStrengthIcon(strength: int): string {
