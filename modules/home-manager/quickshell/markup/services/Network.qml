@@ -8,6 +8,7 @@ Singleton {
     id: networkSvc
 
     readonly property bool isConnected: isEthernet || isWifi
+    readonly property int maxSamples: 10
     readonly property var strengthIcons: ['󰤨', '󰤥', '󰤢', '󰤟']
     readonly property int updateInterval: 2000
 
@@ -18,12 +19,26 @@ Singleton {
     property bool isWifiChanging: false
     property bool isWifiListing: false
 
+    property var upSamples: []
+    property var downSamples: []
+    property var timestamps: []
+
+    property double upBpS: 0
+    property double downBpS: 0
+    property double maxUpBpS: 0
+    property double maxDownBpS: 0
+
+    property string latency: ""
+
     property bool isEthernet: false
     property bool isWifi: false
     property int strength: 0
     property string network: ""
+    property string privateIp: ""
     property bool isVpn: false
     property string vpnHost: ""
+
+    onIsConnectedChanged: privateIpProc.running = true
 
     ListModel {
         id: networksModel
@@ -38,6 +53,11 @@ Singleton {
             connectionProc.running = true;
             strengthProc.running = true;
             vpnProc.running = true;
+
+            if (networkSvc.isConnected) {
+                latencyProc.running = true;
+                speedsProc.running = true;
+            }
         }
     }
 
@@ -64,6 +84,24 @@ Singleton {
                     networkSvc.isEthernet = connected;
                 }
             }
+        }
+    }
+
+    Process {
+        id: latencyProc
+        command: ["sh", "-c", "ping -c 1 -W 1 1.1.1.1 | awk -F'/' 'END{print ($5 ? int($5) \" ms\" : \"Timeout\")}'"]
+        stdout: StdioCollector {
+            onStreamFinished: networkSvc.latency = this.text.trim()
+        }
+    }
+
+    Process {
+        id: privateIpProc
+        command: ["sh", "-c", "hostname -I | awk '{ print $1; }'"]
+        running: true
+
+        stdout: SplitParser {
+            onRead: data => networkSvc.privateIp = data
         }
     }
 
@@ -104,6 +142,51 @@ Singleton {
         stdout: StdioCollector {
             onStreamFinished: {
                 networkSvc.isWifiOn = text.trim() === 'enabled';
+            }
+        }
+    }
+
+    Process {
+        id: speedsProc
+        command: ["sh", "-c", "cat /proc/net/dev | awk -v interface=\"$(nmcli -f TYPE,DEVICE d | awk '$1==\"wifi\"{ print $2; }')\" '$1 ~ interface{ print $2, $10, systime(); }'"]
+        stdout: StdioCollector {
+            onStreamFinished: () => {
+                const [down, up, timestamp] = text.split(" ");
+
+                networkSvc.downSamples.push(parseInt(down));
+                networkSvc.upSamples.push(parseInt(up));
+                networkSvc.timestamps.push(parseInt(timestamp));
+
+                if (networkSvc.downSamples.length > networkSvc.maxSamples) {
+                    networkSvc.downSamples.shift();
+                }
+
+                if (networkSvc.upSamples.length > networkSvc.maxSamples) {
+                    networkSvc.upSamples.shift();
+                }
+
+                if (networkSvc.timestamps.length > networkSvc.maxSamples) {
+                    networkSvc.timestamps.shift();
+                }
+
+                if (networkSvc.timestamps.length < 2) {
+                    return;
+                }
+
+                let downAvg = 0;
+                let upAvg = 0;
+
+                for (let i = 1; i < networkSvc.timestamps.length; ++i) {
+                    const deltaS = networkSvc.timestamps[i] - networkSvc.timestamps[i - 1];
+                    downAvg += (networkSvc.downSamples[i] - networkSvc.downSamples[i - 1]) / deltaS;
+                    upAvg += (networkSvc.upSamples[i] - networkSvc.upSamples[i - 1]) / deltaS;
+                }
+
+                networkSvc.downBpS = downAvg / networkSvc.timestamps.length;
+                networkSvc.upBpS = upAvg / networkSvc.timestamps.length;
+
+                networkSvc.maxDownBpS = Math.max(networkSvc.maxDownBpS, networkSvc.downBpS);
+                networkSvc.maxUpBpS = Math.max(networkSvc.maxUpBpS, networkSvc.upBpS);
             }
         }
     }
@@ -188,6 +271,22 @@ Singleton {
             }
 
             connectProc.exec(["sh", "-c", "nmcli d disconnect $(nmcli -f TYPE,DEVICE d | awk '$1==\"wifi\"{ print $2; }')"]);
+        }
+
+        function formatBpS(bps: double): string {
+            const suffixes = ["B/s", "KB/s", "MB/s", "GB/s"];
+
+            let prefix = bps;
+            let i = 0;
+
+            for (; i < suffixes.length; ++i) {
+                if (prefix < 1000) {
+                    break;
+                }
+                prefix /= 1000;
+            }
+
+            return `${prefix >= 100 ? Math.round(prefix) : Math.round(prefix * 10) / 10} ${suffixes[i]}`;
         }
 
         function getStrengthIcon(strength: int): string {

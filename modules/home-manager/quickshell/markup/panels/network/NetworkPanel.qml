@@ -131,6 +131,7 @@ PopupWindow {
                     Layout.preferredWidth: parent.width - (2 * panel.hPadding)
                     Layout.preferredHeight: 4
                 }
+                NetworkSummary {}
             }
         }
     }

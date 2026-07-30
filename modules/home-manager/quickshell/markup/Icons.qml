@@ -26,6 +26,8 @@ Singleton {
     readonly property string battery20: "󰁻"
     readonly property string battery10: "󰁺"
     readonly property string battery00: "󰂎"
+    readonly property string download: ""
     readonly property string power: ""
     readonly property string refresh: ""
+    readonly property string upload: ""
 }
