@@ -6,6 +6,8 @@ import Quickshell
 import Quickshell.Io
 
 import "../.."
+import "../../components" as Components
+import "../../services" as Services
 
 Rectangle {
     id: tagsRoot
@@ -48,7 +50,7 @@ Rectangle {
 
                 property bool isReady: false
 
-                clip: true
+                clip: !Services.Listener.showBadges
                 color: isActive ? Colors.md3.primary : Colors.md3.surface_bright
 
                 radius: height / 2
@@ -96,7 +98,7 @@ Rectangle {
                             readonly property real finalWidth: 16
 
                             required property int index
-                            required property string name
+                            required property int tagIndex
                             required property bool isAlive
 
                             property bool isReady
@@ -106,9 +108,9 @@ Rectangle {
                                 pointSize: 8
                             }
 
-                            clip: true
+                            clip: !Services.Listener.showBadges
                             color: tagsRect.isActive ? Colors.md3.on_primary : Colors.md3.on_surface
-                            text: name
+                            text: tagsRoot.tagNames[tagIndex]
 
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
@@ -126,7 +128,7 @@ Rectangle {
                                     easing.type: Easing.OutCubic
 
                                     onRunningChanged: {
-                                        if (!running && !isAlive) {
+                                        if (!running && !tagText.isAlive) {
                                             tagsRect.tags.remove(tagText.index);
                                         }
                                     }
@@ -139,6 +141,11 @@ Rectangle {
 
                             Layout.alignment: Qt.AlignCenter
                             Layout.preferredWidth: isReady && isAlive ? finalWidth : 0
+
+                            Components.Badge {
+                                key: `${tagText.tagIndex + 1}`
+                                show: Services.Listener.showBadges
+                            }
                         }
                     }
                 }
@@ -252,7 +259,7 @@ Rectangle {
 
     function mkTag(tagIndex) {
         return {
-            name: tagNames[tagIndex],
+            tagIndex,
             isAlive: true,
             tagIndex
         };

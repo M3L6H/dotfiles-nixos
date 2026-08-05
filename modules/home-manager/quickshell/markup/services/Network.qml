@@ -15,6 +15,9 @@ Singleton {
     property alias fn: fn
     property alias networksModel: networksModel
 
+    property bool panelOpen: false
+    property bool showBadges: false
+
     property bool isWifiOn: true
     property bool isWifiChanging: false
     property bool isWifiListing: false
@@ -39,6 +42,12 @@ Singleton {
     property string vpnHost: ""
 
     onIsConnectedChanged: privateIpProc.running = true
+
+    onPanelOpenChanged: {
+        if (!panelOpen) {
+            showBadges = false;
+        }
+    }
 
     ListModel {
         id: networksModel
@@ -316,6 +325,14 @@ Singleton {
             }
 
             listNetworksProc.exec(["sh", "-c", "nmcli -f SSID,MODE,RATE,SIGNAL,SECURITY dev wifi | awk '$1!=\"--\" && $2==\"Infra\" && !seen[$1]++{ print; }'"]);
+        }
+
+        function setPanelOpen(isOpen: bool) {
+            networkSvc.panelOpen = isOpen;
+
+            if (isOpen) {
+                networkSvc.showBadges = true;
+            }
         }
 
         function toggleWifi() {

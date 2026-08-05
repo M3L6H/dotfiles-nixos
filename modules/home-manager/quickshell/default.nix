@@ -39,5 +39,22 @@ with lib;
       };
 
       home.file.".local/state/quickshell/generated/defaultColors.json".source = ./defaultColors.json;
+
+      wayland.windowManager = {
+        mango.extraConfig = mkIf config.mango.enable ''
+          keymode=common
+          bind=SUPER,F23,spawn,qs ipc call listenerSvc setShowBadges true
+          bind=NONE,F24,spawn,qs ipc call listenerSvc setShowBadges false
+
+          keymode=default
+          bind=SUPER,N,spawn,sh -c "mmsg dispatch setkeymode,network && qs ipc call networkSvc setPanelOpen true"
+
+          keymode=network
+          bind=NONE,Q,spawn,qs ipc call networkSvc toggleWifi
+          bind=NONE,R,spawn,qs ipc call networkSvc listNetworks
+          bind=NONE,Escape,spawn,sh -c "mmsg dispatch setkeymode,default && qs ipc call networkSvc setPanelOpen false"
+          bind=NONE,Caps_Lock,spawn,sh -c "mmsg dispatch setkeymode,default && qs ipc call networkSvc setPanelOpen false"
+        '';
+      };
     };
 }

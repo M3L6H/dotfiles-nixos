@@ -313,6 +313,10 @@ Breakdown of the included modules.
   - container-engine.enable `boolean` - Enables the module
 - [hyprland](modules/nixos/hyprland.nix) - Enables hyprland window manager
   - hyprland.enable `boolean` - Enables the module
+- [kbremap](modules/nixos/kbremap.nix) - Enables keyboard remapping
+  - kbremap.enable `boolean` - Enables the module
+- [mango](modules/nixos/mango.nix) - Enables mango window manager
+  - mango.enable `boolean` - Enables the module
 - [neovim](modules/nixos/impermanence.nix) - Enables impermanence at system level
   - neovim.enable `boolean` - Enables the module
 - [nix-ld](modules/nixos/nix-ld.nix) - Enables nix-ld for executing arbitrary binaries

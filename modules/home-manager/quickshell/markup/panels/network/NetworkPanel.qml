@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Shapes
 import Quickshell
-import Quickshell.Io
 import Quickshell.Widgets
 
 import "../.."
@@ -18,7 +17,7 @@ PopupWindow {
     required property var anchorWin
     required property Item anchorItem
 
-    property bool opened: false
+    property bool opened: Services.Network.panelOpen
 
     onOpenedChanged: {
         if (opened) {
@@ -36,7 +35,7 @@ PopupWindow {
     }
 
     function close() {
-        opened = false;
+        Services.Network.panelOpen = false;
     }
 
     anchor.window: anchorWin
@@ -48,9 +47,15 @@ PopupWindow {
 
     color: "transparent"
 
-    implicitWidth: 300
+    implicitWidth: 350
     implicitHeight: defaultHeight
     visible: false
+
+    onVisibleChanged: {
+        if (!visible && opened) {
+            close();
+        }
+    }
 
     MouseArea {
         anchors.top: parent.top
@@ -61,14 +66,6 @@ PopupWindow {
         implicitHeight: panelRoot.anchorItem.height
 
         onClicked: panelRoot.close()
-    }
-
-    IpcHandler {
-        target: "panelRoot"
-
-        function toggleOpen() {
-            panelRoot.opened = !panelRoot.opened;
-        }
     }
 
     // Filler
@@ -104,6 +101,17 @@ PopupWindow {
             topRightRadius: 0
 
             color: Colors.md3.surface_container
+
+            Keys.onEscapePressed: panelRoot.close()
+            Keys.onPressed: event => {
+                if (event.key === Qt.Key_Q) {
+                    event.accepted = true;
+                    Services.Network.fn.toggleWifi();
+                } else if (event.key === Qt.Key_R) {
+                    event.accepted = true;
+                    Services.Network.fn.listNetworks();
+                }
+            }
 
             Behavior on y {
                 NumberAnimation {

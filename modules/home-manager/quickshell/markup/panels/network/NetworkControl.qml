@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../.."
+import "../../components" as Components
 import "../../services" as Services
 
 Rectangle {
@@ -46,6 +47,11 @@ Rectangle {
                 }
             }
 
+            Components.Badge {
+                key: "Q"
+                show: Services.Network.showBadges
+            }
+
             Text {
                 anchors.centerIn: parent
 
@@ -62,21 +68,26 @@ Rectangle {
             Layout.fillWidth: true
         }
         Rectangle {
+            readonly property bool isListing: Services.Network.isWifiListing
+
             color: Services.Network.isWifiListing ? Colors.md3.surface_container_low : Colors.md3.primary
             radius: height / 2
 
             Layout.fillHeight: true
             Layout.preferredWidth: height
 
+            onIsListingChanged: {
+                if (isListing) {
+                    spin.start();
+                }
+            }
+
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
                 enabled: !Services.Network.isWifiChanging
 
-                onClicked: {
-                    Services.Network.fn.listNetworks();
-                    spin.start();
-                }
+                onClicked: Services.Network.fn.listNetworks()
             }
 
             Behavior on color {
@@ -84,6 +95,11 @@ Rectangle {
                     duration: 250
                     easing.type: Easing.OutQuad
                 }
+            }
+
+            Components.Badge {
+                key: "R"
+                show: Services.Network.showBadges
             }
 
             Text {

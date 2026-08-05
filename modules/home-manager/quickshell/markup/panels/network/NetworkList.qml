@@ -92,7 +92,7 @@ ScrollView {
 
                     verticalAlignment: Text.AlignVCenter
 
-                    Layout.preferredWidth: 120
+                    Layout.preferredWidth: 170
                 }
 
                 Text {

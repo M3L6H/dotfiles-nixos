@@ -1,8 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 
-import ".."
-
 import "components" as Components
 
 Item {
@@ -10,7 +8,13 @@ Item {
 
     property alias externalNetworkId: networkPill.externalId
 
-    anchors.fill: parent
+    anchors {
+        top: parent.top
+        left: parent.left
+        right: parent.right
+    }
+
+    implicitHeight: 36
 
     RowLayout {
         anchors {

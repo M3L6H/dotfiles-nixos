@@ -11,6 +11,7 @@ with lib;
     ./caches.nix
     ./container-engine.nix
     ./fonts.nix
+    ./kbremap.nix
     ./keyring.nix
     ./hyprland.nix
     ./impermanence.nix
@@ -31,6 +32,7 @@ with lib;
   config.bluetooth.enable = mkDefault false;
   config.container-engine.enable = mkDefault true;
   config.hyprland.enable = mkDefault false;
+  config.kbremap.enable = mkDefault false;
   config.mango.enable = mkDefault false;
   config.impermanence.enable = mkDefault true;
   config.nix-ld.enable = mkDefault true;

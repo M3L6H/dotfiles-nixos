@@ -54,6 +54,9 @@
   # Enable hyprland module
   hyprland.enable = false;
 
+  # Enable keyboard remaps
+  kbremap.enable = true;
+
   # Enable mango module
   mango.enable = true;
 
