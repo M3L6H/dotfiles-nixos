@@ -1,9 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
-import Quickshell.Io
 
 import "../.."
+import "../../services" as Services
 
 Rectangle {
     color: Colors.md3.surface_container
@@ -24,38 +23,11 @@ Rectangle {
         Item {
             id: dateTimeRoot
 
-            readonly property int updateInterval: 1000
-
-            property string date
-            property string time
-
             Layout.alignment: Qt.AlignCenter
             Layout.fillHeight: true
             Layout.preferredWidth: innerDateTimeLayout.implicitWidth
             Layout.rightMargin: 8
             Layout.leftMargin: 8
-
-            Process {
-                id: dateTimeProc
-
-                command: ["zsh", "-c", "date '+%d %H:%M:%S'"]
-
-                stdout: SplitParser {
-                    onRead: data => {
-                        const parts = data.split(" ");
-                        dateTimeRoot.date = parts[0];
-                        dateTimeRoot.time = parts[1];
-                    }
-                }
-            }
-
-            Timer {
-                interval: dateTimeRoot.updateInterval
-                running: true
-                repeat: true
-                triggeredOnStart: true
-                onTriggered: dateTimeProc.running = true
-            }
 
             RowLayout {
                 id: innerDateTimeLayout
@@ -66,6 +38,11 @@ Rectangle {
                 Text {
                     id: timeText
 
+                    readonly property string hr: String(Services.DateTime.hour).padStart(2, "0")
+                    readonly property string altHr: String(Services.DateTime.altHour).padStart(2, "0")
+                    readonly property string min: String(Services.DateTime.minute).padStart(2, "0")
+                    readonly property string sec: String(Services.DateTime.second).padStart(2, "0")
+
                     Layout.fillHeight: true
 
                     font {
@@ -74,7 +51,8 @@ Rectangle {
                     }
 
                     color: Colors.md3.secondary
-                    text: dateTimeRoot.time
+                    text: `${hr}[<font color="${Colors.md3.tertiary}">${altHr}</font>]:${min}:${sec}`
+                    textFormat: Text.StyledText
 
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -92,7 +70,7 @@ Rectangle {
 
                     color: Colors.md3.secondary
                     text: {
-                        `󰃭 ${dateTimeRoot.date}`;
+                        `󰃭 ${Services.DateTime.date}`;
                     }
 
                     horizontalAlignment: Text.AlignHCenter

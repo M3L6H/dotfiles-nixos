@@ -11,6 +11,7 @@ PopupWindow {
     id: panelRoot
 
     readonly property int coverage: 4
+    readonly property int collapsedHeight: 150
     readonly property int defaultHeight: 400
     readonly property real radius: anchorItem.height / 2
 
@@ -48,7 +49,7 @@ PopupWindow {
     color: "transparent"
 
     implicitWidth: 350
-    implicitHeight: defaultHeight
+    implicitHeight: Services.Network.isWifi ? defaultHeight : collapsedHeight
     visible: false
 
     onVisibleChanged: {
@@ -95,7 +96,7 @@ PopupWindow {
 
             y: -implicitHeight
             implicitWidth: parent.width
-            implicitHeight: panelRoot.defaultHeight - (panelRoot.radius * 2) - panelRoot.coverage
+            implicitHeight: panelRoot.height - (panelRoot.radius * 2) - panelRoot.coverage
 
             radius: panelRoot.radius
             topRightRadius: 0
@@ -130,11 +131,14 @@ PopupWindow {
                 spacing: 12
 
                 NetworkControl {}
-                NetworkList {}
+                NetworkList {
+                    visible: Services.Network.isWifi
+                }
                 Rectangle {
                     color: Colors.md3.on_surface
 
                     radius: Layout.preferredHeight / 2
+                    visible: Services.Network.isWifi
 
                     Layout.leftMargin: panel.hPadding
                     Layout.preferredWidth: parent.width - (2 * panel.hPadding)

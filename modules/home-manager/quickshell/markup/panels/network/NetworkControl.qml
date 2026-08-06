@@ -72,6 +72,7 @@ Rectangle {
 
             color: Services.Network.isWifiListing ? Colors.md3.surface_container_low : Colors.md3.primary
             radius: height / 2
+            visible: Services.Network.isWifi
 
             Layout.fillHeight: true
             Layout.preferredWidth: height

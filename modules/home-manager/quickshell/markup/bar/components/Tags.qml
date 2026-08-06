@@ -162,7 +162,6 @@ Rectangle {
 
         stdout: SplitParser {
             onRead: line => {
-                console.log(line);
                 if (!line || line.trim() === "") {
                     return;
                 }

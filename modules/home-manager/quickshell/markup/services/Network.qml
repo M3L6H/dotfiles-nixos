@@ -35,6 +35,8 @@ Singleton {
 
     property bool isEthernet: false
     property bool isWifi: false
+    property string device: ""
+
     property int strength: 0
     property string network: ""
     property string privateIp: ""
@@ -80,18 +82,35 @@ Singleton {
     Process {
         id: connectionProc
 
-        command: ["sh", "-c", "nmcli d | awk '$2==\"wifi\" || $2==\"ethernet\"{ print $2,$3,$4; }'"]
+        command: ["sh", "-c", "nmcli d | awk '$2==\"wifi\" || $2==\"ethernet\"{ print $1,$2,$3,$4; }'"]
 
-        stdout: SplitParser {
-            onRead: data => {
-                const [type, status, network] = data.split(" ");
-                const connected = status === 'connected';
-                if (type === 'wifi') {
-                    networkSvc.isWifi = connected;
-                    networkSvc.network = network;
-                } else {
-                    networkSvc.isEthernet = networkSvc.isEthernet || connected;
+        stdout: StdioCollector {
+            onStreamFinished: () => {
+                let isWifi = false;
+                let network = "";
+                let isEthernet = false;
+                let device = "";
+
+                for (const data of text.split("\n")) {
+                    const [d, type, status, n] = data.split(" ");
+                    const connected = status === 'connected';
+                    if (type === 'wifi') {
+                        isWifi = isWifi || connected;
+                        network = (network === "") ? n : network;
+                    } else {
+                        isEthernet = isEthernet || connected;
+                    }
+
+                    if (connected && device === "") {
+                        device = d;
+                    }
                 }
+
+                networkSvc.isWifi = isWifi;
+                networkSvc.isEthernet = isEthernet;
+                networkSvc.device = device;
+
+                networkSvc.network = network;
             }
         }
     }
@@ -157,7 +176,7 @@ Singleton {
 
     Process {
         id: speedsProc
-        command: ["sh", "-c", "cat /proc/net/dev | awk -v interface=\"$(nmcli -f TYPE,DEVICE d | awk '$1==\"wifi\"{ print $2; }')\" '$1 ~ interface{ print $2, $10, systime(); }'"]
+        command: ["sh", "-c", `cat /proc/net/dev | awk -v interface="${networkSvc.device}" '$1 ~ interface{ print $2, $10, systime(); }'`]
         stdout: StdioCollector {
             onStreamFinished: () => {
                 const [down, up, timestamp] = text.split(" ");
