@@ -1,17 +1,15 @@
 import QtQuick
 import QtQuick.Layouts
-import Quickshell.Io
 
 import "../.."
+import "../../services" as Services
 
 Rectangle {
     id: batteryContainer
 
-    property bool hasBattery: false
-
     color: Colors.md3.surface_container
     radius: height / 2
-    visible: hasBattery
+    visible: Services.Battery.hasBattery
 
     Layout.margins: 6
     Layout.leftMargin: 0
@@ -28,83 +26,11 @@ Rectangle {
         Item {
             id: batteryRoot
 
-            readonly property int maxSamples: 10
-            property bool charging
-            property int percentage
-            property var remainingSamples: []
-            property int remaining
-
             Layout.alignment: Qt.AlignCenter
             Layout.fillHeight: true
             Layout.preferredWidth: batText.implicitWidth
             Layout.leftMargin: 2
             Layout.rightMargin: 2
-
-            Process {
-                id: hasBat
-
-                command: ["sh", "-c", "file /sys/class/power_supply/BAT0"]
-                running: true
-
-                stdout: SplitParser {
-                    onRead: data => {
-                        batteryContainer.hasBattery = !data.includes("cannot open");
-                    }
-                }
-            }
-
-            Process {
-                id: batProc
-
-                command: ["sh", "-c", "echo $(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status)"]
-
-                stdout: SplitParser {
-                    onRead: data => {
-                        const parts = data.trim().split(" ");
-                        if (parts.length >= 2) {
-                            batteryRoot.percentage = parseInt(parts[0]) || 0;
-                            batteryRoot.charging = parts[1] !== "Discharging";
-                        }
-                    }
-                }
-            }
-
-            Process {
-                id: remainingProc
-
-                command: ["sh", "-c", "acpi -i | awk 'NR==1{ print $5; }'"]
-
-                stdout: SplitParser {
-                    onRead: data => {
-                        if (!data) {
-                            return;
-                        }
-                        const parts = data.split(':');
-                        const h = parseInt(parts[0]);
-                        const m = parseInt(parts[1]);
-                        const remainingRaw = h * 60 + m;
-
-                        batteryRoot.remainingSamples.push(remainingRaw);
-
-                        if (batteryRoot.remainingSamples.length > batteryRoot.maxSamples) {
-                            batteryRoot.remainingSamples.shift();
-                        }
-
-                        batteryRoot.remaining = batteryRoot.remainingSamples.reduce((acc, curr) => acc + curr, 0) / batteryRoot.remainingSamples.length;
-                    }
-                }
-            }
-
-            Timer {
-                interval: 5000
-                running: true
-                repeat: true
-                triggeredOnStart: true
-                onTriggered: {
-                    batProc.running = true;
-                    remainingProc.running = true;
-                }
-            }
 
             Text {
                 id: batText
@@ -117,12 +43,12 @@ Rectangle {
                     pointSize: 12
                 }
 
-                color: batteryRoot.percentage < 20 ? Colors.md3.tertiary : Colors.md3.secondary
+                color: Services.Battery.percentage < 20 ? Colors.md3.tertiary : Colors.md3.secondary
                 text: {
-                    if (batteryRoot.charging) {
-                        return `${getIcon(batteryRoot.percentage, chgIcons)} ${batteryRoot.percentage}%`;
+                    if (Services.Battery.charging) {
+                        return `${getIcon(Services.Battery.percentage, chgIcons)} ${Services.Battery.percentage}%`;
                     } else {
-                        return `${getIcon(batteryRoot.percentage, dischgIcons)} ${batteryRoot.remaining}m`;
+                        return `${getIcon(Services.Battery.percentage, dischgIcons)} ${Services.Battery.remaining}m`;
                     }
                 }
 

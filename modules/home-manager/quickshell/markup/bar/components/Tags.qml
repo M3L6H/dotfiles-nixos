@@ -12,6 +12,8 @@ import "../../services" as Services
 Rectangle {
     id: tagsRoot
 
+    required property string monitorName
+
     readonly property int hPadding: 8
 
     readonly property var tagNames: ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
@@ -155,11 +157,12 @@ Rectangle {
 
     Process {
         id: tagsWatcher
-        command: ["mmsg", "watch", "all-tags"]
+        command: ["mmsg", "watch", "tags", tagsRoot.monitorName]
         running: true
 
         stdout: SplitParser {
             onRead: line => {
+                console.log(line);
                 if (!line || line.trim() === "") {
                     return;
                 }
@@ -179,16 +182,8 @@ Rectangle {
 
     function parseTagsLine(data) {
         const {
-            all_tags: allTags
+            tags
         } = data;
-
-        if (!allTags || !monitor) {
-            return;
-        }
-
-        const tags = allTags.filter(({
-                monitor: m
-            }) => m === monitor)[0]?.tags ?? [];
 
         if (!tags) {
             return;

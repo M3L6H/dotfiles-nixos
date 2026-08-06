@@ -2,30 +2,38 @@ import QtQuick
 
 import Quickshell
 
-import "bar" as Bar
+import "bar"
 import "panels/network" as Network
 
 ShellRoot {
-    // qmllint disable uncreatable-type
-    PanelWindow {
-        id: barWin
+    Variants {
+        model: Quickshell.screens
 
-        anchors {
-            top: true
-            left: true
-            right: true
-        }
+        // qmllint disable uncreatable-type
+        PanelWindow {
+            id: barWin
 
-        color: "transparent"
-        implicitHeight: 36
+            required property ShellScreen modelData
+            screen: modelData
 
-        Bar.Bar {
-            id: bar
-        }
+            anchors {
+                top: true
+                left: true
+                right: true
+            }
 
-        Network.NetworkPanel {
-            anchorWin: barWin
-            anchorItem: bar.externalNetworkId
+            color: "transparent"
+            implicitHeight: 36
+
+            Bar {
+                id: bar
+                screen: barWin.modelData
+            }
+
+            Network.NetworkPanel {
+                anchorWin: barWin
+                anchorItem: bar.externalNetworkId
+            }
         }
     }
 }

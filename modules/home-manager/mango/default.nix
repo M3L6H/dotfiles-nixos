@@ -70,6 +70,11 @@ with lib;
           "SUPER,K,focusdir,up"
           "SUPER,L,focusdir,right"
 
+          "SUPER+SHIFT,H,exchange_client,left"
+          "SUPER+SHIFT,J,exchange_client,down"
+          "SUPER+SHIFT,K,exchange_client,up"
+          "SUPER+SHIFT,L,exchange_client,right"
+
           "SUPER,R,reload_config"
           "SUPER,Q,killclient"
           "SUPER+SHIFT,Q,killclient,force"

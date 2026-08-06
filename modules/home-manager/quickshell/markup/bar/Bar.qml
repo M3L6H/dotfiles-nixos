@@ -1,10 +1,14 @@
 import QtQuick
 import QtQuick.Layouts
 
+import Quickshell
+
 import "components" as Components
 
 Item {
     id: bar
+
+    required property var screen
 
     property alias externalNetworkId: networkPill.externalId
 
@@ -23,7 +27,9 @@ Item {
             left: parent.left
         }
 
-        Components.Tags {}
+        Components.Tags {
+            monitorName: bar.screen.name
+        }
         Components.System {}
     }
 
