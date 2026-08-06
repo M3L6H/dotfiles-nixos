@@ -75,6 +75,11 @@ with lib;
           "SUPER+SHIFT,K,exchange_client,up"
           "SUPER+SHIFT,L,exchange_client,right"
 
+          "SUPER+ALT,H,tagmon,left,1"
+          "SUPER+ALT,J,tagmon,down,1"
+          "SUPER+ALT,K,tagmon,up,1"
+          "SUPER+ALT,L,tagmon,right,1"
+
           "SUPER,R,reload_config"
           "SUPER,Q,killclient"
           "SUPER+SHIFT,Q,killclient,force"
