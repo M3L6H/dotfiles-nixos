@@ -90,7 +90,7 @@ Singleton {
                     networkSvc.isWifi = connected;
                     networkSvc.network = network;
                 } else {
-                    networkSvc.isEthernet = connected;
+                    networkSvc.isEthernet = networkSvc.isEthernet || connected;
                 }
             }
         }

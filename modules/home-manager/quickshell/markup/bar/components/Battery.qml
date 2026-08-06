@@ -5,8 +5,13 @@ import Quickshell.Io
 import "../.."
 
 Rectangle {
+    id: batteryContainer
+
+    property bool hasBattery: false
+
     color: Colors.md3.surface_container
     radius: height / 2
+    visible: hasBattery
 
     Layout.margins: 6
     Layout.leftMargin: 0
@@ -24,7 +29,6 @@ Rectangle {
             id: batteryRoot
 
             readonly property int maxSamples: 10
-
             property bool charging
             property int percentage
             property var remainingSamples: []
@@ -35,6 +39,19 @@ Rectangle {
             Layout.preferredWidth: batText.implicitWidth
             Layout.leftMargin: 2
             Layout.rightMargin: 2
+
+            Process {
+                id: hasBat
+
+                command: ["sh", "-c", "file /sys/class/power_supply/BAT0"]
+                running: true
+
+                stdout: SplitParser {
+                    onRead: data => {
+                        batteryContainer.hasBattery = !data.includes("cannot open");
+                    }
+                }
+            }
 
             Process {
                 id: batProc
