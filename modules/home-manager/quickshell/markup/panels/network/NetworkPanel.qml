@@ -17,10 +17,12 @@ PopupWindow {
 
     required property var anchorWin
     required property Item anchorItem
+    required property var screen
 
-    property bool opened: Services.Network.panelOpen
+    property bool opened: Services.Network.panelOpen === screen.name
 
     onOpenedChanged: {
+        console.log(screen.name);
         if (opened) {
             Services.Network.fn.checkIsWifiOn();
             Services.Network.fn.listNetworks();
@@ -36,7 +38,7 @@ PopupWindow {
     }
 
     function close() {
-        Services.Network.panelOpen = false;
+        Services.Network.panelOpen = "";
     }
 
     anchor.window: anchorWin

@@ -15,7 +15,7 @@ Singleton {
     property alias fn: fn
     property alias networksModel: networksModel
 
-    property bool panelOpen: false
+    property string panelOpen: ""
     property bool showBadges: false
 
     property bool isWifiOn: true
@@ -346,7 +346,8 @@ Singleton {
             listNetworksProc.exec(["sh", "-c", "nmcli -f SSID,MODE,RATE,SIGNAL,SECURITY dev wifi | awk '$1!=\"--\" && $2==\"Infra\" && !seen[$1]++{ print; }'"]);
         }
 
-        function setPanelOpen(isOpen: bool) {
+        // Open the network panel on the specified monitor
+        function setPanelOpen(isOpen: string) {
             networkSvc.panelOpen = isOpen;
 
             if (isOpen) {

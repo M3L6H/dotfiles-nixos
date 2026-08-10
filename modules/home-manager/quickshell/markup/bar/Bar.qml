@@ -43,6 +43,7 @@ Item {
         Components.Battery {}
         Components.Network {
             id: networkPill
+            monitorName: bar.screen.name
         }
         Components.DateTime {}
     }

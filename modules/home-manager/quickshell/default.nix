@@ -17,11 +17,37 @@ with lib;
       system = pkgs.stdenv.hostPlatform.system;
     in
     mkIf config.quickshell.enable {
-      home.packages = with pkgs; [
-        qt6.qttools
-        qt6.qtbase.dev
-        qt6.qtdoc
-      ];
+      home.packages =
+        with pkgs;
+        [
+          qt6.qttools
+          qt6.qtbase.dev
+          qt6.qtdoc
+        ]
+        ++ optionals config.mango.enable [
+          (writeShellApplication {
+            name = "mango-open-network-panel";
+            runtimeInputs = [
+              jq
+              mango
+            ];
+            text = ''
+              mmsg dispatch setkeymode,network
+              monitor="$(mmsg get all-monitors | jq -r '.monitors[] | select(.active) | .name')"
+              qs ipc call networkSvc setPanelOpen "$monitor"
+            '';
+          })
+          (writeShellApplication {
+            name = "mango-close-network-panel";
+            runtimeInputs = [
+              mango
+            ];
+            text = ''
+              mmsg dispatch setkeymode,default
+              qs ipc call networkSvc setPanelOpen ""
+            '';
+          })
+        ];
 
       programs.quickshell = {
         enable = true;
@@ -47,13 +73,14 @@ with lib;
           bind=NONE,F24,spawn,qs ipc call listenerSvc setShowBadges false
 
           keymode=default
-          bind=SUPER,N,spawn,sh -c "mmsg dispatch setkeymode,network && qs ipc call networkSvc setPanelOpen true"
+          bind=SUPER,N,spawn,mango-open-network-panel
 
           keymode=network
           bind=NONE,Q,spawn,qs ipc call networkSvc toggleWifi
           bind=NONE,R,spawn,qs ipc call networkSvc listNetworks
-          bind=NONE,Escape,spawn,sh -c "mmsg dispatch setkeymode,default && qs ipc call networkSvc setPanelOpen false"
-          bind=NONE,Caps_Lock,spawn,sh -c "mmsg dispatch setkeymode,default && qs ipc call networkSvc setPanelOpen false"
+          bind=NONE,Escape,spawn,mango-close-network-panel
+          bind=NONE,Caps_Lock,spawn,mango-close-network-panel
+          bind=SUPER,N,spawn,mango-close-network-panel
         '';
       };
     };

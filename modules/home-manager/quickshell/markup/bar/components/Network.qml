@@ -10,6 +10,8 @@ Rectangle {
 
     readonly property real defaultRadius: height / 2
 
+    required property string monitorName
+
     property alias externalId: networkPill
 
     color: Colors.md3.surface_container
@@ -80,7 +82,7 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: Services.Network.panelOpen = true
+                        onClicked: Services.Network.panelOpen = networkPill.monitorName
                     }
 
                     Components.Badge {

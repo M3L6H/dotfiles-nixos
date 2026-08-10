@@ -33,6 +33,7 @@ ShellRoot {
             Network.NetworkPanel {
                 anchorWin: barWin
                 anchorItem: bar.externalNetworkId
+                screen: barWin.modelData
             }
         }
     }
