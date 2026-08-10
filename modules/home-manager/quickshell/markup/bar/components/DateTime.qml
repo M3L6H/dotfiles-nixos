@@ -51,7 +51,7 @@ Rectangle {
                     }
 
                     color: Colors.md3.secondary
-                    text: `${hr}[<font color="${Colors.md3.tertiary}">${altHr}</font>]:${min}:${sec}`
+                    text: `${Icons.clock} ${hr}[<font color="${Colors.md3.tertiary}">${altHr}</font>]:${min}:${sec}`
                     textFormat: Text.StyledText
 
                     horizontalAlignment: Text.AlignHCenter
@@ -70,7 +70,7 @@ Rectangle {
 
                     color: Colors.md3.secondary
                     text: {
-                        `󰃭 ${Services.DateTime.date}`;
+                        `${Icons.calendar} ${Services.DateTime.date}`;
                     }
 
                     horizontalAlignment: Text.AlignHCenter
