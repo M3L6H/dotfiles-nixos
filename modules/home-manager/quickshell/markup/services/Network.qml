@@ -4,12 +4,13 @@ import QtQuick
 import Quickshell.Io
 import Quickshell
 
+import ".."
+
 Singleton {
     id: networkSvc
 
     readonly property bool isConnected: isEthernet || isWifi
     readonly property int maxSamples: 10
-    readonly property var strengthIcons: ['󰤨', '󰤥', '󰤢', '󰤟']
     readonly property int updateInterval: 2000
 
     property alias fn: fn
@@ -318,24 +319,24 @@ Singleton {
         }
 
         function getStrengthIcon(strength: int): string {
-            const step = 100 / networkSvc.strengthIcons.length;
+            const step = 100 / Icons.wifiStrengthIcons.length;
             let currPct = 100 - step;
-            for (const icon of networkSvc.strengthIcons) {
+            for (const icon of Icons.wifiStrengthIcons) {
                 if (strength > currPct) {
                     return icon;
                 }
                 currPct -= step;
             }
 
-            return '󰤯';
+            return Icons.wifiWeak;
         }
 
         function getSecurityIcon(security: string): string {
             return {
-                wpa1: '󰣮',
-                wpa2: '󱎚',
-                wpa3: '󰗻'
-            }[security.toLowerCase()] ?? '󰣯';
+                wpa1: Icons.wpa1,
+                wpa2: Icons.wpa2,
+                wpa3: Icons.wpa3
+            }[security.toLowerCase()] ?? Icons.wpaUnknown;
         }
 
         function listNetworks() {

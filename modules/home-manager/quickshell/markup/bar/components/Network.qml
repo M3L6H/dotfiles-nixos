@@ -59,12 +59,12 @@ Rectangle {
                     elide: Services.Network.isWifi ? Text.ElideRight : Text.ElideNone
                     text: {
                         if (Services.Network.isEthernet) {
-                            return '󰈀 ';
+                            return Icons.ethernet;
                         } else if (Services.Network.isWifi) {
                             return `${Services.Network.fn.getStrengthIcon(Services.Network.strength)} ${Services.Network.network}`;
                         }
 
-                        return '󰤮 ';
+                        return Icons.wifiDisconnected;
                     }
 
                     horizontalAlignment: Text.AlignHCenter
@@ -103,7 +103,7 @@ Rectangle {
                     clip: true
 
                     text: {
-                        return `󰖂 ${Services.Network.isVpn ? Services.Network.vpnHost : ''}`;
+                        return `${Icons.vpn} ${Services.Network.isVpn ? Services.Network.vpnHost : ''}`;
                     }
 
                     horizontalAlignment: Text.AlignHCenter

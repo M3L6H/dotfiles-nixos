@@ -29,7 +29,16 @@ Singleton {
     readonly property string calendar: "󰃭"
     readonly property string clock: ""
     readonly property string download: ""
+    readonly property string ethernet: "󰈀"
     readonly property string power: ""
     readonly property string refresh: ""
     readonly property string upload: ""
+    readonly property string vpn: "󰖂"
+    readonly property string wifiDisconnected: "󰤮"
+    readonly property var wifiStrengthIcons: ['󰤨', '󰤥', '󰤢', '󰤟']
+    readonly property string wifiWeak: "󰤯"
+    readonly property string wpa1: "󰣮"
+    readonly property string wpa2: "󱎚"
+    readonly property string wpa3: "󰗻"
+    readonly property string wpaUnknown: "󰣯"
 }
