@@ -6,6 +6,6 @@
       source = ./ssh-in-tmux.sh;
     };
 
-    home.shellAliases.ssh = "$HOME/.local/bin/ssh-in-tmux";
+    home.shellAliases.sshx = "$HOME/.local/bin/ssh-in-tmux";
   };
 }
