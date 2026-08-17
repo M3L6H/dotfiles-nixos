@@ -2,6 +2,8 @@
 {
   imports = [
     ../../modules/home-manager/default.nix
+
+    ./ssh.nix
   ];
 
   home = {
