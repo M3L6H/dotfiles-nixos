@@ -5,7 +5,7 @@ with lib;
     ./services
     ./ssh
 
-    ./ai.nix
+    # ./ai.nix
     ./audio.nix
     ./bluetooth.nix
     ./caches.nix
@@ -28,7 +28,7 @@ with lib;
     ./vpn.nix
   ];
 
-  config.ai.enable = mkDefault false;
+  # config.ai.enable = mkDefault false;
   config.bluetooth.enable = mkDefault false;
   config.container-engine.enable = mkDefault true;
   config.hyprland.enable = mkDefault false;

@@ -82,7 +82,7 @@
   software.anki.enable = true;
 
   # Enable bazecor
-  software.bazecor.enable = false;
+  software.bazecor.enable = true;
 
   # Enable digikam
   software.digikam.enable = false;

@@ -8,10 +8,6 @@
     # Use proprietary drivers
     nixpkgs.config.allowUnfree = true;
 
-    environment.sessionVariables = {
-      VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-    };
-
     boot.kernelParams = [
       # For suspend/wakeup
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
