@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  username,
   ...
 }:
 with lib;
@@ -64,11 +65,17 @@ with lib;
         recursive = true;
       };
 
+      home.file.".config/lockscreen" = {
+        source = ./lockscreen;
+        recursive = true;
+      };
+
       home.file.".local/state/quickshell/generated/defaultColors.json".source = ./defaultColors.json;
 
       wayland.windowManager = {
         mango.extraConfig = mkIf config.mango.enable ''
           keymode=common
+          bind=SUPER+CTRL,Q,spawn,qs -p /home/${username}/.config/lockscreen
           bind=SUPER,F23,spawn,qs ipc call listenerSvc setShowBadges true
           bind=NONE,F24,spawn,qs ipc call listenerSvc setShowBadges false
 
