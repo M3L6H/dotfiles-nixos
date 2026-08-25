@@ -84,6 +84,19 @@ Rectangle {
                 Layout.preferredHeight: tagLayout.implicitHeight + (2 * vPadding)
                 Layout.preferredWidth: isReady && isAlive ? tagLayout.implicitWidth + (2 * hPadding) : 0
 
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: tagsRect.isActive ? Qt.ArrowCursor : Qt.PointingHandCursor
+                    enabled: !tagsRect.isActive
+                    onClicked: () => {
+                        const tagMaskArr = [];
+                        for (let i = 0; i < tagsRect.tags.count; ++i) {
+                            tagMaskArr.push(tagsRect.tags.get(i).tagIndex + 1);
+                        }
+                        switchTagProc.exec(["sh", "-c", `mmsg dispatch view,${tagMaskArr.join("|")}`]);
+                    }
+                }
+
                 RowLayout {
                     id: tagLayout
 
@@ -173,6 +186,10 @@ Rectangle {
                 }
             }
         }
+    }
+
+    Process {
+        id: switchTagProc
     }
 
     ListModel {
