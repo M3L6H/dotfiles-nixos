@@ -43,15 +43,10 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    m3l6h-neovim = {
-      url = "github:m3l6h/dotfiles-neovim";
-    };
+    m3l6h-neovim.url = "github:m3l6h/dotfiles-neovim";
 
-    m3l6h-tmux = {
-      url = "github:m3l6h/dotfiles-tmux";
-      # url = "/home/m3l6h/files/dev/m3l6h/dotfiles-tmux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    m3l6h-tmux.url = "github:m3l6h/dotfiles-tmux";
+    # m3l6h-tmux.url = "/home/m3l6h/files/dev/m3l6h/dotfiles-tmux";
 
     m3l6h-zsh = {
       url = "github:m3l6h/dotfiles-zsh";
@@ -84,8 +79,6 @@
       url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
   };
 
   outputs =
