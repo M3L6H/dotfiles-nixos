@@ -74,15 +74,15 @@ with lib;
 
       wayland.windowManager = {
         mango.extraConfig = mkIf config.mango.enable ''
-          keymode=common
+          key_mode=common
           bind=SUPER+CTRL,Q,spawn,qs -p /home/${username}/.config/lockscreen
           bind=SUPER,F23,spawn,qs ipc call listenerSvc setShowBadges true
           bind=NONE,F24,spawn,qs ipc call listenerSvc setShowBadges false
 
-          keymode=default
+          key_mode=default
           bind=SUPER,N,spawn,mango-open-network-panel
 
-          keymode=network
+          key_mode=network
           bind=NONE,Q,spawn,qs ipc call networkSvc toggleWifi
           bind=NONE,R,spawn,qs ipc call networkSvc listNetworks
           bind=NONE,Escape,spawn,mango-close-network-panel

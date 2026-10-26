@@ -37,8 +37,8 @@ with lib;
       bind = [
         "SUPER,D,spawn,vivaldi"
       ];
-      windowrule = [
-        "tags:3,appid:vivaldi-stable"
+      window_rule = [
+        "tags:3,app_id:vivaldi-stable"
       ];
     };
 

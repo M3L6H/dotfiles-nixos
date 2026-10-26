@@ -73,8 +73,8 @@ with lib;
         bind = [
           "SUPER+SHIFT,C,spawn,${config.terminal.emulator} --class=com.example.clipse -e 'clipse'"
         ];
-        windowrule = [
-          "isfloating:1,width:622,height:652,appid:com.example.clipse"
+        window_rule = [
+          "is_floating:1,width:622,height:652,app_id:com.example.clipse"
         ];
       };
     };

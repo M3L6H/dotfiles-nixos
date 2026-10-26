@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   config = {
     boot = {
@@ -14,8 +14,6 @@
 
       initrd = {
         systemd = {
-          enable = true;
-
           services.rollback = {
             description = "Nuke root & home subvolumes";
             wantedBy = [ "initrd.target" ];

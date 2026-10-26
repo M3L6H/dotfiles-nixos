@@ -23,7 +23,7 @@ with lib;
     wayland.windowManager.mango = {
       enable = true;
       settings = {
-        exec-once = [
+        exec_once = [
           "nm-applet &"
           "systemctl --user reset-failed"
           "systemctl --user start mango-session.target"
@@ -37,11 +37,11 @@ with lib;
         focus_cross_monitor = 1;
         exchange_cross_monitor = 1;
 
-        borderpx = 2;
-        gappih = 4;
-        gappiv = 4;
-        gappoh = 8;
-        gappov = 8;
+        border_px = 2;
+        gap_inner_horizontal = 4;
+        gap_inner_vertical = 4;
+        gap_outer_horizontal = 8;
+        gap_outer_vertical = 8;
 
         cursor_size = 32;
         cursor_theme = "phinger-cursors-dark";

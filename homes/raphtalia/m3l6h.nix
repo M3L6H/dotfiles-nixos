@@ -152,7 +152,7 @@
   ];
 
   # Mango stuff
-  wayland.windowManager.mango.settings.monitorrule = [
+  wayland.windowManager.mango.settings.monitor_rule = [
     "name:eDP-1,width:3840,height:2160,refresh:60,x:0,y:0,scale:2"
   ];
 }

@@ -26,8 +26,8 @@ with lib;
     ];
 
     wayland.windowManager.mango.settings = mkIf config.mango.enable {
-      windowrule = [
-        "tags:2,appid:com.mitchellh.ghostty"
+      window_rule = [
+        "tags:2,app_id:com.mitchellh.ghostty"
       ];
       bind = [
         "SUPER,F,spawn,${if config.terminal.emulator == "ghostty" then "ghostty" else "kitty"}"
