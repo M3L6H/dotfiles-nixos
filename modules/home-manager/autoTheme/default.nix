@@ -41,25 +41,50 @@ with lib;
         input_path = '~/${confRoot}/rofi.rasi'
         output_path = '~/.config/rofi/colors.rasi'
       '';
+
+      tmuxConf = ''
+        [templates.tmux]
+        input_path = '~/${confRoot}/tmux.conf'
+        output_path = '~/.config/tmux/generated.conf'
+        post_hook = 'tmux source-file ~/.config/tmux/generated.conf'
+      '';
     in
     mkIf config.autoTheme.enable {
       home.packages = with pkgs; [
         inputs.matugen.packages.${stdenv.hostPlatform.system}.default
       ];
 
-      home.file."${confRoot}/config.toml".text = ''
-        [config]
+      home.file = mkMerge [
+        {
+          "${confRoot}/config.toml".text = ''
+            [config]
 
-        ${makoConf}
-        ${if config.mango.enable then mangoConf else ""}
-        ${if config.quickshell.enable then quickshellConf else ""}
-        ${if config.rofi.enable then rofiConf else ""}
-      '';
+            ${makoConf}
+            ${if config.mango.enable then mangoConf else ""}
+            ${if config.quickshell.enable then quickshellConf else ""}
+            ${if config.rofi.enable then rofiConf else ""}
+            ${if config.tmux.enable then tmuxConf else ""}
+          '';
+        }
+        {
+          "${confRoot}/mako".source = ./templates/mako;
+        }
 
-      home.file."${confRoot}/mako".source = ./templates/mako;
-      home.file."${confRoot}/mango.conf".source = mkIf config.mango.enable ./templates/mango.conf;
-      home.file."${confRoot}/quickshell.json".source =
-        mkIf config.quickshell.enable ./templates/quickshell.json;
-      home.file."${confRoot}/rofi.rasi".source = mkIf config.mango.enable ./templates/rofi.rasi;
+        (mkIf config.mango.enable {
+          "${confRoot}/mango.conf".source = ./templates/mango.conf;
+        })
+
+        (mkIf config.quickshell.enable {
+          "${confRoot}/quickshell.json".source = ./templates/quickshell.json;
+        })
+
+        (mkIf config.rofi.enable {
+          "${confRoot}/rofi.rasi".source = ./templates/rofi.rasi;
+        })
+
+        (mkIf config.tmux.enable {
+          "${confRoot}/tmux.conf".source = ./templates/tmux.conf;
+        })
+      ];
     };
 }
