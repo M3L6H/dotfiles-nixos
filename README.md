@@ -291,8 +291,8 @@ Breakdown of the included modules.
 - [user-dirs](modules/home-manager/user-dirs.nix) - Custom user dirs
   - user-dirs.enable `boolean` - Enables the module
 - [wallpaper](modules/home-manager/wallpaper.nix) - Configures wallpapers
-  * wallpaper.mpvpaper.enable `boolean` - Enable mpvpaper video wallpaper
-  * wallpaper.awww.enable `boolean` - Enable awww image wallpaper
+  - wallpaper.mpvpaper.enable `boolean` - Enable mpvpaper video wallpaper
+  - wallpaper.awww.enable `boolean` - Enable awww image wallpaper
 - [zsh](modules/home-manager/zsh/default.nix) - Configure zsh
   - zsh.enable `boolean` - Enables the module
   - zsh.zoxide.enable `boolean` - Enables zoxide
@@ -405,6 +405,16 @@ To update a single input, run
 ```sh
 nix flake update <input>
 nxs
+```
+
+To view a derivation, run
+
+```sh
+nix edit nixpkgs#<package>
+
+
+# Or from a specific flake
+nix edit 'github:<owner>/<repo>#<flake>'
 ```
 
 ## credits

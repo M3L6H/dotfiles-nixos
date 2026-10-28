@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   config = {
     boot = {
@@ -147,6 +147,7 @@
       sopsFile = ./secrets/ai.env;
       key = "";
     };
-    # m3l6h.ai.environmentFilePath = config.sops.secrets.ai.path;
+
+    m3l6h.ai.environmentFilePath = config.sops.secrets.ai.path;
   };
 }
