@@ -970,11 +970,11 @@
         "sessionx": "sessionx"
       },
       "locked": {
-        "lastModified": 1793111267,
-        "narHash": "sha256-cuYMTm/rocmG1ar8DdxHfckBZ2WP0Pu4QnjgXD8O9f8=",
+        "lastModified": 1793239769,
+        "narHash": "sha256-PzX6qqdj+j9EIZYcae6d/+0CUipTJyPSFwLUVhyHbyQ=",
         "owner": "m3l6h",
         "repo": "dotfiles-tmux",
-        "rev": "7f75c81381ddfc82d2f8b19cef497d176e49dc8a",
+        "rev": "d022db05be79c3c206f43c535dfd7ff086c69728",
         "type": "github"
       },
       "original": {
