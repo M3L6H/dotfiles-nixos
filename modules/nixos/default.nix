@@ -23,6 +23,7 @@ with lib;
     ./partition-manager.nix
     ./pcscd.nix
     ./sddm.nix
+    ./steam.nix
     ./sops.nix
     ./users.nix
     ./vpn.nix
@@ -42,6 +43,7 @@ with lib;
   config.pcscd.enable = mkDefault true;
   config.sddm.enable = mkDefault true;
   config.ssh.enable = mkDefault false;
+  config.steam.enable = mkDefault false;
   config.sops.enable = mkDefault true;
   config.users.enable = mkDefault true;
   config.vpn.enable = mkDefault true;

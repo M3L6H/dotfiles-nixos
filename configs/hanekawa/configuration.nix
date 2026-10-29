@@ -76,6 +76,9 @@
   # ssh
   ssh.enable = true;
 
+  # steam
+  steam.enable = true;
+
   # Home manager
   home-manager = {
     extraSpecialArgs = { inherit hostname inputs username; };
