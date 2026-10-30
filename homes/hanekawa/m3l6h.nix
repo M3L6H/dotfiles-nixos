@@ -72,6 +72,9 @@
   # Enable minecraft
   games.minecraft.enable = true;
 
+  # Enable steam
+  games.steam.enable = true;
+
   # Enable wallpaper haven script
   scripts.wallpaper-haven.enable = false;
 

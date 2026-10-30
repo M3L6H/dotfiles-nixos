@@ -138,6 +138,8 @@ Breakdown of the included modules.
 - [games](/modules/home-manager/games) - Central module for all games
   - [minecraft](/modules/home-manager/games/minecraft.nix) - Installs minecraft via prismlauncher
     - games.minecraft.enable `boolean` - Enables the module
+  - [steam](/modules/home-manager/games/steam.nix) - Configures Steam (**note**: this also needs to be enabled in nixos config)
+    - games.steam.enable `boolean` - Enables the module
 - [hyprland](modules/home-manager/hyprland/default.nix) - Hyprland submodule
   - hyprland.enable `boolean` - Enables the module and its submodules
   - [binds](modules/home-manager/hyprland/binds.nix) - Sets hyprland keybinds
@@ -333,6 +335,8 @@ Breakdown of the included modules.
   - sddm.enable `boolean` - Enables the module
 - [sops](modules/nixos/sops.nix) - Enables sops-nix
   - sops.enable `boolean` - Enables the module
+- [steam](modules/nixos/steam.nix) - Enables Steam
+  - steam.enable `boolean` - Enables the module
 - [users](modules/nixos/users.nix) - Create default user
   - users.enable `boolean` - Enables the module
   - users.zsh.enable `boolean` - Enables zsh as the default shell (must be done at the system level)
