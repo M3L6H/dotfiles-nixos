@@ -69,7 +69,7 @@
   zsh.enable = true;
 
   # Enable minecraft
-  games.minecraft.enable = false;
+  games.minecraft.enable = true;
 
   # Enable clipboard manager service
   services.clip-mngr.enable = true;
