@@ -40,18 +40,5 @@
     services.udev.extraRules = ''
       KERNEL=="uinput", MODE="777", GROUP="input", OPTIONS+="static_node=uinput"
     '';
-
-    # Mount
-    fileSystems."/home/${username}/.local/share/PrismLauncher/instances" = {
-      device = "/persist/home/${username}/.local/share/PrismLauncher/instances";
-      fsType = "none";
-      options = [
-        "bind"
-        "user"
-        "exec"
-        "noauto"
-        "x-systemd.automount"
-      ];
-    };
   };
 }
