@@ -14,14 +14,12 @@ with lib;
     let
       # Prismlauncher theme
       prismlauncher-kanagawa = pkgs.stdenv.mkDerivation {
-        name = "prismlauncher-tokyonight";
+        name = "prismlauncher-kanagawa";
 
-        src = pkgs.fetchurl {
+        src = pkgs.fetchzip {
           url = "https://github.com/PrismLauncher/Themes/releases/latest/download/Kanagawa-theme.zip";
-          hash = "sha256-gNV4Wd5kwrChJj+bibxOsMTwaB+xmi+NbPPlkHvRiCE=";
+          hash = "sha256-MV05AlnEh0tfSlZvoOgohH85djX+rkY/uTB4BtCaCEI=";
         };
-
-        nativeBuildInputs = [ pkgs.unzip ];
 
         installPhase = ''
           mkdir -p "$out/prismlauncher-kanagawa"
@@ -30,26 +28,34 @@ with lib;
       };
     in
     mkIf config.games.minecraft.enable {
-      wayland.windowManager = mkIf config.hyprland.enable {
-        hyprland.settings = {
-          window_rule = [
-            {
-              name = "PrismLauncher";
-              match = {
-                class = "org.prismlauncher.*";
-              };
-              workspace = "5";
-            }
-            {
-              name = "Minecraft";
-              match = {
-                class = "Minecraft.*";
-              };
-              workspace = "5";
-            }
-          ];
+      wayland.windowManager =
+        optionalAttrs config.hyprland.enable {
+          hyprland.settings = {
+            window_rule = [
+              {
+                name = "PrismLauncher";
+                match = {
+                  class = "org.prismlauncher.*";
+                };
+                workspace = "5";
+              }
+              {
+                name = "Minecraft";
+                match = {
+                  class = "Minecraft.*";
+                };
+                workspace = "5";
+              }
+            ];
+          };
+        }
+        // optionalAttrs config.mango.enable {
+          mango.settings = {
+            window_rule = [
+              "tags:9,app_id:org.prismlauncher.PrismLauncher"
+            ];
+          };
         };
-      };
 
       home = {
         packages = with pkgs; [
@@ -62,27 +68,9 @@ with lib;
         };
       }
       // optionalAttrs config.impermanence.enable {
-        persistence."/persist" = {
-          directories = [
-            ".local/share/PrismLauncher/assets"
-            ".local/share/PrismLauncher/cache"
-            ".local/share/PrismLauncher/catpacks"
-            ".local/share/PrismLauncher/icons"
-            ".local/share/PrismLauncher/iconthemes"
-            ".local/share/PrismLauncher/java"
-            ".local/share/PrismLauncher/libraries"
-            ".local/share/PrismLauncher/logs"
-            ".local/share/PrismLauncher/meta"
-            ".local/share/PrismLauncher/skins"
-            ".local/share/PrismLauncher/translations"
-          ];
-
-          files = [
-            ".local/share/PrismLauncher/accounts.json"
-            ".local/share/PrismLauncher/metacache"
-            ".local/share/PrismLauncher/prismlauncher.cfg"
-          ];
-        };
+        persistence."/persist".directories = [
+          ".local/share/PrismLauncher"
+        ];
       };
     };
 }
