@@ -13,6 +13,19 @@
     stateVersion = "25.05";
   };
 
+  # Overlay to pass corporate proxy CA certs to fetchgit
+  nixpkgs.overlays = [
+    (final: prev: {
+      fetchgit =
+        args:
+        (prev.fetchgit args).overrideAttrs (old: {
+          env = (old.env or { }) // {
+            GIT_SSL_CAINFO = "/etc/ssl/certs/ca-certificates.crt";
+          };
+        });
+    })
+  ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
