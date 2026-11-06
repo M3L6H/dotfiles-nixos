@@ -28,6 +28,9 @@
     })
   ];
 
+  # Self-signed cert nonsense
+  home.sessionVariables.NODE_EXTRA_CA_CERTS = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
