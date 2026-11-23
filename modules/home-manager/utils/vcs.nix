@@ -21,7 +21,7 @@
         default = {
           email = "8094643+M3L6H@users.noreply.github.com";
           name = "m3l6h";
-          signingkey = "0x684A2EF7691E4FD3";
+          signingkey = "0xCB388F8417112A5C";
         };
       };
     };
