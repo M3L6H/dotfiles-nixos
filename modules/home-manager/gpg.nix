@@ -11,12 +11,7 @@ with lib;
   };
 
   config = mkIf config.gpg.enable {
-    home = {
-      packages = with pkgs; [
-        pinentry-qt
-      ];
-    }
-    // optionalAttrs config.impermanence.enable {
+    home = optionalAttrs config.impermanence.enable {
       persistence."/persist".directories = [
         ".gnupg"
       ];
@@ -30,7 +25,7 @@ with lib;
 
     services.gpg-agent = {
       enable = true;
-      pinentry.package = pkgs.pinentry-curses;
+      pinentry.package = pkgs.pinentry-qt;
       enableExtraSocket = true;
       enableSshSupport = true;
     };
