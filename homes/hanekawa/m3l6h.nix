@@ -1,9 +1,8 @@
 { pkgs, username, ... }:
 {
   imports = [
-    ../../modules/home-manager/default.nix
-
-    ./ssh.nix
+    ../../modules/home-manager
+    ../common
   ];
 
   home = {

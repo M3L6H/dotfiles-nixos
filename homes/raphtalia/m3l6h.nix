@@ -5,9 +5,10 @@
 }:
 {
   imports = [
-    ./ssh.nix
+    ../../modules/home-manager
+    ../common
 
-    ../../modules/home-manager/default.nix
+    ./ssh.nix
   ];
 
   home = {

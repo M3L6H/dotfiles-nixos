@@ -32,6 +32,7 @@ with lib;
       enable = true;
       pinentry.package = pkgs.pinentry-curses;
       enableExtraSocket = true;
+      enableSshSupport = true;
     };
 
     # Force-disable the default user sockets so they don't block your forwarded tunnel

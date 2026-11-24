@@ -27,8 +27,7 @@ with lib;
     };
 
     users.users.${username}.openssh.authorizedKeys.keyFiles = [
-      ./primary_id_ed25519_sk.pub
-      ./backup_id_ed25519_sk.pub
+      ./id_gpg_2026.pub
     ];
   };
 }
