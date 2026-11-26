@@ -30,6 +30,7 @@ with lib;
         ];
 
         xkb_rules_options = "caps:escape";
+        trackpad_disable_while_typing = 0;
         trackpad_natural_scrolling = 1;
 
         cursor_hide_timeout = 5;
